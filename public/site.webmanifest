@@ -1,0 +1,16 @@
+{
+  "name": "Jose Antonio Arias Lombardero - CV",
+  "short_name": "Cv JA.Lombardero",
+  "description": "Curriculum Vitae de Jose Antonio Arias Lombardero. Experto en IA para la Administración Pública.",
+  "icons": [
+    {
+      "src": "/favicon-cuadrado.jpeg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    }
+  ],
+  "theme_color": "#0a0a0a",
+  "background_color": "#0a0a0a",
+  "display": "standalone",
+  "start_url": "/"
+}
