@@ -39,7 +39,7 @@ Para ejecutar este proyecto en tu propio entorno local, sigue estos pasos:
 
 1. Clona este repositorio:
    ```bash
-   git clone https://github.com/jose-antarias/ja-lombardero.git
+   git clone https://github.com/ariaslombardero/ja-lombardero.git
    ```
 2. Navega al directorio raíz del proyecto:
    ```bash
