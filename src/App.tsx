@@ -169,6 +169,21 @@ function App() {
     return () => document.removeEventListener('keydown', closeMenu);
   }, [menuOpen]);
 
+  useEffect(() => {
+    const scrollToHash = () => {
+      const targetId = decodeURIComponent(window.location.hash.slice(1));
+      if (!targetId) return;
+      document.getElementById(targetId)?.scrollIntoView({block: 'start'});
+    };
+
+    const frame = window.requestAnimationFrame(scrollToHash);
+    window.addEventListener('hashchange', scrollToHash);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener('hashchange', scrollToHash);
+    };
+  }, []);
+
   return (
     <div className="site-shell">
       <a className="skip-link" href="#contenido">Saltar al contenido</a>
