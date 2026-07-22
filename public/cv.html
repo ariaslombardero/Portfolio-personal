@@ -1,1581 +1,266 @@
-<!DOCTYPE html>
-<html class="scroll-smooth" lang="es">
+<!doctype html>
+<html lang="es">
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    
-    <!-- SEO y Metadatos -->
-    <title>Jose Antonio Arias Lombardero - Experto en IA para la Administración Pública</title>
-    <meta name="description" content="Curriculum Vitae de Jose Antonio Arias Lombardero. Especialista en Inteligencia Artificial aplicada al sector público, innovación, contratación y fondos europeos."/>
-    <meta name="author" content="Jose Antonio Arias Lombardero"/>
-    <meta name="keywords" content="Inteligencia Artificial, Administración Pública, Sector Público, Innovación, Fondos Europeos, CV, Curriculum Vitae"/>
-    
-    <!-- Open Graph / LinkedIn / Facebook -->
-    <meta property="og:type" content="profile"/>
-    <meta property="og:title" content="Jose Antonio Arias Lombardero - Experto en IA para la Administración Pública"/>
-    <meta property="og:description" content="Especialista en Inteligencia Artificial aplicada al sector público, innovación y fondos europeos. Descubre mi trayectoria y proyectos."/>
-    <meta property="og:image" content="https://ja-lombardero.vercel.app/perfil.jpeg"/>
-    
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image"/>
-    <meta name="twitter:title" content="Jose Antonio Arias Lombardero - Experto en IA para la Administración Pública"/>
-    <meta name="twitter:description" content="Especialista en Inteligencia Artificial aplicada al sector público, innovación y fondos europeos."/>
-    <meta name="twitter:image" content="https://ja-lombardero.vercel.app/perfil.jpeg"/>
-
-    <!-- Iconos y Manifest -->
-    <link rel="icon" type="image/jpeg" href="/favicon-cuadrado.jpeg" />
-    <link rel="apple-touch-icon" href="/favicon-cuadrado.jpeg" />
-    <link rel="manifest" href="/site.webmanifest" />
-
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Space Grotesk', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-    <style type="text/tailwindcss">
-        :root {
-            --primary: #ff3333;
-            --bg-dark: #0a0a0a;
-            --text-main: #f3f4f6;
-            --text-muted: #9ca3af;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        }
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.015);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
-        }
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-dark);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #333;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--primary);
-        }
-        .nav-link.active {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: white;
-        }
-        .nav-link.active .material-symbols-outlined {
-            color: var(--primary);
-        }
-        @media print {
-            .no-print { display: none !important; }
-            body { background-color: white !important; color: black !important; }
-            .glass-card, .glass-panel { 
-                background: none !important; 
-                border: 1px solid #ccc !important; 
-                box-shadow: none !important;
-                backdrop-filter: none !important;
-            }
-            aside { 
-                position: relative !important; 
-                height: auto !important; 
-                width: 100% !important; 
-                border: none !important;
-                padding: 0 !important;
-                margin-bottom: 20px !important;
-            }
-            main { 
-                margin: 0 !important; 
-                padding: 0 !important; 
-            }
-            .text-slate-50, .text-slate-200 { color: black !important; }
-            .text-slate-300, .text-slate-400, .text-slate-500 { color: #333 !important; }
-            a { text-decoration: underline; color: black !important; }
-            /* Hide decorative elements */
-            .absolute.blur-3xl { display: none !important; }
-        }
-    
-        /* Scroll Animations */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .reveal {
-                transition: none;
-                opacity: 1;
-                transform: none;
-            }
-        }
-
-        /* Micro-interactions */
-        #progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 3px;
-            background: var(--primary);
-            width: 0%;
-            z-index: 100;
-            transition: width 0.1s ease-out;
-        }
-
-        #back-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            color: var(--text-main);
-            width: 3rem;
-            height: 3rem;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px);
-            transition: all 0.3s ease;
-            z-index: 50;
-        }
-        #back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        #back-to-top:hover {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 51, 51, 0.4);
-        }
-        @media (max-width: 768px) {
-            #back-to-top {
-                bottom: 1rem;
-                right: 1rem;
-                width: 2.5rem;
-                height: 2.5rem;
-            }
-        }
-
-        /* Mouse Glow Effect for Cards */
-        .glass-card {
-            position: relative;
-        }
-        .glass-card::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            background: radial-gradient(
-                600px circle at var(--mouse-x, -100%) var(--mouse-y, -100%),
-                rgba(255, 255, 255, 0.04),
-                transparent 40%
-            );
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .glass-card:hover::after {
-            opacity: 1;
-        }
-        .glass-card > * {
-            position: relative;
-            z-index: 1;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trayectoria y evidencias | Jose Antonio Arias Lombardero</title>
+  <meta name="description" content="Trayectoria profesional de Jose Antonio Arias Lombardero: innovación pública, gobernanza de inteligencia artificial, aplicaciones, docencia y publicaciones.">
+  <meta name="author" content="Jose Antonio Arias Lombardero">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="canonical" href="https://ariaslombardero.es/cv.html">
+  <meta property="og:title" content="Trayectoria y evidencias | Jose Antonio Arias Lombardero">
+  <meta property="og:description" content="Administración local, estrategia pública de IA, aplicaciones y formación aplicada.">
+  <meta property="og:type" content="profile">
+  <meta property="og:url" content="https://ariaslombardero.es/cv.html">
+  <meta property="og:image" content="https://ariaslombardero.es/perfil-menu.jpeg">
+  <link rel="icon" type="image/svg+xml" href="/brand/logo-mark-dark.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/editorial.css">
+  <link rel="stylesheet" href="/cv.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfilePage","mainEntity":{"@type":"Person","name":"Jose Antonio Arias Lombardero","url":"https://ariaslombardero.es/","jobTitle":"Especialista en innovación pública e inteligencia artificial"}}</script>
 </head>
-<body class="antialiased selection:bg-red-500/30 flex flex-col md:flex-row min-h-screen">
+<body class="cv-proposal">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="/" aria-label="Arias Lombardero, volver a la portada"><img class="brand-logo brand-logo-full" src="/brand/logo-primary-dark.svg" alt="ariaslombardero"><img class="brand-logo brand-logo-compact" src="/brand/logo-mark-dark.svg" alt="" aria-hidden="true"></a>
+      <button class="menu-button" type="button" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav class="nav" aria-label="Navegación principal">
+        <a href="/">Inicio</a>
+        <a aria-current="page" href="/cv.html">Trayectoria</a>
+        <a href="/casos/mencia.html">Estrategia</a>
+        <a href="/aplicaciones/">Aplicaciones</a>
+        <a href="/formacion/">Formación</a>
+        <a href="/congresos-webinars.html">Congresos y webinars</a>
+        <a href="/#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
 
-    <!-- Reading Progress Bar -->
-    <div id="progress-bar" class="no-print"></div>
-
-    <!-- Back to Top Button -->
-    <button id="back-to-top" class="no-print" aria-label="Volver arriba">
-        <span class="material-symbols-outlined">arrow_upward</span>
-    </button>
-
-    <!-- Sidebar -->
-    <aside class="w-full md:w-64 lg:w-72 glass-card border-r border-white/5 relative md:fixed md:h-screen z-40 flex flex-col items-center py-8 md:py-8 overflow-y-auto top-0 left-0">
-        <div class="w-28 h-28 aspect-square shrink-0 rounded-full overflow-hidden border-2 border-[var(--primary)] mb-4 shadow-[0_0_15px_rgba(255,51,51,0.3)]">
-            <img src="./perfil-menu.jpeg" onerror="this.src='./perfil.jpeg'" alt="Jose Antonio Arias Lombardero" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"/>
+  <main id="contenido">
+    <section class="cv-hero">
+      <div class="wrap cv-hero-grid">
+        <div>
+          <p class="eyebrow">Trayectoria profesional</p>
+          <h1>Jose Antonio<br>Arias Lombardero</h1>
+          <p class="cv-lead">Profesional de la Administración local especializado en convertir la inteligencia artificial en estrategia institucional, aplicaciones utilizables y formación aplicada.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="mailto:jose@ariaslombardero.es?subject=Propuesta%20de%20colaboración%20o%20formación">Contactar</a>
+            <a class="button secondary" href="/assets/cv-jose-antonio-arias-lombardero-2026.pdf" download>Descargar CV en PDF</a>
+          </div>
         </div>
-        <h2 class="text-xl font-bold text-center px-4 mb-1 text-slate-50 font-display">Jose Antonio</h2>
-        <h2 class="text-xl font-bold text-center px-4 mb-8 text-red-500" font-display>Arias Lombardero</h2>
-        
+        <figure class="portrait">
+          <img src="/perfil.jpeg" alt="Retrato de Jose Antonio Arias Lombardero">
+          <figcaption class="portrait-caption">Innovación pública · Gobernanza de IA · Formación</figcaption>
+        </figure>
+      </div>
+    </section>
 
+    <div class="proof-strip wrap" aria-label="Credenciales principales">
+      <div><strong>15+</strong><span>Años de experiencia en Administración local</span></div>
+      <div><strong>88 h</strong><span>Formación reciente impartida</span></div>
+      <div><strong>2</strong><span>Premios profesionales</span></div>
+      <div><strong>AEPD</strong><span>Evaluador de la Revista de Privacidad, Innovación y Tecnología</span></div>
+    </div>
 
-        <nav class="w-full flex flex-col gap-2 px-4 mb-8">
-            <a href="#inicio" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 text-slate-400 hover:text-slate-50 transition-colors">
-                <span class="material-symbols-outlined text-slate-500">home</span>
-                <span class="font-medium">Inicio</span>
-            </a>
-            <a href="#perfil" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 text-slate-400 hover:text-slate-50 transition-colors">
-                <span class="material-symbols-outlined text-slate-500">person</span>
-                <span class="font-medium">Perfil profesional</span>
-            </a>
-            <a href="#experiencia" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 text-slate-400 hover:text-slate-50 transition-colors">
-                <span class="material-symbols-outlined text-slate-500">work</span>
-                <span class="font-medium">Experiencia</span>
-            </a>
-            <a href="#especializacion" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 text-slate-400 hover:text-slate-50 transition-colors">
-                <span class="material-symbols-outlined text-slate-500">psychology</span>
-                <span class="font-medium">Especialización en IA</span>
-            </a>
-            <a href="#formacion" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 text-slate-400 hover:text-slate-50 transition-colors">
-                <span class="material-symbols-outlined text-slate-500">school</span>
-                <span class="font-medium">Formación académica</span>
-            </a>
-            <a href="#formacion-ia" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 text-slate-400 hover:text-slate-50 transition-colors">
-                <span class="material-symbols-outlined text-slate-500">model_training</span>
-                <span class="font-medium">Formación en IA</span>
-            </a>
-            <a href="#competencias" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 text-slate-400 hover:text-slate-50 transition-colors">
-                <span class="material-symbols-outlined text-slate-500">build</span>
-                <span class="font-medium">Competencias</span>
-            </a>
+    <div class="wrap mobile-toc-wrap">
+      <details class="mobile-toc">
+        <summary>Ir a una sección</summary>
+        <nav aria-label="Índice móvil de trayectoria">
+          <a href="#perfil">Perfil profesional</a>
+          <a href="#casos">Casos destacados</a>
+          <a href="#experiencia">Experiencia profesional</a>
+          <a href="#docencia">Docencia acreditada</a>
+          <a href="#proyectos">Aplicaciones</a>
+          <a href="#investigacion">Publicaciones y actividad editorial</a>
+          <a href="#reconocimientos">Premios profesionales</a>
+          <a href="#congresos">Congresos y webinars</a>
+          <a href="#especializacion-ia">Especialización en IA</a>
+          <a href="#formacion-academica">Titulación y acreditación docente</a>
+          <a href="#competencias">Competencias y herramientas</a>
         </nav>
-
-        <!-- Social Icons (Moved below menu) -->
-        <div class="flex flex-row justify-center items-center gap-4 px-3 py-4 w-full">
-            <a href="mailto:jose@ariaslombardero.es" class="text-slate-400 hover:text-[var(--primary)] transition-colors flex items-center justify-center w-[30px] h-[30px]" title="Email">
-                <span class="material-symbols-outlined text-[28px] font-light leading-none">mail</span>
-            </a>
-            <a href="https://www.linkedin.com/in/ariaslombardero" target="_blank" class="text-slate-400 hover:text-[var(--primary)] transition-colors font-bold text-[14px] flex items-center justify-center border-[2px] border-slate-400 rounded-[6px] w-[30px] h-[30px] hover:border-[var(--primary)] leading-none" title="LinkedIn">
-                in
-            </a>
-            <a href="https://github.com/ariaslombardero" target="_blank" class="text-slate-400 hover:text-[var(--primary)] transition-colors flex items-center justify-center w-[30px] h-[30px]" title="GitHub">
-                <svg viewBox="0 0 24 24" class="w-[26px] h-[26px] fill-current" aria-hidden="true">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
-                </svg>
-            </a>
-            <a href="https://orcid.org/0009-0007-7772-1008" target="_blank" class="text-slate-400 hover:text-[var(--primary)] transition-colors font-bold text-[14px] flex items-center justify-center border-[2px] border-slate-400 rounded-full w-[30px] h-[30px] hover:border-[var(--primary)] leading-none" title="ORCID">
-                iD
-            </a>
-            <a href="https://vimeo.com/ariaslombardero" target="_blank" class="text-slate-400 hover:text-[var(--primary)] transition-colors flex items-center justify-center w-[30px] h-[30px]" title="Vimeo">
-                <svg viewBox="0 0 24 24" class="w-[26px] h-[26px] fill-current" aria-hidden="true">
-                    <path d="M22.396 7.164c-.093 2.026-1.507 4.8-4.245 8.32C15.32 19.161 12.93 21 11.002 21c-1.332 0-2.44-1.324-3.321-3.968-.617-2.924-1.233-5.845-1.85-8.769-.64-2.884-1.285-4.321-1.93-4.321-.194 0-.756.28-1.688.841L1.134 3.32C2.392 2.213 3.568 1.157 4.664.152c1.472-1.295 2.502-1.986 3.09-2.073 1.83-.264 2.894.673 3.197 2.81 0 .046.043 1.542.127 4.492.203 2.585.342 4.095.42 4.526.473 3.064 1.189 4.596 2.146 4.596.883 0 2.05-1.365 3.504-4.094.976-1.853 1.488-3.149 1.534-3.892.1-1.366-.46-2.05-1.68-2.05-.623 0-1.25.178-1.879.537 1.255-4.103 3.829-6.31 7.72-6.621 2.3-.18 3.522 1.05 3.666 3.69v.001z"/>
-                </svg>
-            </a>
-        </div>
-    </aside>
-
-    <!-- Main Content -->
-    <main class="flex-1 md:ml-64 lg:ml-72 p-6 md:p-12 lg:p-20 relative mt-0">
-        <!-- Background effects -->
-        <div class="fixed inset-0 z-0 pointer-events-none">
-            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-red-900/10 rounded-full blur-3xl mix-blend-screen"></div>
-            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-900/10 rounded-full blur-3xl mix-blend-screen"></div>
-        </div>
-
-        <div class="max-w-4xl mx-auto relative z-10 space-y-24">
-            
-            <!-- Floating Download Buttons Removed -->
-
-            <!-- Inicio Section -->
-            <section id="inicio" class="min-h-[80vh] flex items-center pt-10">
-                <div class="reveal grid grid-cols-1 lg:grid-cols-12 gap-12 items-center glass-card p-8 md:p-12 rounded-3xl relative overflow-hidden w-full">
-                    <!-- Decorative elements -->
-                    <div class="absolute top-0 right-0 w-64 h-64 bg-[var(--primary)] opacity-5 blur-[100px] rounded-full pointer-events-none"></div>
-                    
-                    <div class="lg:col-span-5 flex justify-center relative">
-                        <div class="relative w-64 h-64 md:w-80 md:h-80">
-                            <div class="absolute inset-0 rounded-2xl border border-red-600/50 rotate-6 transition-transform hover:rotate-0 duration-500"></div>
-                            <div class="absolute inset-0 rounded-2xl border border-white/10 -rotate-3 transition-transform hover:rotate-0 duration-500"></div>
-                            <img src="./perfil.jpeg" onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuBWee--eXq49d72dIRrHXhO48qEk0L5vACziyzMxYgIAiIaENSPQuu-3m6h_4QBVySneLPaJCxr6UX4xtED1q5saKHfJjjnM0xbpebUUDQrrYR301X_aRqpI2bjUkpyjzJf16L-OPve-yk7yL_W50CQs-vKAGFfp9sgs29reRdxUm9_eXlqaLIOdnoNZgnKL0pDACHoAOpEZXWaFho83LEh8fExKMEyw_CYrUWC5fqTwQSwD2VOELxIIDJARQs6oOEzmyhmK9UhLDR5'" alt="Jose Antonio Arias Lombardero" class="absolute inset-0 w-full h-full object-cover rounded-2xl z-10 shadow-2xl grayscale hover:grayscale-0 transition-all duration-500"/>
-                        </div>
-                    </div>
-                    
-                    <div class="lg:col-span-7">
-                        <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-2 text-slate-50 font-display">Jose Antonio</h1>
-                        <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-[#ff1a1a]" font-display>Arias Lombardero</h1>
-                        
-                        <h2 class="text-xl font-medium text-slate-50 font-display mb-6 flex items-center gap-2">
-                            <span class="w-8 h-[2px] bg-[var(--primary)] block"></span>
-                            Alfabetización en IA para la Administración Pública.
-                        </h2>
-                        
-                        <p class="text-slate-400 mb-8 leading-relaxed">
-                            Ayudo a las administraciones públicas a cumplir con la obligación del <a href="https://digital-strategy.ec.europa.eu/es/faqs/ai-literacy-questions-answers" target="_blank" rel="noopener noreferrer" class="text-slate-200 font-semibold underline decoration-white/30 underline-offset-4 hover:decoration-[var(--primary)] hover:text-slate-100 transition-all duration-300">Art. 4 del Reglamento europeo de inteligencia artificial</a>, mediante planes de formación prácticos y adaptados a la realidad del empleado público.
-                        </p>
-                        
-                        <div class="flex flex-wrap gap-4">
-                            <a href="mailto:jose@ariaslombardero.es" class="px-8 py-3 bg-[var(--primary)] hover:bg-red-600 text-slate-200 rounded-full font-medium transition-all duration-300 shadow-[0_0_20px_rgba(255,51,51,0.3)] hover:shadow-[0_0_30px_rgba(255,51,51,0.4)] flex items-center gap-2">
-                                Contactar
-                                <span class="material-symbols-outlined text-sm">send</span>
-                            </a>
-                            <button onclick="openVideoModal()" class="px-8 py-3 bg-white/5 hover:bg-white/10 border border-white/20 text-slate-200 rounded-full font-medium transition-all duration-300 hover:border-slate-300 flex items-center gap-2 group backdrop-blur-sm">
-                                <span class="material-symbols-outlined text-[var(--primary)] group-hover:scale-110 transition-transform">play_circle</span>
-                                Ver presentación
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Perfil profesional -->
-            <section id="perfil" class="scroll-mt-24">
-                <div class="reveal flex items-center gap-4 mb-8">
-                    <div class="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center">
-                        <span class="material-symbols-outlined text-[var(--primary)]">person</span>
-                    </div>
-                    <h2 class="text-3xl font-bold" font-display>Perfil profesional</h2>
-                </div>
-                
-                <div class="reveal glass-card p-8 rounded-3xl">
-                    <p class="text-slate-300 leading-relaxed mb-6">
-                        Licenciado en Ciencias Políticas y de la Administración, con más de 15 años de experiencia en la Administración Local y una sólida especialización en Inteligencia Artificial aplicada al sector público.
-                    </p>
-                    <p class="text-slate-300 leading-relaxed mb-6">
-                        Responsable del diseño e implementación de <a href="https://deputacionlugo.gal/es/a-deputacion/mencia" target="_blank" rel="noopener noreferrer" class="text-slate-200 font-medium underline decoration-white/30 underline-offset-4 hover:decoration-[var(--primary)] hover:text-slate-100 transition-all duration-300">MencIA: la estrategia de Inteligencia Artificial de la Diputación de Lugo</a>. Un modelo de IA soberana de código abierto/pesos abiertos, con vistas a su extensión bajo la fórmula de Plataforma como Servicio (PaaS) a los municipios de la provincia con menos de 20.000 habitantes. Esta idea de modelo ha sido publicada en revistas académica indexada (IDP-UOC, CEMCI) y presentado en varios congresos nacionales de referencia en 2025-2026.
-                    </p>
-                    <p class="text-slate-300 leading-relaxed mb-6">
-                        MencIA ha sido galardonada como la mejor ponencia en el II Foro GRC organizado en por la Asociación Española para la Calidad (AEC) y ha obtenido el Premio Juan Raya Gómez, a la innovación en el control y la gestión pública local 2026, otorgado en por la fundación FIASEP (Fundación de Apoyo a la Función Inspectora y de Control).
-                    </p>
-                    <p class="text-slate-300 leading-relaxed mb-6">
-                        Certificado como Formador Ocupacional por la Xunta de Galicia, con amplia trayectoria en diseño e impartición de formación presencial y en línea dirigida tanto a perfiles técnicos como a responsables de entidades locales.
-                    </p>
-                    <p class="text-slate-200 leading-relaxed font-medium">
-                        <strong>Mi objetivo es compartir conocimiento práctico y replicable sobre IA ética, eficiente y soberana y formar a equipos para un despliegue responsable de la IA en los próximos años.</strong>
-                    </p>
-                </div>
-            </section>
-
-            <!-- Experiencia profesional y docente -->
-            <section id="experiencia" class="scroll-mt-24">
-                <div class="reveal flex items-center gap-4 mb-8">
-                    <div class="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center">
-                        <span class="material-symbols-outlined text-[var(--primary)]">work</span>
-                    </div>
-                    <h2 class="text-3xl font-bold" font-display>Experiencia profesional y docente</h2>
-                </div>
-                
-                <div class="space-y-6 relative before:absolute before:inset-0 before:ml-6 before:-translate-x-px lg:before:mx-auto lg:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-[var(--primary)] before:via-white/10 before:to-transparent">
-                    
-                    <!-- Item 1 -->
-                    <div class="reveal relative flex items-center justify-between lg:justify-normal lg:even:flex-row-reverse group">
-                        <div class="flex items-center justify-center w-12 h-12 rounded-full border-4 border-[var(--bg-dark)] bg-[var(--primary)] text-slate-200 shadow shrink-0 lg:order-1 lg:group-even:-translate-x-1/2 lg:group-odd:translate-x-1/2 z-10">
-                            <span class="material-symbols-outlined text-sm">star</span>
-                        </div>
-                        <div class="w-[calc(100%-4rem)] lg:w-[calc(50%-3rem)] glass-card p-6 rounded-2xl hover:border-[var(--primary)]/50 transition-colors">
-                            <div class="flex flex-col mb-4">
-                                <span class="text-[var(--primary)] font-mono text-sm mb-1">Mayo 2019 - Actualidad</span>
-                                <h3 class="font-bold text-xl text-slate-50 font-display">Jefe de la Sección de Innovación y Participación Ciudadana</h3>
-                                <span class="text-slate-400 text-sm">Diputación Provincial de Lugo</span>
-                            </div>
-                            <ul class="text-slate-300 text-sm space-y-3 list-disc list-outside ml-4">
-                                <li>Diseño e implementación de MencIA, la estrategia de Inteligencia Artificial de la Diputación de Lugo. Un stack de IA soberana de código abierto/pesos abiertos instalada en servidores propios y con vistas a su extensión mediante Plataforma como Servicio (PaaS) a municipios de la provincia de menos de 20.000 habitantes.</li>
-                                <li>Publicación como coautor en la Revista de Internet, Derecho y Política (IDP nº 43, oct. 2025) y en la Revista del Centro de Estudios Municipales y de Cooperación Internacional (CEMCI) (nº 66, 2025).</li>
-                                <li>Desarrollo de un portfolio de aplicaciones integradas en la estrategia de IA institucional: agente monitor del BOE, gestor inteligente de correo, plataforma formativa sobre las Guias de la AESIA, calculadora de plazos de la LCSP.</li>
-                            </ul>
-                            
-                            <!-- Expandable Content -->
-                            <div id="exp-1-content" class="hidden mt-3">
-                                <ul class="text-slate-300 text-sm space-y-3 list-disc list-outside ml-4">
-                                    <li>Impartición de formación en materia de fondos europeos y transformación digital a empleados públicos de la provincia de Lugo y del INAP.</li>
-                                    <li>Impartición de formación en materia de Inteligencia Artificial para empleados púbicos de la provincia de Lugo (pro.)</li>
-                                    <li>Coordinación del Departamento de Fondos Europeos y la Agencia de la Energía provincial; gestión de financiación FEDER, FSE y NextGenerationEU/PRTR para proyectos de innovación, eficiencia energética, empleo, bienestar y medioambiente.</li>
-                                    <li>Participación como ponente en diferentes congresos nacionales de innovación pública en 2025-2026: Congreso NovaGob 2025, Jornadas sobre la IA en el mundo local (Local.IA), II Congreso Foro GRC (Madrid, premio a la mejor comunicación), etc.</li>
-                                </ul>
-                            </div>
-                            
-                            <!-- Toggle Button -->
-                            <button onclick="toggleExperience('exp-1')" id="exp-1-btn" class="mt-4 flex items-center gap-1 text-[var(--primary)] text-sm font-medium hover:text-red-400 transition-colors w-full justify-center py-2 border-t border-white/5">
-                                <span>Ver más detalles</span>
-                                <span class="material-symbols-outlined text-sm transition-transform duration-300" id="exp-1-icon">expand_more</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Item 2 -->
-                    <div class="reveal relative flex items-center justify-between lg:justify-normal lg:even:flex-row-reverse group">
-                        <div class="flex items-center justify-center w-12 h-12 rounded-full border-4 border-[var(--bg-dark)] bg-gray-800 text-slate-400 shadow shrink-0 lg:order-1 lg:group-even:-translate-x-1/2 lg:group-odd:translate-x-1/2 z-10">
-                            <span class="w-3 h-3 bg-gray-400 rounded-full"></span>
-                        </div>
-                        <div class="w-[calc(100%-4rem)] lg:w-[calc(50%-3rem)] glass-card p-6 rounded-2xl hover:border-white/20 transition-colors">
-                            <div class="flex flex-col mb-4">
-                                <span class="text-slate-400 font-mono text-sm mb-1">Abril 2014 - Enero 2026</span>
-                                <h3 class="font-bold text-xl text-slate-50 font-display">Técnico especialista en contratación pública</h3>
-                                <span class="text-slate-400 text-sm">Consorcio Provincial de Lugo para la prestación del servicio contra incendios y salvamento</span>
-                            </div>
-                            <ul class="text-slate-300 text-sm space-y-3 list-disc list-outside ml-4">
-                                <li>Gestión de licitaciones: Tramitación integral de expedientes de contratación de servicios y suministros. Modificados, prórrogas, devolución de garantías.</li>
-                                <li>Asesoramiento Jurídico-Técnico: Redacción de pliegos de cláusulas administrativas (PCA) y prescripciones técnicas (PPT); emisión de informes jurídico-administrativos especializados.</li>
-                            </ul>
-                            
-                            <!-- Expandable Content -->
-                            <div id="exp-2-content" class="hidden mt-3">
-                                <ul class="text-slate-300 text-sm space-y-3 list-disc list-outside ml-4">
-                                    <li>Digitalización de procesos: Puesta en marcha y consolidación de la contratación electrónica en la entidad.</li>
-                                    <li>Mesas de contratación: Preparación, gestión y retransmisión online de sesiones para garantizar la transparencia del proceso.</li>
-                                </ul>
-                            </div>
-                            
-                            <!-- Toggle Button -->
-                            <button onclick="toggleExperience('exp-2')" id="exp-2-btn" class="mt-4 flex items-center gap-1 text-[var(--primary)] text-sm font-medium hover:text-red-400 transition-colors w-full justify-center py-2 border-t border-white/5">
-                                <span>Ver más detalles</span>
-                                <span class="material-symbols-outlined text-sm transition-transform duration-300" id="exp-2-icon">expand_more</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Item 3 -->
-                    <div class="reveal relative flex items-center justify-between lg:justify-normal lg:even:flex-row-reverse group">
-                        <div class="flex items-center justify-center w-12 h-12 rounded-full border-4 border-[var(--bg-dark)] bg-gray-800 text-slate-400 shadow shrink-0 lg:order-1 lg:group-even:-translate-x-1/2 lg:group-odd:translate-x-1/2 z-10">
-                            <span class="w-3 h-3 bg-gray-400 rounded-full"></span>
-                        </div>
-                        <div class="w-[calc(100%-4rem)] lg:w-[calc(50%-3rem)] glass-card p-6 rounded-2xl hover:border-white/20 transition-colors">
-                            <div class="flex flex-col mb-4">
-                                <span class="text-slate-400 font-mono text-sm mb-1">Mayo 2018 - Mayo 2019</span>
-                                <h3 class="font-bold text-xl text-slate-50 font-display">Asesor técnico - Servicio de contratación y fomento</h3>
-                                <span class="text-slate-400 text-sm">Diputación Provincial de Lugo</span>
-                            </div>
-                            <ul class="text-slate-300 text-sm space-y-3 list-disc list-outside ml-4">
-                                <li>Tramitación de expedientes de contratación pública, emisión de informes jurídico-administrativos y especialización en licitación electrónica y contratos de publicidad institucional.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Toggle All Experience Button -->
-                    <div class="relative flex items-center justify-center z-10 py-4">
-                        <button onclick="toggleAllExperience()" id="toggle-all-exp-btn" class="px-6 py-2 bg-[var(--bg-dark)] border border-white/10 hover:border-[var(--primary)] text-[var(--primary)] hover:text-red-400 rounded-full font-medium transition-all duration-300 shadow-lg flex items-center gap-2">
-                            <span>Ver toda mi experiencia profesional</span>
-                            <span class="material-symbols-outlined text-sm transition-transform duration-300" id="toggle-all-exp-icon">expand_more</span>
-                        </button>
-                    </div>
-
-                    <!-- Item 4 -->
-                    <div class="reveal more-exp-item hidden relative flex items-center justify-between lg:justify-normal lg:flex-row-reverse group">
-                        <div class="flex items-center justify-center w-12 h-12 rounded-full border-4 border-[var(--bg-dark)] bg-gray-800 text-slate-400 shadow shrink-0 lg:order-1 lg:-translate-x-1/2 z-10">
-                            <span class="w-3 h-3 bg-gray-400 rounded-full"></span>
-                        </div>
-                        <div class="w-[calc(100%-4rem)] lg:w-[calc(50%-3rem)] glass-card p-6 rounded-2xl hover:border-white/20 transition-colors">
-                            <div class="flex flex-col mb-4">
-                                <span class="text-slate-400 font-mono text-sm mb-1">Abril 2013 - Mayo 2019</span>
-                                <h3 class="font-bold text-xl text-slate-50 font-display">Técnico de gestión - Servicio de nuevas tecnologías</h3>
-                                <span class="text-slate-400 text-sm">Diputación Provincial de Lugo</span>
-                            </div>
-                            <ul class="text-slate-300 text-sm space-y-3 list-disc list-outside ml-4">
-                                <li>Desarrollo y promoción de las TIC en el territorio provincial; ejecución de proyectos europeos cofinanciados con FEDER y FSE en el ámbito de las tecnologías de la información.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Item 5 -->
-                    <div class="reveal more-exp-item hidden relative flex items-center justify-between lg:justify-normal group">
-                        <div class="flex items-center justify-center w-12 h-12 rounded-full border-4 border-[var(--bg-dark)] bg-gray-800 text-slate-400 shadow shrink-0 lg:order-1 lg:translate-x-1/2 z-10">
-                            <span class="w-3 h-3 bg-gray-400 rounded-full"></span>
-                        </div>
-                        <div class="w-[calc(100%-4rem)] lg:w-[calc(50%-3rem)] glass-card p-6 rounded-2xl hover:border-white/20 transition-colors">
-                            <div class="flex flex-col mb-4">
-                                <span class="text-slate-400 font-mono text-sm mb-1">Oct. 2011 - Abr. 2013</span>
-                                <h3 class="font-bold text-xl text-slate-50 font-display">Técnico de gestión</h3>
-                                <span class="text-slate-400 text-sm">Instituto Lucense de Desarrollo Económico y Social (INLUDES)</span>
-                            </div>
-                            <ul class="text-slate-300 text-sm space-y-3 list-disc list-outside ml-4">
-                                <li>Gestión de recursos humanos y personal en el organismo de desarrollo económico provincial.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Item 6 -->
-                    <div class="reveal more-exp-item hidden relative flex items-center justify-between lg:justify-normal lg:flex-row-reverse group">
-                        <div class="flex items-center justify-center w-12 h-12 rounded-full border-4 border-[var(--bg-dark)] bg-gray-800 text-slate-400 shadow shrink-0 lg:order-1 lg:-translate-x-1/2 z-10">
-                            <span class="w-3 h-3 bg-gray-400 rounded-full"></span>
-                        </div>
-                        <div class="w-[calc(100%-4rem)] lg:w-[calc(50%-3rem)] glass-card p-6 rounded-2xl hover:border-white/20 transition-colors">
-                            <div class="flex flex-col mb-4">
-                                <span class="text-slate-400 font-mono text-sm mb-1">Dic. 2008 - Ene. 2011</span>
-                                <h3 class="font-bold text-xl text-slate-50 font-display">Director / secretario del Pacto Territorial</h3>
-                                <span class="text-slate-400 text-sm">Asoc. Impulsora do Pacto Territorial de Emprego da Mariña</span>
-                            </div>
-                            <ul class="text-slate-300 text-sm space-y-3 list-disc list-outside ml-4">
-                                <li>Dirección y coordinación de un equipo de 5 profesionales para la promoción del empleo en 17 municipios de la zona norte de la provincia de Lugo.</li>
-                            </ul>
-                            
-                            <!-- Expandable Content -->
-                            <div id="exp-6-content" class="hidden mt-3">
-                                <ul class="text-slate-300 text-sm space-y-3 list-disc list-outside ml-4">
-                                    <li>Organización e impartición de formación en materia de empleo, TIC y nuevas tecnologías; gestión de relaciones institucionales con sindicatos, empresarios, Ayuntamientos y Xunta de Galicia.</li>
-                                    <li>Desempeño de las funciones de Secretario del Pacto Territorial (órgano colegiado adscrito a la Xunta de Galicia): convocatoria de reuniones y redacción de actas.</li>
-                                </ul>
-                            </div>
-                            
-                            <!-- Toggle Button -->
-                            <button onclick="toggleExperience('exp-6')" id="exp-6-btn" class="mt-4 flex items-center gap-1 text-[var(--primary)] text-sm font-medium hover:text-red-400 transition-colors w-full justify-center py-2 border-t border-white/5">
-                                <span>Ver más detalles</span>
-                                <span class="material-symbols-outlined text-sm transition-transform duration-300" id="exp-6-icon">expand_more</span>
-                            </button>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-
-            <!-- Especialización en inteligencia artificial -->
-            <section id="especializacion" class="scroll-mt-24">
-                <div class="reveal flex items-center gap-4 mb-8">
-                    <div class="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center">
-                        <span class="material-symbols-outlined text-[var(--primary)]">psychology</span>
-                    </div>
-                    <h2 class="text-3xl font-bold" font-display>Especialización en inteligencia artificial</h2>
-                </div>
-
-                <div class="grid grid-cols-1 gap-6">
-                    <!-- Publicaciones científicas -->
-                    <div class="reveal glass-card p-8 rounded-2xl">
-                        <h3 class="text-xl font-bold mb-4 flex items-center gap-2 text-slate-50 font-display">
-                            <span class="material-symbols-outlined text-[var(--primary)]">menu_book</span>
-                            Publicaciones académicas
-                        </h3>
-                        <ul class="space-y-4 text-slate-300 text-sm ml-8">
-                            <li class="flex gap-3">
-                                <span class="material-symbols-outlined text-slate-500 text-lg shrink-0">article</span>
-                                <div class="flex flex-col gap-1">
-                                    <span>Arias Lombardero, J.A., Rivera Capón, P. y Fariña Verea, N. (2025). <a href="https://doi.org/10.7238/idp.v0i43.9800300" target="_blank" rel="noopener noreferrer" class="text-slate-200 font-medium underline decoration-white/30 underline-offset-4 hover:decoration-[var(--primary)] hover:text-slate-100 transition-all duration-300">«Gobernanza algorítmica local: diseño e implementación de un stack de IA soberana en código abierto para entidades supramunicipales»</a>. Revista de Internet, Derecho y Política (IDP), nº 43. Universitat Oberta de Catalunya (UOC). ISSN 1699-8154.</span>
-                                </div>
-                            </li>
-                            <li class="flex gap-3">
-                                <span class="material-symbols-outlined text-slate-500 text-lg shrink-0">article</span>
-                                <div class="flex flex-col gap-1">
-                                    <span>Arias Lombardero, J.A. (2025). <a href="https://revista.cemci.org/numero-67/pdf/trabajos-de-evaluacion-1-gobierno-local-inteligente-y-soberano-una-propuesta-estrategica-para-la-implementacion-de-ia-de-codigo-abierto-en-la-provincia-de-lugo.pdf" target="_blank" rel="noopener noreferrer" class="text-slate-200 font-medium underline decoration-white/30 underline-offset-4 hover:decoration-[var(--primary)] hover:text-slate-100 transition-all duration-300">«Gobierno local inteligente y soberano: una propuesta estratégica para la implementación de IA de código abierto en la provincia de Lugo»</a>. Revista del Centro de Estudios Municipales y de Cooperación Internacional (CEMCI), nº 67. ISSN 1989-2470.</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Premios y reconocimientos -->
-                    <div class="reveal glass-card p-8 rounded-2xl">
-                        <h3 class="text-xl font-bold mb-4 flex items-center gap-2 text-slate-50 font-display">
-                            <span class="material-symbols-outlined text-[var(--primary)]">emoji_events</span>
-                            Premios y reconocimientos
-                        </h3>
-                        <ul class="space-y-4 text-slate-300 text-sm ml-8">
-                            <li class="flex gap-3">
-                                <span class="material-symbols-outlined text-yellow-500 text-lg shrink-0">military_tech</span>
-                                <div>
-                                    <strong class="text-slate-200">Premio Juan Raya Gómez, a la innovación en el control y la gestión pública local 2026-</strong> VII Jornada del sector local: Innovación, integridad y vigilancia: El futuro de la gestión pública local en la era digital (online, may. 2026), otorgado por la Fundación FIASEP (Fundación de Apoyo a la Función Inspectora y de Control). Ponencia: <a href="https://www.linkedin.com/posts/fundacion-fiasep_en-el-marco-de-nuestra-vi-jornada-del-sector-activity-7458102530833727488-r2IV?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAWlu88BjhHfwTQqvTzMn_Zf4i0hp-gKPHw" target="_blank" rel="noopener noreferrer" class="text-slate-200 font-medium underline decoration-white/30 underline-offset-4 hover:decoration-[var(--primary)] hover:text-slate-100 transition-all duration-300">"MencIA: soberanía tecnológica y control algorítmico. Un nuevo paradigma auditable para la gestión pública local"</a>
-                                </div>
-                            </li>
-                            <li class="flex gap-3">
-                                <span class="material-symbols-outlined text-yellow-500 text-lg shrink-0">military_tech</span>
-                                <div>
-                                    <strong class="text-slate-200">Premio a la mejor comunicación</strong> - II Foro GRC (Madrid, feb. 2026), Asociación Española para la Calidad (AEC). Ponencia: <a href="https://www.aec.es/nosotros/actualidad-aec/el-ii-congreso-foro-grc-consolida-su-liderazgo-como-espacio-de-referencia-en-gobernanza-riesgo-y-cumplimiento/" target="_blank" rel="noopener noreferrer" class="text-slate-200 font-medium underline decoration-white/30 underline-offset-4 hover:decoration-[var(--primary)] hover:text-slate-100 transition-all duration-300">MencIA: Soberanía Tecnológica Realista. Un modelo integral de Gobierno Riesgo y Cumplimiento (GRC) para la IA en el Sector Público.</a>
-                                </div>
-                            </li>
-                            <li class="flex gap-3">
-                                <span class="material-symbols-outlined text-slate-400 text-lg shrink-0">workspace_premium</span>
-                                <div>
-                                    <strong class="text-slate-200">Finalista del prompt-a-thon Desafío ALIA</strong> (Madrid, dic. 2025), SEDIA. Seleccionado entre los 30 mejores de España.
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Ponencias y conferencias -->
-                    <div class="reveal glass-card p-8 rounded-2xl">
-                        <h3 class="text-xl font-bold mb-4 flex items-center gap-2 text-slate-50 font-display">
-                            <span class="material-symbols-outlined text-[var(--primary)]">campaign</span>
-                            Ponencias, conferencias y webinars (2025-2026)
-                        </h3>
-                        <ul class="space-y-4 text-slate-300 text-sm ml-8 hidden">
-                            <!-- Old list hidden for reference, replaced by grid below -->
-                        </ul>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 ml-0 md:ml-8">
-                            <!-- ITG / Energía compartida -->
-                            <div class="glass-panel p-6 rounded-xl border border-white/10 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/50 transition-all duration-300 flex flex-col h-full relative overflow-hidden group/card">
-                                <div class="w-full aspect-video bg-gray-800 rounded-lg mb-4 flex items-center justify-center overflow-hidden relative">
-                                    <img src="./foto-ITC.jpg" alt="Energía compartida: comunidades, tecnología y territorio" class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105" />
-                                </div>
-                                <h4 class="text-slate-200 font-bold text-lg mb-1">Energía compartida: comunidades, tecnología y territorio</h4>
-                                <p class="text-[var(--primary)] text-sm mb-3">Instituto Tecnológico de Galicia (ITG) • A Coruña, 10 de jun. 2026</p>
-                                <p class="text-slate-400 text-sm flex-grow mb-4">Ponencia: «MencIA: IA sostenible y algoritmos verdes»</p>
-                                <div class="flex gap-2 mt-auto">
-                                    <a href="https://es.slideshare.net/slideshow/mencia-ia-sostenible-y-algoritmos-verdes-pdf/288338529" target="_blank" class="flex-1 bg-white/10 hover:bg-white/20 text-slate-200 text-xs py-2 rounded-lg flex items-center justify-center gap-1 transition-colors">
-                                        <span class="material-symbols-outlined text-[16px]">open_in_new</span> Ver presentación
-                                    </a>
-                                </div>
-                            </div>
-
-                            <!-- Premio Juan Raya / FIASEP -->
-                            <div class="glass-panel p-6 rounded-xl border border-white/10 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/50 transition-all duration-300 flex flex-col h-full relative overflow-hidden group/card">
-                                <div class="w-full aspect-video bg-gray-800 rounded-lg mb-4 flex items-center justify-center overflow-hidden relative">
-                                    <img src="./foto-foroFIASEP.jpg" alt="VI Jornada sobre el Sector Local" class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105" />
-                                </div>
-                                <div class="flex items-center gap-1 text-amber-500 text-[10px] font-bold uppercase tracking-widest mb-1">
-                                    <span class="material-symbols-outlined text-[14px]">emoji_events</span>
-                                    PREMIO JUAN RAYA GÓMEZ, A LA INNOVACIÓN EN EL CONTROL Y LA GESTIÓN PÚBLICA LOCAL 2026
-                                </div>
-                                <h4 class="text-slate-200 font-bold text-lg mb-1">VI jornada del sector local</h4>
-                                <p class="text-[var(--primary)] text-sm mb-3">FIASEP • Online, may. 2026</p>
-                                <p class="text-slate-400 text-sm flex-grow mb-4">Ponencia: "MencIA: soberanía tecnológica y control algorítmico. Un nuevo paradigma auditable para la gestión pública local"</p>
-                                <div class="flex gap-2 mt-auto">
-                                    <a href="https://es.slideshare.net/slideshow/mencia-soberania-tecnologica-y-control-algoritmico-un-nuevo-paradigma-auditable-para-la-gestion-publica-local/287435323" target="_blank" class="flex-1 bg-white/10 hover:bg-white/20 text-slate-200 text-xs py-2 rounded-lg flex items-center justify-center gap-1 transition-colors">
-                                        <span class="material-symbols-outlined text-[16px]">open_in_new</span> Ver presentación
-                                    </a>
-                                </div>
-                            </div>
-
-                            <!-- Webinar Cátedra Cajasiete -->
-                            <div class="glass-panel p-6 rounded-xl border border-white/10 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/50 transition-all duration-300 flex flex-col h-full relative overflow-hidden group/card">
-                                <div class="w-full aspect-video bg-gray-800 rounded-lg mb-4 flex items-center justify-center overflow-hidden relative">
-                                    <img src="./foto-webinar.jpg" alt="Webinar Cátedra Cajasiete" class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105" />
-                                </div>
-                                <h4 class="text-slate-200 font-bold text-lg mb-1">Cátedra Cajasiete Big Data, Open Data y Blockchain</h4>
-                                <p class="text-[var(--primary)] text-sm mb-3">Universidad de la Laguna • On line, abr. 2026</p>
-                                <p class="text-slate-400 text-sm flex-grow mb-4">Webinar: IA en 3 clics: soluciones de código abierto para Entidades Locales</p>
-                                <div class="flex gap-2 mt-auto">
-                                    <a href="https://www.youtube.com/watch?v=y8wg32D9lY8&t=3608s" target="_blank" class="flex-1 bg-white/10 hover:bg-white/20 text-slate-200 text-xs py-2 rounded-lg flex items-center justify-center gap-1 transition-colors">
-                                        <span class="material-symbols-outlined text-[16px]">play_circle</span> Ver webinar
-                                    </a>
-                                </div>
-                            </div>
-
-                            <!-- II Foro GRC -->
-                            <div class="glass-panel p-6 rounded-xl border border-white/10 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/50 transition-all duration-300 flex flex-col h-full relative overflow-hidden group/card">
-                                <div class="w-full aspect-video bg-gray-800 rounded-lg mb-4 flex items-center justify-center overflow-hidden relative">
-                                    <img src="./foto-foroGRC.jpg" alt="II Congreso Foro GRC" class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105" />
-                                </div>
-                                <div class="flex items-center gap-1 text-amber-500 text-[10px] font-bold uppercase tracking-widest mb-1">
-                                    <span class="material-symbols-outlined text-[14px]">emoji_events</span>
-                                    Premio a la mejor comunicación
-                                </div>
-                                <h4 class="text-slate-200 font-bold text-lg mb-1">II Congreso Foro GRC</h4>
-                                <p class="text-[var(--primary)] text-sm mb-3">Asociación Española para la Calidad (AEC) • Madrid, feb. 2026</p>
-                                <p class="text-slate-400 text-sm flex-grow mb-4">Ponencia: MencIA: Soberanía Tecnológica Realista. Un modelo integral de Gobierno Riesgo y Cumplimiento (GRC) para la IA en el Sector Público.</p>
-                                <div class="flex gap-2 mt-auto">
-                                    <a href="https://es.slideshare.net/slideshow/mencia-soberania-tecnologica-realista-un-modelo-integral-de-gobierno-riesgo-y-cumplimiento-para-la-ia-en-el-sector-publico/286504633" target="_blank" class="flex-1 bg-white/10 hover:bg-white/20 text-slate-200 text-xs py-2 rounded-lg flex items-center justify-center gap-1 transition-colors">
-                                        <span class="material-symbols-outlined text-[16px]">open_in_new</span> Ver presentación
-                                    </a>
-                                </div>
-                            </div>
-
-                            <!-- Toggle Button -->
-                            <div class="col-span-full flex justify-center py-4">
-                                <button onclick="togglePonencias()" id="toggle-ponencias-btn" class="px-6 py-2 bg-[var(--bg-dark)] border border-white/10 hover:border-[var(--primary)] text-[var(--primary)] hover:text-red-400 rounded-full font-medium transition-all duration-300 shadow-lg flex items-center gap-2">
-                                    <span>Ver todas las ponencias, conferencias y webinars</span>
-                                    <span class="material-symbols-outlined text-sm transition-transform duration-300" id="toggle-ponencias-icon">expand_more</span>
-                                </button>
-                            </div>
-
-                            <!-- SOCINFO -->
-                            <div class="more-ponencias-item hidden glass-panel p-6 rounded-xl border border-white/10 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/50 transition-all duration-300 flex flex-col h-full relative overflow-hidden group/card">
-                                <div class="w-full aspect-video bg-gray-800 rounded-lg mb-4 flex items-center justify-center overflow-hidden relative">
-                                    <img src="./foto-socinfo.jpg" alt="SOCINFO digital" class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105" />
-                                </div>
-                                <h4 class="text-slate-200 font-bold text-lg mb-1">Retos de la Transformación Digital en las AAPP de Galicia</h4>
-                                <p class="text-[var(--primary)] text-sm mb-3">SOCINFO digital • Santiago de Compostela, mar. 2026</p>
-                                <p class="text-slate-400 text-sm flex-grow mb-4">Ponencia: El modelo de Lugo. Hacia una IA soberana y realista.</p>
-                                <div class="flex gap-2 mt-auto">
-                                    <a href="https://es.slideshare.net/slideshow/el-modelo-de-lugo-hacia-una-ia-soberana-y-realista/286504768" target="_blank" class="flex-1 bg-white/10 hover:bg-white/20 text-slate-200 text-xs py-2 rounded-lg flex items-center justify-center gap-1 transition-colors">
-                                        <span class="material-symbols-outlined text-[16px]">open_in_new</span> Ver presentación
-                                    </a>
-                                </div>
-                            </div>
-
-                            <!-- Local.IA -->
-                            <div class="more-ponencias-item hidden glass-panel p-6 rounded-xl border border-white/10 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/50 transition-all duration-300 flex flex-col h-full relative overflow-hidden group/card">
-                                <div class="w-full aspect-video bg-gray-800 rounded-lg mb-4 flex items-center justify-center overflow-hidden relative">
-                                    <img src="./foto local.ia.jpg" alt="Local.IA" class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105" />
-                                </div>
-                                <h4 class="text-slate-200 font-bold text-lg mb-1">Jornadas sobre la IA en el mundo local. Local.IA</h4>
-                                <p class="text-[var(--primary)] text-sm mb-3">Diputación de Barcelona • Barcelona, nov. 2025</p>
-                                <p class="text-slate-400 text-sm flex-grow mb-4">Ponencia: Diseño e implementación de una arquitectura de IA soberana en código abierto para entidades supramunicipales.</p>
-                                <div class="flex gap-2 mt-auto">
-                                    <a href="https://es.slideshare.net/slideshow/diseno-e-implementacion-de-una-arquitectura-de-ia-soberana-en-codigo-abierto-para-entidades-supramunicipales/286504692" target="_blank" class="flex-1 bg-white/10 hover:bg-white/20 text-slate-200 text-xs py-2 rounded-lg flex items-center justify-center gap-1 transition-colors">
-                                        <span class="material-symbols-outlined text-[16px]">open_in_new</span> Ver presentación
-                                    </a>
-                                </div>
-                            </div>
-
-                            <!-- As Nogais -->
-                            <div class="more-ponencias-item hidden glass-panel p-6 rounded-xl border border-white/10 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/50 transition-all duration-300 flex flex-col h-full relative overflow-hidden group/card">
-                                <div class="w-full aspect-video bg-gray-800 rounded-lg mb-4 flex items-center justify-center overflow-hidden relative">
-                                    <img src="./foto-fegamp.jpg" alt="Emprendimiento rural" class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105" />
-                                </div>
-                                <h4 class="text-slate-200 font-bold text-lg mb-1">Acompañamiento digital a mayores y emprendimiento rural</h4>
-                                <p class="text-[var(--primary)] text-sm mb-3">FEGAMP / Asoc. Montes y Valles Orientales • As Nogais, nov. 2025</p>
-                                <p class="text-slate-400 text-sm flex-grow mb-4">Ponencia: Un futuro para el rural. Cuidados, innovación e Inteligencia Artificial.</p>
-                                <div class="flex gap-2 mt-auto">
-                                    <a href="https://es.slideshare.net/slideshow/un-futuro-para-el-rural-cuidados-innovacion-e-inteligencia-artificial/286504569" target="_blank" class="flex-1 bg-white/10 hover:bg-white/20 text-slate-200 text-xs py-2 rounded-lg flex items-center justify-center gap-1 transition-colors">
-                                        <span class="material-symbols-outlined text-[16px]">open_in_new</span> Ver presentación
-                                    </a>
-                                </div>
-                            </div>
-
-                            <!-- NovaGob -->
-                            <div class="more-ponencias-item hidden glass-panel p-6 rounded-xl border border-white/10 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/50 transition-all duration-300 flex flex-col h-full relative overflow-hidden group/card">
-                                <div class="w-full aspect-video bg-gray-800 rounded-lg mb-4 flex items-center justify-center overflow-hidden relative">
-                                    <img src="./foto-novagob.jpg" alt="NovaGob" class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105" />
-                                </div>
-                                <h4 class="text-slate-200 font-bold text-lg mb-1">Congreso de Innovación Pública NovaGob 2025</h4>
-                                <p class="text-[var(--primary)] text-sm mb-3">Fundación NovaGob • Barcelona, oct. 2025</p>
-                                <p class="text-slate-400 text-sm flex-grow mb-4">Ponencia: Gobierno local inteligente y soberano: un modelo para la implementación de IA de código abierto en gobiernos locales intermedios.</p>
-                                <div class="flex gap-2 mt-auto">
-                                    <a href="https://es.slideshare.net/slideshow/gobierno-local-inteligente-y-soberano-un-modelo-para-la-implementacion-de-ia-de-codigo-abierto-en-gobiernos-locales-intermedios/286504721" target="_blank" class="flex-1 bg-white/10 hover:bg-white/20 text-slate-200 text-xs py-2 rounded-lg flex items-center justify-center gap-1 transition-colors">
-                                        <span class="material-symbols-outlined text-[16px]">open_in_new</span> Ver presentación
-                                    </a>
-                                </div>
-                            </div>
-
-                            <!-- Consello de Contas -->
-                            <div class="more-ponencias-item hidden glass-panel p-6 rounded-xl border border-white/10 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/50 transition-all duration-300 flex flex-col h-full relative overflow-hidden group/card">
-                                <div class="w-full aspect-video bg-gray-800 rounded-lg mb-4 flex items-center justify-center overflow-hidden relative">
-                                    <img src="./foto-consello.jpg" alt="Consello de Contas" class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105" />
-                                </div>
-                                <h4 class="text-slate-200 font-bold text-lg mb-1">Congreso 1985-2025 «40 años de Bases de Régimen Local»</h4>
-                                <p class="text-[var(--primary)] text-sm mb-3">Consello de Contas de Galicia • A Coruña, sep. 2025</p>
-                                <p class="text-slate-400 text-sm flex-grow mb-4">Ponencia: La tercera vía digital. Inteligencia artificial soberana como herramienta para la modernización del gobierno local.</p>
-                                <div class="flex gap-2 mt-auto">
-                                    <a href="https://es.slideshare.net/slideshow/la-tercera-via-digital-inteligencia-artificial-soberana-como-herramienta-para-la-modernizacion-del-gobierno-local/286509755" target="_blank" class="flex-1 bg-white/10 hover:bg-white/20 text-slate-200 text-xs py-2 rounded-lg flex items-center justify-center gap-1 transition-colors">
-                                        <span class="material-symbols-outlined text-[16px]">open_in_new</span> Ver presentación
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Comunidades y redes de innovación en IA -->
-                    <div class="reveal glass-card p-8 rounded-2xl">
-                        <h3 class="text-xl font-bold mb-4 flex items-center gap-2 text-slate-50 font-display">
-                            <span class="material-symbols-outlined text-[var(--primary)]">hub</span>
-                            Comunidades y redes de innovación en IA
-                        </h3>
-                        <ul class="space-y-4 text-slate-300 text-sm ml-8">
-                            <li class="flex gap-3">
-                                <span class="material-symbols-outlined text-slate-500 text-lg shrink-0">groups</span>
-                                <div>
-                                    Miembro de la Comunidad de IA de Código Abierto (SEDIA - Ministerio para la Transformación Digital y de la Función Pública). Inscrito en su Red de Embajadores.
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Portfolio de aplicaciones -->
-                    <div class="reveal glass-card p-8 rounded-2xl">
-                        <h3 class="text-xl font-bold mb-4 flex items-center gap-2 text-slate-50 font-display">
-                            <span class="material-symbols-outlined text-[var(--primary)]">apps</span>
-                            Portfolio de aplicaciones desarrolladas con IA
-                        </h3>
-                        <p class="text-sm text-slate-400 italic mb-6 ml-8">
-                            Todas las herramientas de este portfolio han sido conceptualizadas, desarrolladas y desplegadas en entornos cloud (Vercel / Netlify), contando con repositorios propios en GitHub y documentación técnica (README) para facilitar su escalabilidad.
-                        </p>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 ml-0 md:ml-8">
-                            <!-- Landing MencIA -->
-                            <div class="glass-panel p-6 rounded-xl border border-white/10 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/50 transition-all duration-300 flex flex-col h-full relative overflow-hidden group/card cursor-pointer" onclick="openAppModal('landing-mencia')">
-                                <div class="w-full aspect-video bg-gray-800 rounded-lg mb-4 flex items-center justify-center overflow-hidden relative">
-                                    <img src="./img/apps/landing-mencia.jpg" alt="Landing MencIA" class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105" />
-                                </div>
-                                <h4 class="text-slate-200 font-bold text-lg mb-1">Landing MencIA</h4>
-                                <p class="text-slate-400 text-sm flex-grow mb-4">Prueba de lanzamiento de la landing page de MencIA-Estrategia de Inteligencia Artificial de la Diputación de Lugo (en desarrollo)</p>
-                                <div class="flex gap-2 mt-auto">
-                                    <button class="flex-1 bg-white/10 hover:bg-white/20 text-slate-200 text-xs py-2 rounded-lg flex items-center justify-center gap-1 transition-colors font-medium">
-                                        <span class="material-symbols-outlined text-[16px]">info</span> Saber más
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- Analizador de ayudas y subvenciones -->
-                            <div class="glass-panel p-6 rounded-xl border border-white/10 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/50 transition-all duration-300 flex flex-col h-full relative overflow-hidden group/card cursor-pointer" onclick="openAppModal('analizador-ayudas')">
-                                <div class="w-full aspect-video bg-gray-800 rounded-lg mb-4 flex items-center justify-center overflow-hidden relative">
-                                    <img src="./img/apps/analizador-ayudas.jpg" alt="Analizador de ayudas y subvenciones" class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105" />
-                                </div>
-                                <h4 class="text-slate-200 font-bold text-lg mb-1">Analizador de ayudas y subvenciones</h4>
-                                <p class="text-slate-400 text-sm flex-grow mb-4">Herramienta institucional avanzada diseñada para automatizar el análisis de convocatorias de subvenciones, ayudas y fondos públicos utilizando Inteligencia Artificial.</p>
-                                <div class="flex gap-2 mt-auto">
-                                    <button class="flex-1 bg-white/10 hover:bg-white/20 text-slate-200 text-xs py-2 rounded-lg flex items-center justify-center gap-1 transition-colors font-medium">
-                                        <span class="material-symbols-outlined text-[16px]">info</span> Saber más
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- Monitor BOE -->
-                            <div class="glass-panel p-6 rounded-xl border border-white/10 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/50 transition-all duration-300 flex flex-col h-full relative overflow-hidden group/card cursor-pointer" onclick="openAppModal('monitor-boe')">
-                                <div class="w-full aspect-video bg-gray-800 rounded-lg mb-4 flex items-center justify-center overflow-hidden relative">
-                                    <img src="./img/apps/monitor-boe.jpg" alt="Monitor BOE" class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105" />
-                                </div>
-                                <h4 class="text-slate-200 font-bold text-lg mb-1">Monitor BOE</h4>
-                                <p class="text-slate-400 text-sm flex-grow mb-4">Sistema automatizado para la monitorización, extracción y análisis de publicaciones del Boletín Oficial del Estado (BOE) utilizando técnicas de procesamiento de lenguaje natural.</p>
-                                <div class="flex gap-2 mt-auto">
-                                    <button class="flex-1 bg-white/10 hover:bg-white/20 text-slate-200 text-xs py-2 rounded-lg flex items-center justify-center gap-1 transition-colors font-medium">
-                                        <span class="material-symbols-outlined text-[16px]">info</span> Saber más
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- Guías AESIA -->
-                            <div class="glass-panel p-6 rounded-xl border border-white/10 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/50 transition-all duration-300 flex flex-col h-full relative overflow-hidden group/card cursor-pointer" onclick="openAppModal('guias-aesia')">
-                                <div class="w-full aspect-video bg-gray-800 rounded-lg mb-4 flex items-center justify-center overflow-hidden relative">
-                                    <img src="./img/apps/guias-aesia.jpg" alt="Guías AESIA" class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105" />
-                                </div>
-                                <h4 class="text-slate-200 font-bold text-lg mb-1">Guias AESIA 4.0</h4>
-                                <p class="text-slate-400 text-sm flex-grow mb-4">Plataforma de aprendizaje interactiva de las guías prácticas para el cumplimiento del RIA publicadas por la AESIA. Incluye flashcards, cuestionarios, glosario y juegos educativos. (en desarrollo)</p>
-                                <div class="flex gap-2 mt-auto">
-                                    <button class="flex-1 bg-white/10 hover:bg-white/20 text-slate-200 text-xs py-2 rounded-lg flex items-center justify-center gap-1 transition-colors font-medium">
-                                        <span class="material-symbols-outlined text-[16px]">info</span> Saber más
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- Calculadora LCSP -->
-                            <div class="glass-panel p-6 rounded-xl border border-white/10 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/50 transition-all duration-300 flex flex-col h-full relative overflow-hidden group/card cursor-pointer" onclick="openAppModal('calculadora-lcsp')">
-                                <div class="w-full aspect-video bg-gray-800 rounded-lg mb-4 flex items-center justify-center overflow-hidden relative">
-                                    <img src="./img/apps/calculadora-lcsp.jpg" alt="Calculadora LCSP" class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105" />
-                                </div>
-                                <h4 class="text-slate-200 font-bold text-lg mb-1">Calculadora LCSP Lugo</h4>
-                                <p class="text-slate-400 text-sm flex-grow mb-4">Herramienta web para el cálculo automatizado de plazos administrativos establecidos en la Ley 9/2017, de Contratos del Sector Público (LCSP), adaptada al calendario festivo de Lugo y la Comunidad Autónoma de Galicia (en desarrollo)</p>
-                                <div class="flex gap-2 mt-auto">
-                                    <button class="flex-1 bg-white/10 hover:bg-white/20 text-slate-200 text-xs py-2 rounded-lg flex items-center justify-center gap-1 transition-colors font-medium">
-                                        <span class="material-symbols-outlined text-[16px]">info</span> Saber más
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- Asistente de notas de prensa -->
-                            <div class="glass-panel p-6 rounded-xl border border-white/10 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/50 transition-all duration-300 flex flex-col h-full relative overflow-hidden group/card cursor-pointer" onclick="openAppModal('asistente-notas')">
-                                <div class="w-full aspect-video bg-gray-800 rounded-lg mb-4 flex items-center justify-center overflow-hidden relative">
-                                    <img src="./img/apps/asistente-notas.jpg" alt="Asistente de notas de prensa" class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105" />
-                                </div>
-                                <h4 class="text-slate-200 font-bold text-lg mb-1">Asistente de notas de prensa</h4>
-                                <p class="text-slate-400 text-sm flex-grow mb-4">Herramienta diseñada como prueba de concepto para el Gabinete de Comunicación de la Diputación de Lugo, con el objetivo de redactar borradores de notas de prensa y contenido para redes sociales.</p>
-                                <div class="flex gap-2 mt-auto">
-                                    <button class="flex-1 bg-white/10 hover:bg-white/20 text-slate-200 text-xs py-2 rounded-lg flex items-center justify-center gap-1 transition-colors font-medium">
-                                        <span class="material-symbols-outlined text-[16px]">info</span> Saber más
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- The AI Island Challenge -->
-                            <div class="glass-panel p-6 rounded-xl border border-white/10 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/50 transition-all duration-300 flex flex-col h-full relative overflow-hidden group/card cursor-pointer" onclick="openAppModal('ai-island-challenge')">
-                                <div class="w-full aspect-video bg-gray-800 rounded-lg mb-4 flex items-center justify-center overflow-hidden relative">
-                                    <img src="./img/apps/AI-challenge.jpg" alt="The AI Island Challenge" class="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105" />
-                                </div>
-                                <h4 class="text-slate-200 font-bold text-lg mb-1">The AI Island Challenge</h4>
-                                <p class="text-slate-400 text-sm flex-grow mb-4">Minijuego de aventura gráfica estilo SCUMM (Monkey Island) para servir como ejemplo básico de cómo divulgar conceptos del Reglamento Europeo de IA de forma gamificada y sencilla</p>
-                                <div class="flex gap-2 mt-auto">
-                                    <button class="flex-1 bg-white/10 hover:bg-white/20 text-slate-200 text-xs py-2 rounded-lg flex items-center justify-center gap-1 transition-colors font-medium">
-                                        <span class="material-symbols-outlined text-[16px]">info</span> Saber más
-                                    </button>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <!-- Botón Ver Todo -->
-                        <div class="mt-8 flex justify-center">
-                            <button onclick="window.open('https://github.com/ariaslombardero', '_blank')" class="px-6 py-2 bg-[var(--bg-dark)] border border-white/10 hover:border-[var(--primary)] text-[var(--primary)] hover:text-red-400 rounded-full font-medium transition-all duration-300 shadow-lg flex items-center gap-2 cursor-pointer">
-                                <span>Visita mi repositorio de proyectos</span>
-                                <span class="material-symbols-outlined text-sm">open_in_new</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Formación -->
-            <section id="formacion" class="scroll-mt-24">
-                <div class="reveal flex items-center gap-4 mb-8">
-                    <div class="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center">
-                        <span class="material-symbols-outlined text-[var(--primary)]">school</span>
-                    </div>
-                    <h2 class="text-3xl font-bold" font-display>Formación académica</h2>
-                </div>
-                
-                <div class="grid grid-cols-1 gap-6 mb-12">
-                    <div class="reveal glass-card p-6 rounded-2xl border-l-4 border-l-[var(--primary)]">
-                        <h3 class="font-bold text-slate-50 font-display mb-2">Licenciado en Ciencias Políticas y de la Administración</h3>
-                        <div class="ml-8">
-                            <p class="text-sm text-slate-400 mb-2">Especialidad en Administración Pública</p>
-                            <p class="text-sm text-slate-400">Universidad de Santiago de Compostela (USC) · 1996-2001</p>
-                            <p class="text-xs text-slate-500 mt-2">Nivel MECES 3 (equivalencia Máster) / Nivel 7 EQF</p>
-                        </div>
-                    </div>
-                    <div class="reveal glass-card p-6 rounded-2xl border-l-4 border-l-gray-600">
-                        <h3 class="font-bold text-slate-50 font-display mb-2">Certificado de profesionalidad de formador ocupacional</h3>
-                        <div class="ml-8">
-                            <p class="text-sm text-slate-400">Xunta de Galicia - Dirección Xeral de Formación e Colocación · 2003</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Formación IA -->
-            <section id="formacion-ia" class="scroll-mt-24">
-                <div class="reveal flex items-center gap-4 mb-8">
-                    <div class="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center">
-                        <span class="material-symbols-outlined text-[var(--primary)]">model_training</span>
-                    </div>
-                    <h2 class="text-3xl font-bold" font-display>Formación en inteligencia artificial</h2>
-                </div>
-
-                <div class="grid grid-cols-1 gap-6">
-                    <!-- Cursos especializados -->
-                    <div class="reveal glass-card p-8 rounded-2xl">
-                        <h3 class="text-xl font-bold mb-4 flex items-center gap-2 text-slate-50 font-display">
-                            <span class="material-symbols-outlined text-[var(--primary)]">local_library</span>
-                            Cursos especializados
-                        </h3>
-                        <ul class="space-y-4 text-slate-300 text-sm ml-8">
-                            <li class="flex gap-3">
-                                <span class="material-symbols-outlined text-slate-500 text-lg shrink-0">menu_book</span>
-                                <div>Introducción a la Inteligencia Artificial y estadísticas de datos - INAP • 20 horas • 2026</div>
-                            </li>
-                            <li class="flex gap-3">
-                                <span class="material-symbols-outlined text-slate-500 text-lg shrink-0">menu_book</span>
-                                <div>Protección de Datos y Seguridad en IoT, Big Data e IA - Asociación Española para la Calidad (AEC) • 40 horas • 2026</div>
-                            </li>
-                            <li class="flex gap-3">
-                                <span class="material-symbols-outlined text-slate-500 text-lg shrink-0">menu_book</span>
-                                <div>Desafíos y oportunidades de la IA: modelos de gobernanza y herramientas generativas para la innovación pública - CLAD-SEGIB (MOOC Internacional) • 52 horas • 2026</div>
-                            </li>
-                            <li class="flex gap-3">
-                                <span class="material-symbols-outlined text-slate-500 text-lg shrink-0">menu_book</span>
-                                <div>Inteligencia artificial aplicable a las entidades locales - CEMCI / IAAP • 175 horas • 2025</div>
-                            </li>
-                            <li class="flex gap-3">
-                                <span class="material-symbols-outlined text-slate-500 text-lg shrink-0">menu_book</span>
-                                <div>Aplicación práctica de la IA en la Gestión Pública Local - FEGAMP / EGAP • 30 horas • 2025</div>
-                            </li>
-                            <li class="flex gap-3">
-                                <span class="material-symbols-outlined text-slate-500 text-lg shrink-0">menu_book</span>
-                                <div>Elementos de la IA - UNED • 50 horas • 2025</div>
-                            </li>
-                            <li class="flex gap-3">
-                                <span class="material-symbols-outlined text-slate-500 text-lg shrink-0">menu_book</span>
-                                <div>ChatGPT Prompt Engineering for Developers - OpenAI / DeepLearning.AI • 2025</div>
-                            </li>
-                            <li class="flex gap-3">
-                                <span class="material-symbols-outlined text-slate-500 text-lg shrink-0">menu_book</span>
-                                <div>Essentials of Prompt Engineering - Amazon Web Services (AWS) • may. 2025</div>
-                            </li>
-                            <li class="flex gap-3">
-                                <span class="material-symbols-outlined text-slate-500 text-lg shrink-0">menu_book</span>
-                                <div>Introducción a la IA y Prompt Engineering - FEMP / Founderz Business School • 2025</div>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Certificaciones -->
-                    <div class="reveal glass-card p-8 rounded-2xl">
-                        <h3 class="text-xl font-bold mb-4 flex items-center gap-2 text-slate-50 font-display">
-                            <span class="material-symbols-outlined text-[var(--primary)]">verified</span>
-                            Certificaciones (selección)
-                        </h3>
-                        <ul class="space-y-4 text-slate-300 text-sm ml-8">
-                            <li class="flex gap-3">
-                                <span class="material-symbols-outlined text-slate-500 text-lg shrink-0">workspace_premium</span>
-                                <div>
-                                    Introduction to Model Context Protocol-Anthropic (mar. 2026)
-                                </div>
-                            </li>
-                            <li class="flex gap-3">
-                                <span class="material-symbols-outlined text-slate-500 text-lg shrink-0">workspace_premium</span>
-                                <div>
-                                    Google AI Professional Certificate - Google (mar. 2026). 7 cursos: AI Fundamentals, AI for Brainstorming and Planning, AI for Research and Insights, AI for Writing and Communicating, AI for Content Creation, AI for Data Analysis, AI for App Building.
-                                </div>
-                            </li>
-                            <li class="flex gap-3">
-                                <span class="material-symbols-outlined text-slate-500 text-lg shrink-0">workspace_premium</span>
-                                <div>
-                                    Google AI Essentials - Google (mar. 2026). 5 cursos: Introduction to AI, Maximize Productivity With AI Tools, Discover the Art of Prompting, Use AI Responsibly, Stay Ahead of the AI Curve.
-                                </div>
-                            </li>
-                            <li class="flex gap-3">
-                                <span class="material-symbols-outlined text-slate-500 text-lg shrink-0">workspace_premium</span>
-                                <div>
-                                    Accelerate Your Job Search with AI - Google (mar. 2026). 4 cursos: Uncover Your Transferable Skills with AI, Plan Your Job Search with AI, Manage Your Job Applications with AI, Prepare and Practice for Interviews with AI.
-                                </div>
-                            </li>
-                            <li class="flex gap-3">
-                                <span class="material-symbols-outlined text-slate-500 text-lg shrink-0">workspace_premium</span>
-                                <div>
-                                    Microsoft Learn (7 módulos): IA responsable, estrategia de IA, sostenibilidad e IA en el sector público (feb.-sep. 2025)
-                                </div>
-                            </li>
-                            <li class="flex gap-3">
-                                <span class="material-symbols-outlined text-slate-500 text-lg shrink-0">workspace_premium</span>
-                                <div>
-                                    Google Cloud Skills Boost: Introduction to Generative AI, Introduction to Large Language Models, Introduction to Responsible AI (feb. 2025).
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Competencias y herramientas -->
-            <section id="competencias" class="scroll-mt-24 pb-20">
-                <div class="reveal flex items-center gap-4 mb-8">
-                    <div class="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center">
-                        <span class="material-symbols-outlined text-[var(--primary)]">build</span>
-                    </div>
-                    <h2 class="text-3xl font-bold" font-display>Competencias y herramientas</h2>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Habilidades pedagógicas -->
-                    <div class="reveal glass-card p-8 rounded-2xl">
-                        <h3 class="text-xl font-bold mb-4 flex items-center gap-2 text-slate-50 font-display">
-                            <span class="material-symbols-outlined text-[var(--primary)]">record_voice_over</span>
-                            Habilidades pedagógicas
-                        </h3>
-                        <ul class="space-y-3 text-slate-300 text-sm ml-8">
-                            <li class="flex gap-3">
-                                <span class="w-1.5 h-1.5 rounded-full bg-gray-500 shrink-0 mt-1.5"></span>
-                                <span>Diseño e impartición de formación presencial y e-learning (Certificado de Formador Ocupacional; 180 h de formación de formadores TIC, 2011)</span>
-                            </li>
-                            <li class="flex gap-3">
-                                <span class="w-1.5 h-1.5 rounded-full bg-gray-500 shrink-0 mt-1.5"></span>
-                                <span>Pedagogía activa y aprendizaje basado en proyectos; divulgación tecnológica práctica para no expertos</span>
-                            </li>
-                            <li class="flex gap-3">
-                                <span class="w-1.5 h-1.5 rounded-full bg-gray-500 shrink-0 mt-1.5"></span>
-                                <span>Experiencia docente con perfiles mixtos: técnicos, jurídicos y directivos de la Administración Pública</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Inteligencia Artificial y tecnología -->
-                    <div class="reveal glass-card p-8 rounded-2xl">
-                        <h3 class="text-xl font-bold mb-4 flex items-center gap-2 text-slate-50 font-display">
-                            <span class="material-symbols-outlined text-[var(--primary)]">memory</span>
-                            Inteligencia Artificial y tecnología
-                        </h3>
-                        <ul class="space-y-3 text-slate-300 text-sm ml-8">
-                            <li class="flex gap-3">
-                                <span class="w-1.5 h-1.5 rounded-full bg-gray-500 shrink-0 mt-1.5"></span>
-                                <span>IA soberana y open-source: LLMs open-source/weight, RAG, Ollama, arquitecturas on-premise</span>
-                            </li>
-                            <li class="flex gap-3">
-                                <span class="w-1.5 h-1.5 rounded-full bg-gray-500 shrink-0 mt-1.5"></span>
-                                <span>IA generativa: Gemini, ChatGPT, Claude, NotebookLM, Google AI Studio, Streamlit, Antigravity, n8n.</span>
-                            </li>
-                            <li class="flex gap-3">
-                                <span class="w-1.5 h-1.5 rounded-full bg-gray-500 shrink-0 mt-1.5"></span>
-                                <span>Ética de la IA, Reglamento Europeo de IA, GRC (Gobernanza, Riesgo y Cumplimiento), Green AI</span>
-                            </li>
-                            <li class="flex gap-3">
-                                <span class="w-1.5 h-1.5 rounded-full bg-gray-500 shrink-0 mt-1.5"></span>
-                                <span>Fondos Europeos: FEDER, FSE, NextGenerationEU/PRTR</span>
-                            </li>
-                            <li class="flex gap-3">
-                                <span class="w-1.5 h-1.5 rounded-full bg-gray-500 shrink-0 mt-1.5"></span>
-                                <span>Contratación del sector público</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Despliegue y Ecosistema Tech -->
-                    <div class="reveal glass-card p-8 rounded-2xl">
-                        <h3 class="text-xl font-bold mb-4 flex items-center gap-2 text-slate-50 font-display">
-                            <span class="material-symbols-outlined text-[var(--primary)]">cloud_done</span>
-                            Despliegue y ecosistema tech
-                        </h3>
-                        <ul class="space-y-3 text-slate-300 text-sm ml-8">
-                            <li class="flex gap-3">
-                                <span class="w-1.5 h-1.5 rounded-full bg-gray-500 shrink-0 mt-1.5"></span>
-                                <span>Control de versiones y repositorios: GitHub</span>
-                            </li>
-                            <li class="flex gap-3">
-                                <span class="w-1.5 h-1.5 rounded-full bg-gray-500 shrink-0 mt-1.5"></span>
-                                <span>Despliegue web y cloud hosting: Vercel, Netlify</span>
-                            </li>
-                            <li class="flex gap-3">
-                                <span class="w-1.5 h-1.5 rounded-full bg-gray-500 shrink-0 mt-1.5"></span>
-                                <span>Documentación técnica y escalabilidad de proyectos</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Idiomas -->
-                    <div class="reveal glass-card p-8 rounded-2xl">
-                        <h3 class="text-xl font-bold mb-4 flex items-center gap-2 text-slate-50 font-display">
-                            <span class="material-symbols-outlined text-[var(--primary)]">language</span>
-                            Idiomas
-                        </h3>
-                        <ul class="space-y-3 text-slate-300 text-sm ml-8">
-                            <li class="flex gap-3">
-                                <span class="w-1.5 h-1.5 rounded-full bg-gray-500 shrink-0 mt-1.5"></span>
-                                <span>Castellano - Nativo</span>
-                            </li>
-                            <li class="flex gap-3">
-                                <span class="w-1.5 h-1.5 rounded-full bg-gray-500 shrink-0 mt-1.5"></span>
-                                <span>Gallego - CELGA 4 y título de Lenguaje Administrativo Gallego de Nivel Medio (Xunta de Galicia)</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-        </div>
-    </main>
-
-    <script>
-        // Toggle all experience items
-        function toggleAllExperience() {
-            const items = document.querySelectorAll('.more-exp-item');
-            const btn = document.getElementById('toggle-all-exp-btn');
-            const icon = document.getElementById('toggle-all-exp-icon');
-            const span = btn.querySelector('span:first-child');
-            
-            let isHidden = true;
-            if (items.length > 0) {
-                isHidden = items[0].classList.contains('hidden');
-            }
-            
-            items.forEach(item => {
-                if (isHidden) {
-                    item.classList.remove('hidden');
-                } else {
-                    item.classList.add('hidden');
-                }
-            });
-            
-            if (isHidden) {
-                span.textContent = 'Ver menos experiencia';
-                icon.style.transform = 'rotate(180deg)';
-            } else {
-                span.textContent = 'Ver toda mi experiencia profesional';
-                icon.style.transform = 'rotate(0deg)';
-            }
-        }
-
-        // Toggle all ponencias
-        function togglePonencias() {
-            const items = document.querySelectorAll('.more-ponencias-item');
-            const btn = document.getElementById('toggle-ponencias-btn');
-            const icon = document.getElementById('toggle-ponencias-icon');
-            const span = btn.querySelector('span:first-child');
-            
-            let isHidden = items[0].classList.contains('hidden');
-            
-            items.forEach(item => {
-                if (isHidden) {
-                    item.classList.remove('hidden');
-                } else {
-                    item.classList.add('hidden');
-                }
-            });
-            
-            if (isHidden) {
-                span.textContent = 'Ver menos ponencias, conferencias y webinars';
-                icon.style.transform = 'rotate(180deg)';
-            } else {
-                span.textContent = 'Ver todas las ponencias, conferencias y webinars';
-                icon.style.transform = 'rotate(0deg)';
-            }
-        }
-
-        // Toggle experience details
-        function toggleExperience(id) {
-            const content = document.getElementById(`${id}-content`);
-            const btn = document.getElementById(`${id}-btn`);
-            const icon = document.getElementById(`${id}-icon`);
-            const span = btn.querySelector('span:first-child');
-            
-            if (content.classList.contains('hidden')) {
-                content.classList.remove('hidden');
-                span.textContent = 'Ver menos detalles';
-                icon.style.transform = 'rotate(180deg)';
-            } else {
-                content.classList.add('hidden');
-                span.textContent = 'Ver más detalles';
-                icon.style.transform = 'rotate(0deg)';
-            }
-        }
-
-        // Simple script to highlight active nav link on scroll
-        const sections = document.querySelectorAll("section[id]");
-        const navLinks = document.querySelectorAll(".nav-link");
-
-        window.addEventListener("scroll", () => {
-            let current = "";
-            sections.forEach((section) => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= sectionTop - 200) {
-                    current = section.getAttribute("id");
-                }
-            });
-
-            navLinks.forEach((link) => {
-                link.classList.remove("active");
-                if (link.getAttribute("href").includes(current)) {
-                    link.classList.add("active");
-                }
-            });
-        });
-    </script>
-
-    <!-- Scroll Animations Script -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.15
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('.reveal').forEach((el) => {
-                observer.observe(el);
-            });
-        });
-
-        // Micro-interactions Script
-        document.addEventListener('DOMContentLoaded', () => {
-            // Reading Progress
-            const progressBar = document.getElementById('progress-bar');
-            window.addEventListener('scroll', () => {
-                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-                const scrolled = (winScroll / height) * 100;
-                if (progressBar) {
-                    progressBar.style.width = scrolled + '%';
-                }
-            });
-
-            // Back to Top Button
-            const backToTopBtn = document.getElementById('back-to-top');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 300) {
-                    backToTopBtn.classList.add('visible');
-                } else {
-                    backToTopBtn.classList.remove('visible');
-                }
-            });
-            backToTopBtn.addEventListener('click', () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-
-            // Mouse Glow Effect
-            document.querySelectorAll('.glass-card').forEach(card => {
-                card.addEventListener('mousemove', e => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    card.style.setProperty('--mouse-x', `${x}px`);
-                    card.style.setProperty('--mouse-y', `${y}px`);
-                });
-            });
-        });
-    </script>
-
-    <!-- Video Modal -->
-    <div id="video-modal" class="fixed inset-0 z-[100] bg-black/90 backdrop-blur-sm flex items-center justify-center hidden opacity-0 transition-opacity duration-300 p-4">
-        <button onclick="closeVideoModal()" class="absolute top-6 right-6 text-slate-400 hover:text-white transition-colors p-2 rounded-full hover:bg-white/10 z-10 flex items-center justify-center bg-black/50 border border-white/10">
-            <span class="material-symbols-outlined text-2xl">close</span>
-        </button>
-        <div class="bg-[#0a0a0a] border border-white/10 rounded-2xl w-full max-w-5xl aspect-video relative overflow-hidden shadow-2xl shadow-black/80 transform scale-95 transition-transform duration-300" id="video-modal-content">
-            <iframe id="promotional-video" src="" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen class="absolute top-0 left-0 w-full h-full"></iframe>
-        </div>
+      </details>
     </div>
 
-    <!-- App Modal -->
-    <div id="app-modal" class="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center hidden opacity-0 transition-opacity duration-300 p-4">
-        <div class="bg-[#0a0a0a] border border-white/10 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col relative shadow-2xl shadow-black/50 transform scale-95 transition-transform duration-300" id="app-modal-content">
-            <!-- Header -->
-            <div class="p-6 border-b border-white/10 flex items-start justify-between sticky top-0 bg-[#0a0a0a]/95 backdrop-blur z-10">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center shrink-0 border border-red-500/20">
-                        <span class="material-symbols-outlined text-[var(--primary)]" id="modal-icon">apps</span>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-slate-50 font-display" id="modal-title">Título de la App</h3>
-                        <p class="text-sm text-slate-400 mt-1" id="modal-desc">Descripción corta de la app.</p>
-                    </div>
-                </div>
-                <button onclick="closeAppModal()" class="text-slate-400 hover:text-white transition-colors p-1 rounded-lg hover:bg-white/10">
-                    <span class="material-symbols-outlined">close</span>
-                </button>
-            </div>
-            
-            <!-- Body -->
-            <div class="p-6 overflow-y-auto flex-grow custom-scrollbar">
-                <div class="flex items-center gap-2 mb-4">
-                    <span class="text-red-500">📌</span>
-                    <h4 class="font-bold text-slate-200">Características principales</h4>
-                </div>
-                <ul class="space-y-3 text-sm text-slate-400" id="modal-features">
-                    <!-- Features will be injected here -->
-                </ul>
-            </div>
-            
-            <!-- Footer -->
-            <div class="p-6 border-t border-white/10 bg-[#0a0a0a] flex gap-3 justify-end sticky bottom-0">
-                <a href="#" target="_blank" id="modal-github-btn" class="px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white rounded-lg text-sm flex items-center gap-2 transition-colors">
-                    <svg viewBox="0 0 24 24" class="w-4 h-4 fill-current"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                    Ver Código en GitHub
-                </a>
-                <a href="#" target="_blank" id="modal-web-btn" class="px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white rounded-lg text-sm flex items-center gap-2 transition-colors">
-                    <span class="material-symbols-outlined text-[18px]">rocket_launch</span>
-                    Probar APP
-                </a>
-            </div>
+    <div class="wrap layout">
+      <aside class="toc" aria-label="Índice de trayectoria">
+        <strong>Contenido</strong>
+        <div class="toc-group">
+          <span>Resumen</span>
+          <a href="#perfil">Perfil profesional</a>
+          <a href="#casos">Casos destacados</a>
         </div>
+        <div class="toc-group">
+          <span>Trayectoria</span>
+          <a href="#experiencia">Experiencia profesional</a>
+          <a href="#docencia">Docencia acreditada</a>
+        </div>
+        <div class="toc-group">
+          <span>Trabajo y reconocimiento</span>
+          <a href="#proyectos">Aplicaciones</a>
+          <a href="#investigacion">Publicaciones y actividad editorial</a>
+          <a href="#reconocimientos">Premios profesionales</a>
+          <a href="#congresos">Congresos y webinars</a>
+        </div>
+        <div class="toc-group">
+          <span>Credenciales</span>
+          <a href="#especializacion-ia">Especialización en IA</a>
+          <a href="#formacion-academica">Titulación y acreditación docente</a>
+          <a href="#competencias">Competencias y herramientas</a>
+        </div>
+      </aside>
+
+      <div>
+        <section class="content-section" id="perfil">
+          <div class="section-heading"><div><p class="eyebrow">Perfil profesional</p><h2>Administración local, inteligencia artificial y formación aplicada</h2></div><p>Una trayectoria que combina política pública, contratación, fondos europeos, tecnología, investigación y docencia.</p></div>
+          <div class="intro-copy">
+            <p>Licenciado en Ciencias Políticas y de la Administración, con más de quince años de experiencia en la Administración local y especialización en inteligencia artificial aplicada al sector público.</p>
+            <p>Responsable del diseño e implementación de MencIA, estrategia de inteligencia artificial de la Diputación de Lugo. El trabajo conecta gobernanza, cumplimiento, infraestructura propia, aplicaciones, alfabetización y asistencia a municipios.</p>
+            <p>Formador ocupacional acreditado por la Xunta de Galicia. Diseño e imparto formación presencial y online para perfiles administrativos, técnicos, jurídicos y directivos.</p>
+          </div>
+        </section>
+
+        <section class="content-section" id="casos">
+          <div class="section-heading"><div><p class="eyebrow">Casos seleccionados</p><h2>Tres casos destacados</h2></div><p>Estrategia institucional, formación aplicada y producto digital de interés público.</p></div>
+          <div class="case-links">
+            <article class="case-link"><span class="tag">Caso institucional</span><h3>MencIA 2026-2030</h3><p>Gobernanza, soberanía tecnológica, aplicaciones y cohesión territorial.</p><a class="text-link" href="/casos/mencia.html">Examinar el caso →</a></article>
+            <article class="case-link"><span class="tag green">Experiencia impartida</span><h3>Formación en IA</h3><p>Curso de 30 horas con contenidos, prácticas, evaluación y recursos propios.</p><a class="text-link" href="/formacion/caso-gestion-local.html">Revisar el caso →</a></article>
+            <article class="case-link"><span class="tag blue">Innovación pública</span><h3>Oasis Madrid</h3><p>Datos abiertos, confort térmico, accesibilidad y rutas saludables.</p><a class="text-link" href="/casos/oasis-madrid.html">Abrir el proyecto →</a></article>
+          </div>
+        </section>
+
+        <section class="content-section" id="experiencia">
+          <div class="section-heading"><div><p class="eyebrow">Experiencia</p><h2>Más de quince años en la Administración local</h2></div><p>Innovación, contratación pública, tecnología, fondos europeos y dirección de proyectos territoriales.</p></div>
+          <div class="timeline">
+            <article class="timeline-item"><div class="timeline-time">2019 — actualidad</div><div><h3>Jefe de la Sección de Innovación y Participación Ciudadana</h3><p class="timeline-org">Diputación Provincial de Lugo</p><ul><li>Diseño e implementación de la estrategia institucional de inteligencia artificial.</li><li>Coordinación de fondos europeos y de la Agencia de la Energía provincial.</li><li>Desarrollo de aplicaciones, publicaciones, ponencias y formación para empleados públicos.</li></ul></div></article>
+            <article class="timeline-item"><div class="timeline-time">2014 — 2026</div><div><h3>Técnico especialista en contratación pública</h3><p class="timeline-org">Consorcio Provincial de Lugo para el servicio contra incendios y salvamento</p><ul><li>Tramitación integral de contratos, redacción de pliegos e informes jurídico-administrativos.</li><li>Implantación de contratación electrónica y gestión de mesas con retransmisión online.</li></ul></div></article>
+            <article class="timeline-item"><div class="timeline-time">2018 — 2019</div><div><h3>Asesor técnico de contratación y fomento</h3><p class="timeline-org">Diputación Provincial de Lugo</p><ul><li>Contratación pública, licitación electrónica y contratos de publicidad institucional.</li></ul></div></article>
+          </div>
+          <details class="archive"><summary>Consultar la experiencia anterior</summary><div class="archive-content timeline">
+            <article class="timeline-item"><div class="timeline-time">2013 — 2019</div><div><h3>Técnico de gestión · Nuevas tecnologías</h3><p class="timeline-org">Diputación Provincial de Lugo</p><ul><li>Proyectos TIC y programas europeos cofinanciados con FEDER y FSE.</li></ul></div></article>
+            <article class="timeline-item"><div class="timeline-time">2011 — 2013</div><div><h3>Técnico de gestión</h3><p class="timeline-org">Instituto Lucense de Desarrollo Económico y Social</p><ul><li>Gestión de recursos humanos en el organismo provincial.</li></ul></div></article>
+            <article class="timeline-item"><div class="timeline-time">2008 — 2011</div><div><h3>Director y secretario del Pacto Territorial de Empleo da Mariña</h3><p class="timeline-org">Asociación Impulsora del Pacto Territorial</p><ul><li>Dirección de un equipo de cinco profesionales para diecisiete municipios.</li><li>Formación en empleo, TIC y nuevas tecnologías y gestión de relaciones institucionales.</li></ul></div></article>
+          </div></details>
+        </section>
+
+        <section class="content-section" id="docencia">
+          <div class="section-heading"><div><p class="eyebrow">Docencia acreditada</p><h2>88 horas de formación impartida</h2></div><p>Acciones online dirigidas a empleados públicos y conectadas con problemas reales de gestión.</p></div>
+          <div class="teaching-list">
+            <article class="teaching-item"><time datetime="2026-06">2026</time><div><h3>Inteligencia artificial aplicada a la gestión local</h3><p>Diputación Provincial de Lugo · Online · Junio</p></div><div class="teaching-meta"><a class="text-link" href="/formacion/caso-gestion-local.html">30 horas · Ver caso</a></div></article>
+            <article class="teaching-item"><time datetime="2024-10">2024</time><div><h3>Gestión y seguimiento de fondos europeos. Plan de Recuperación, Transformación y Resiliencia</h3><p>Diputación Provincial de Lugo · Online · Octubre</p></div><div class="teaching-meta">30 horas</div></article>
+            <article class="teaching-item"><time datetime="2023-10">2023</time><div><h3>Introducción a la gestión, seguimiento, evaluación y control de proyectos financiados con fondos europeos</h3><p>Instituto Nacional de Administración Pública · Online · Octubre</p></div><div class="teaching-meta">28 horas</div></article>
+          </div>
+          <p class="section-followup"><a class="text-link" href="/formacion/">Consultar toda la oferta formativa →</a></p>
+        </section>
+
+        <section class="content-section" id="proyectos">
+          <div class="section-heading"><div><p class="eyebrow">Aplicaciones</p><h2>Aplicaciones y recursos desarrollados</h2></div><p>Herramientas construidas para explicar regulación, apoyar tareas y convertir documentación en interfaces utilizables.</p></div>
+          <div class="record-list">
+            <article class="record"><div class="record-label">Civic tech</div><div><h3>Oasis Madrid</h3><p>Navegador de confort térmico y rutas saludables con datos abiertos. <a href="/casos/oasis-madrid.html">Ver caso</a>.</p></div></article>
+            <article class="record"><div class="record-label">Educación</div><div><h3>Guías AESIA 4.0</h3><p>Plataforma con contenidos, cuestionarios, flashcards, seguimiento y juegos. <a href="https://guiasaesia.vercel.app/" target="_blank" rel="noopener">Abrir aplicación</a>.</p></div></article>
+            <article class="record"><div class="record-label">Gamificación</div><div><h3>The AI Island Challenge</h3><p>Aventura gráfica para comprender los niveles de riesgo del Reglamento de IA. <a href="https://islandchallengeai.vercel.app/" target="_blank" rel="noopener">Abrir aplicación</a>.</p></div></article>
+            <article class="record"><div class="record-label">Automatización</div><div><h3>Monitor BOE y Analizador de ayudas</h3><p>Herramientas para localizar edictos y estructurar información de convocatorias públicas.</p></div></article>
+            <article class="record"><div class="record-label">Gestión</div><div><h3>Calculadora LCSP y asistente de notas de prensa</h3><p>Interfaces orientadas al cálculo de plazos y a la preparación responsable de contenidos institucionales.</p></div></article>
+          </div>
+          <p class="section-followup"><a class="text-link" href="/aplicaciones/">Consultar el catálogo de aplicaciones →</a></p>
+        </section>
+
+        <section class="content-section" id="investigacion">
+          <div class="section-heading"><div><p class="eyebrow">Publicaciones y actividad editorial</p><h2>Publicaciones, evaluación y transferencia</h2></div><p>Producción académica y colaboración editorial vinculadas a la gobernanza de la IA pública.</p></div>
+          <div class="evidence-grid">
+            <article class="evidence"><span class="tag">Actividad editorial</span><h3>Evaluador de la revista de la AEPD</h3><p>Listado de evaluadores de la Revista de Privacidad, Innovación y Tecnología de la Agencia Española de Protección de Datos.</p><a class="text-link" href="https://revista.aepd.es/revistaprivacidad/about/editorialTeam" target="_blank" rel="noopener">Comprobar fuente oficial →</a></article>
+            <article class="evidence"><span class="tag blue">IDP-UOC · nº 43</span><h3>Gobernanza algorítmica local</h3><p>Coautoría sobre el diseño e implementación de un stack de IA soberana para entidades supramunicipales.</p><a class="text-link" href="https://doi.org/10.7238/idp.v0i43.9800300" target="_blank" rel="noopener">Consultar publicación →</a></article>
+            <article class="evidence"><span class="tag blue">CEMCI · nº 67</span><h3>Gobierno local inteligente y soberano</h3><p>Propuesta estratégica para implantar IA de código abierto en la provincia de Lugo.</p><a class="text-link" href="https://revista.cemci.org/numero-67/pdf/trabajos-de-evaluacion-1-gobierno-local-inteligente-y-soberano-una-propuesta-estrategica-para-la-implementacion-de-ia-de-codigo-abierto-en-la-provincia-de-lugo.pdf" target="_blank" rel="noopener">Consultar publicación →</a></article>
+            <article class="evidence"><span class="tag green">Comunidad profesional</span><h3>IA de código abierto</h3><p>Miembro de la Comunidad de IA de Código Abierto de SEDIA e inscrito en su Red de Embajadores.</p><a class="text-link" href="https://digital.gob.es/digitalizacion/comunidad-IA-de-codigo-abierto/la-comunidad" target="_blank" rel="noopener">Consultar la página oficial de la comunidad →</a></article>
+          </div>
+          <p class="section-followup contextual-links"><a class="text-link" href="https://orcid.org/0009-0007-7772-1008" target="_blank" rel="noopener">Consultar perfil ORCID →</a></p>
+        </section>
+
+        <section class="content-section" id="reconocimientos">
+          <div class="section-heading"><div><p class="eyebrow">Reconocimientos</p><h2>Premios profesionales</h2></div><p>Resultados acreditados en innovación, control y gobernanza de la inteligencia artificial pública.</p></div>
+          <div class="record-list">
+            <article class="record" id="premio-juan-raya"><div class="record-label">Premio · 2026</div><div><h3>Premio Juan Raya Gómez a la innovación en el control y la gestión pública local</h3><p>Fundación FIASEP. Trabajo sobre soberanía tecnológica y control algorítmico en la gestión local. <a href="https://fundacionfiasep.org/novedades/premiados-2026-premio-juan-raya-gomez/" target="_blank" rel="noopener">Consultar premio</a> y <a href="https://es.slideshare.net/slideshow/mencia-soberania-tecnologica-y-control-algoritmico-un-nuevo-paradigma-auditable-para-la-gestion-publica-local/287435323" target="_blank" rel="noopener">ver presentación</a>.</p></div></article>
+            <article class="record" id="premio-foro-grc"><div class="record-label">Premio · 2026</div><div><h3>Mejor comunicación del II Foro GRC</h3><p>Asociación Española para la Calidad. Modelo integral de gobierno, riesgo y cumplimiento para la IA pública. <a href="https://www.aec.es/nosotros/actualidad-aec/el-ii-congreso-foro-grc-consolida-su-liderazgo-como-espacio-de-referencia-en-gobernanza-riesgo-y-cumplimiento/" target="_blank" rel="noopener">Consultar referencia</a> y <a href="https://es.slideshare.net/slideshow/mencia-soberania-tecnologica-realista-un-modelo-integral-de-gobierno-riesgo-y-cumplimiento-para-la-ia-en-el-sector-publico/286504633" target="_blank" rel="noopener">ver presentación</a>.</p></div></article>
+            <article class="record"><div class="record-label">Finalista · 2025</div><div><h3>Prompt-a-thon Desafío ALIA</h3><p>Seleccionado entre los treinta finalistas de la convocatoria organizada por SEDIA.</p></div></article>
+          </div>
+        </section>
+
+        <section class="content-section" id="congresos">
+          <div class="section-heading"><div><p class="eyebrow">Actividad como ponente</p><h2>Congresos, jornadas y webinars</h2></div><p>Una selección de intervenciones con acceso directo a presentaciones y grabaciones.</p></div>
+          <div class="record-list">
+            <article class="record"><div class="record-label">Junio 2026</div><div><h3>Energía compartida: comunidades, tecnología y territorio</h3><p>Instituto Tecnológico de Galicia · MencIA: IA sostenible y algoritmos verdes. <a href="https://es.slideshare.net/slideshow/mencia-ia-sostenible-y-algoritmos-verdes-pdf/288338529" target="_blank" rel="noopener">Ver presentación</a>.</p></div></article>
+            <article class="record"><div class="record-label">Mayo 2026</div><div><h3>VI Jornada del sector local</h3><p>Fundación FIASEP · Intervención reconocida con el Premio Juan Raya Gómez. <a href="https://es.slideshare.net/slideshow/mencia-soberania-tecnologica-y-control-algoritmico-un-nuevo-paradigma-auditable-para-la-gestion-publica-local/287435323" target="_blank" rel="noopener">Ver presentación</a>.</p></div></article>
+            <article class="record"><div class="record-label">Abril 2026</div><div><h3>Cátedra Cajasiete Big Data, Open Data y Blockchain</h3><p>Universidad de La Laguna · IA en tres clics: soluciones de código abierto para entidades locales. <a href="https://www.youtube.com/watch?v=y8wg32D9lY8&t=3608s" target="_blank" rel="noopener">Ver webinar</a>.</p></div></article>
+          </div>
+          <p class="section-followup contextual-links"><a class="text-link" href="/congresos-webinars.html">Consultar todos los congresos, jornadas y webinars →</a></p>
+        </section>
+
+        <section class="content-section" id="especializacion-ia">
+          <div class="section-heading"><div><p class="eyebrow">Especialización en IA</p><h2>Formación reciente en inteligencia artificial</h2></div><p>Actualización especializada en gobernanza, privacidad, IA generativa, modelos abiertos y aplicación de la inteligencia artificial a la gestión pública.</p></div>
+
+          <div class="qualification-group">
+            <div class="qualification-heading"><span>01</span><div><h3>Cursos especializados</h3><p>Orden cronológico inverso, con entidad responsable y carga lectiva cuando consta en la acreditación.</p></div></div>
+            <div class="record-list">
+              <article class="record"><div class="record-label">2026 · 20 horas</div><div><h3>Introducción a la Inteligencia Artificial y estadística de datos</h3><p>Instituto Nacional de Administración Pública (INAP).</p></div></article>
+              <article class="record"><div class="record-label">2026 · 40 horas</div><div><h3>Protección de Datos y Seguridad en IoT, Big Data e IA</h3><p>Asociación Española para la Calidad (AEC).</p></div></article>
+              <article class="record"><div class="record-label">2026 · 52 horas</div><div><h3>Desafíos y oportunidades de la IA: modelos de gobernanza y herramientas generativas para la innovación pública</h3><p>CLAD - SEGIB · MOOC Internacional.</p></div></article>
+            </div>
+            <details class="archive qualification-archive"><summary>Consultar cursos de 2025</summary><div class="archive-content record-list">
+              <article class="record"><div class="record-label">2025 · 175 horas</div><div><h3>Inteligencia artificial aplicable a las entidades locales</h3><p>CEMCI / IAAP.</p></div></article>
+              <article class="record"><div class="record-label">2025 · 30 horas</div><div><h3>Aplicación práctica de la IA en la Gestión Pública Local</h3><p>FEGAMP.</p></div></article>
+              <article class="record"><div class="record-label">2025 · 50 horas</div><div><h3>Elementos de la IA</h3><p>Universidad Nacional de Educación a Distancia (UNED).</p></div></article>
+              <article class="record"><div class="record-label">2025</div><div><h3>ChatGPT Prompt Engineering for Developers</h3><p>OpenAI / DeepLearning.AI.</p></div></article>
+              <article class="record"><div class="record-label">2025</div><div><h3>Essentials of Prompt Engineering</h3><p>Amazon Web Services (AWS).</p></div></article>
+              <article class="record"><div class="record-label">2025</div><div><h3>Introducción a la IA y Prompt Engineering</h3><p>FEMP / Founderz Business School.</p></div></article>
+            </div></details>
+          </div>
+
+          <div class="qualification-group">
+            <div class="qualification-heading"><span>02</span><div><h3>Certificaciones</h3><p>Orden cronológico inverso de programas y credenciales emitidos por proveedores tecnológicos y plataformas especializadas.</p></div></div>
+            <div class="record-list">
+              <article class="record"><div class="record-label">Marzo 2026</div><div><h3>Introduction to Model Context Protocol</h3><p>Anthropic.</p></div></article>
+              <article class="record"><div class="record-label">Marzo 2026</div><div><h3>Google AI Professional Certificate</h3><p>Google · Certificación que integra siete cursos: AI Fundamentals, AI for Brainstorming and Planning, AI for Research and Insights, AI for Writing and Communicating, AI for Content Creation, AI for Data Analysis y AI for App Building.</p></div></article>
+              <article class="record"><div class="record-label">Febrero 2026</div><div><h3>Google AI Essentials</h3><p>Google · Certificación que integra cinco cursos: Introduction to AI, Maximize Productivity With AI Tools, Discover the Art of Prompting, Use AI Responsibly y Stay Ahead of the AI Curve.</p></div></article>
+              <article class="record"><div class="record-label">Enero 2026</div><div><h3>Accelerate Your Job Search with AI</h3><p>Google · Certificación que integra cuatro cursos: Uncover Your Transferable Skills with AI, Plan Your Job Search with AI, Manage Your Job Applications with AI y Prepare and Practice for Interviews with AI.</p></div></article>
+            </div>
+            <details class="archive qualification-archive"><summary>Consultar certificaciones de 2025</summary><div class="archive-content record-list">
+              <article class="record"><div class="record-label">Feb.-sep. 2025</div><div><h3>Microsoft Learn · Itinerario de siete módulos</h3><p>Microsoft Learn · IA responsable, estrategia de IA, sostenibilidad e IA en el sector público.</p></div></article>
+              <article class="record"><div class="record-label">Febrero 2025</div><div><h3>Google Cloud Skills Boost</h3><p>Google Cloud · Tres cursos: Introduction to Generative AI, Introduction to Large Language Models e Introduction to Responsible AI.</p></div></article>
+            </div></details>
+          </div>
+        </section>
+
+        <section class="content-section" id="formacion-academica">
+          <div class="section-heading"><div><p class="eyebrow">Titulación y acreditación docente</p><h2>Base académica y acreditación docente</h2></div><p>Formación universitaria en Administración pública y capacitación profesional para el diseño y la impartición de formación.</p></div>
+          <div class="record-list">
+            <article class="record"><div class="record-label">1996 — 2001</div><div><h3>Licenciado en Ciencias Políticas y de la Administración</h3><p>Especialidad en Administración Pública · Universidad de Santiago de Compostela · Nivel MECES 3 y EQF 7.</p></div></article>
+            <article class="record"><div class="record-label">2003</div><div><h3>Certificado de profesionalidad de formador ocupacional</h3><p>Xunta de Galicia · Dirección Xeral de Formación e Colocación.</p></div></article>
+          </div>
+        </section>
+
+        <section class="content-section" id="competencias">
+          <div class="section-heading"><div><p class="eyebrow">Competencias profesionales</p><h2>Competencias y herramientas</h2></div><p>Capacidades pedagógicas, conocimiento de la Administración pública y experiencia práctica con tecnologías de inteligencia artificial y despliegue web.</p></div>
+          <div class="competency-grid">
+            <article class="competency-block"><span>01</span><h3>Capacidades pedagógicas</h3><ul><li>Diseño e impartición de formación presencial y e-learning.</li><li>Pedagogía activa y aprendizaje basado en proyectos.</li><li>Divulgación tecnológica práctica para perfiles no expertos.</li><li>Experiencia docente con perfiles administrativos, técnicos, jurídicos y directivos.</li></ul></article>
+            <article class="competency-block"><span>02</span><h3>Gobernanza de IA y gestión pública</h3><ul><li>Gobernanza, riesgo, cumplimiento, privacidad, Reglamento Europeo de IA y Green AI.</li><li>IA generativa, RAG, modelos de código abierto o pesos abiertos y arquitecturas locales.</li><li>Contratación del sector público y fondos FEDER, FSE y NextGenerationEU/PRTR.</li></ul></article>
+            <article class="competency-block"><span>03</span><h3>Desarrollo y despliegue de aplicaciones</h3><ul><li>Diseño de prototipos y aplicaciones web orientadas a problemas de gestión pública.</li><li>Control de versiones y repositorios con GitHub.</li><li>Despliegue con Vercel, Netlify y Streamlit.</li><li>Documentación técnica y mantenimiento de proyectos.</li></ul></article>
+            <article class="competency-block"><span>04</span><h3>Herramientas utilizadas</h3><ul><li>Gemini, ChatGPT, Claude, NotebookLM y Google AI Studio.</li><li>Ollama, Streamlit, Antigravity y n8n.</li><li>Entornos de creación, automatización y documentación asistida por IA.</li></ul></article>
+            <article class="competency-block"><span>05</span><h3>Idiomas</h3><ul><li>Castellano nativo.</li><li>Gallego · CELGA 4.</li><li>Título de Lenguaje Administrativo Gallego de nivel medio · Xunta de Galicia.</li></ul></article>
+          </div>
+        </section>
+
+      </div>
     </div>
 
-    <script>
-        const appData = {
-            'monitor-boe': {
-                title: 'Monitor BOE',
-                desc: 'Sistema automatizado para la monitorización, extracción y análisis de publicaciones del Boletín Oficial del Estado (BOE) utilizando técnicas de procesamiento de lenguaje natural.',
-                icon: 'policy',
-                features: [
-                    'Scraping automático del BOE — accede al Tablón Edictal Judicial Único y extrae todos los edictos de procedimientos concursales de la fecha indicada.',
-                    'Selección flexible de fechas — búsqueda por fecha única o por rango de fechas con selector de calendario.',
-                    'Filtrado geográfico — opción de procesar solo edictos de Galicia o todos los edictos de España.',
-                    'Tabla de resultados interactiva — visualización clara con deudor, CIF/DNI/NIE, número de concurso, fecha del auto y enlace directo al edicto original.',
-                    'Métricas de resumen — tarjetas con número de edictos encontrados, total de candidatos en la jornada y tiempo de proceso.',
-                    'Exportación múltiple — descarga de resultados en Excel (.xlsx), JSON y TXT con un solo clic.',
-                    'Historial de ejecuciones — almacena las últimas 10 búsquedas para recuperar resultados anteriores sin necesidad de volver a ejecutar el scraping.',
-                    'Texto completo de los edictos — visualización del contenido íntegro de cada edicto directamente en la aplicación, con formato fiel al original del BOE.',
-                    'Diseño adaptativo claro/oscuro — interfaz que responde automáticamente al tema seleccionado.'
-                ],
-                github: 'https://github.com/ariaslombardero/monitor-boe',
-                web: 'https://monitorboe.streamlit.app/'
-            },
-            'landing-mencia': {
-                title: 'Landing MencIA',
-                desc: 'Prueba de lanzamiento de la landing page de MencIA-Estrategia de Inteligencia Artificial de la Diputación de Lugo (en desarrollo)',
-                icon: 'language',
-                features: [
-                    'Arquitectura moderna — construida con React, Vite y Tailwind CSS para un rendimiento óptimo.',
-                    'Soporte multilingüe — sistema de internacionalización (i18n) completo en Español, Gallego e Inglés.',
-                    'Animaciones avanzadas — transiciones fluidas y efectos de scroll utilizando Framer Motion.',
-                    'Simuladores interactivos — módulos educativos integrados para la alfabetización en IA.',
-                    'Diseño responsive — adaptación perfecta a dispositivos móviles, tablets y escritorio.',
-                    'Modo oscuro/claro — soporte nativo para preferencias de tema del sistema.'
-                ],
-                github: 'https://github.com/ariaslombardero/landing-mencia',
-                web: 'https://landing-mencia.vercel.app/'
-            },
-            'guias-aesia': {
-                title: 'Guias AESIA 4.0',
-                desc: 'Plataforma de aprendizaje interactiva de las guías prácticas para el cumplimiento del RIA publicadas por la AESIA. Incluye flashcards, cuestionarios, glosario y juegos educativos. (en desarrollo)',
-                icon: 'school',
-                features: [
-                    'Integración normativa — contenido basado estrictamente en las directrices de la Agencia Española de Supervisión de Inteligencia Artificial.',
-                    'Gamificación educativa — incluye mecánicas de juego como salas de escape y roscos de palabras para mejorar la retención.',
-                    'Sistema de Flashcards — tarjetas de estudio interactivas para repasar conceptos clave del Reglamento de IA.',
-                    'Seguimiento de progreso — panel de usuario para visualizar el avance en los diferentes módulos formativos.',
-                    'Diseño accesible — interfaz clara y navegación intuitiva adaptada a todos los perfiles de la administración pública.'
-                ],
-                github: 'https://github.com/ariaslombardero/Guias-AESIA-4.0',
-                web: 'https://guiasaesia.vercel.app/'
-            },
-            'calculadora-lcsp': {
-                title: 'Calculadora LCSP Lugo',
-                desc: 'Herramienta web para el cálculo automatizado de plazos administrativos establecidos en la Ley 9/2017, de Contratos del Sector Público (LCSP), adaptada al calendario festivo de Lugo y la Comunidad Autónoma de Galicia (en desarrollo)',
-                icon: 'calculate',
-                features: [
-                    'Cálculo automatizado — determina fechas límite exactas basándose en la Ley 9/2017 de Contratos del Sector Público.',
-                    'Calendario laboral integrado — tiene en cuenta festivos nacionales, autonómicos (Galicia) y locales (Lugo).',
-                    'Múltiples procedimientos — soporta abierto, restringido, negociado, simplificado y supersimplificado.',
-                    'Exportación de informes — generación de documentos PDF con el desglose de plazos para el expediente.',
-                    'Interfaz intuitiva — diseño paso a paso que guía al usuario en la introducción de datos del contrato.'
-                ],
-                github: 'https://github.com/ariaslombardero/Calculadora-LCSP-Lugo',
-                web: 'https://calculadoralcsplugo.vercel.app/'
-            },
-            'asistente-notas': {
-                title: 'Asistente de notas de prensa',
-                desc: 'Herramienta diseñada como prueba de concepto para el Gabinete de Comunicación de la Diputación de Lugo, con el objetivo de redactar borradores de notas de prensa y contenido para redes sociales.',
-                icon: 'edit_document',
-                features: [
-                    'Generación inteligente — Redacción de borradores de notas de prensa a partir de texto libre o documentos subidos (PDF, Word, TXT).',
-                    'Adaptación estratégica a Redes Sociales — Creación automática de posts optimizados para Instagram, Facebook y X con tono narrativo y mejores prácticas de cada plataforma.',
-                    'Privacidad "Bring Your Own Key" (BYOK) — Configuración segura de la API Key de Gemini directamente desde la interfaz de la aplicación, sin necesidad de archivos de configuración externos.',
-                    'Reglas avanzadas para RRSS — Formateo automático de hilos para X (Twitter) respetando límites de caracteres y optimización de emojis.',
-                    'Banco de Hashtags — Generación de hashtags relevantes con funcionalidad de copiado rápido con un solo clic.',
-                    'Traducción instantánea — Cambio fluido entre Gallego y Castellano sin necesidad de regenerar el contenido desde cero gracias a un sistema de caché inteligente.',
-                    'Títulos alternativos — Sugerencia de múltiples opciones de titulares atractivos para cada nota de prensa.',
-                    'Historial local — Guardado automático de los trabajos anteriores en el navegador para poder recuperarlos en cualquier momento.',
-                    'Diseño premium UI/UX — Interfaz limpia, accesible y totalmente adaptativa (responsive) para escritorio y dispositivos móviles.'
-                ],
-                github: 'https://github.com/ariaslombardero/Asistente-notas-de-prensa',
-                web: 'https://notasprensa.vercel.app/'
-            },
-            'ai-island-challenge': {
-                title: 'The AI Island Challenge',
-                desc: 'Minijuego de aventura gráfica estilo SCUMM (Monkey Island) para servir como ejemplo básico de cómo divulgar conceptos del Reglamento Europeo de IA de forma gamificada y sencilla',
-                icon: 'sports_esports',
-                features: [
-                    'Diseño retro y motor SCUMM — Interfaz clásica inspirada en Monkey Island, con panel de verbos (Mirar, Usar, Hablar a, Ir a...) y un sistema de inventario totalmente funcional.',
-                    'Puzles normativos — 4 niveles de juego basados directamente en los niveles de riesgo del RIA (Mínimo, Limitado, Alto e Inaceptable).',
-                    'Totalmente autocontenido — Toda la lógica, gráficos (SVG inline), diálogos y animaciones están empaquetados en un único archivo HTML, garantizando un despliegue y portabilidad inmediatos.',
-                    'Experiencia inmersiva y accesible — Uso integrado de CSS3 para animaciones precisas y sistema de diálogos interactivos que el usuario puede avanzar con clics fluidos.',
-                    'Rigor legal — Adaptación lúdica pero fiel de artículos clave (Art. 5, Art. 10, Art. 50) y referencias a la guía de gestión de riesgos de la AESIA.'
-                ],
-                github: 'https://github.com/ariaslombardero/The-AI-island-challenge',
-                web: 'https://islandchallengeai.vercel.app/'
-            },
-            'analizador-ayudas': {
-                title: 'Analizador de ayudas y subvenciones',
-                desc: 'Herramienta institucional avanzada diseñada para automatizar el análisis de convocatorias de subvenciones, ayudas y fondos públicos utilizando Inteligencia Artificial.',
-                icon: 'document_scanner',
-                features: [
-                    'Extracción Inteligente — Procesa PDF, Word (.docx) y texto plano para extraer automáticamente presupuestos, plazos, beneficiarios y criterios de valoración.',
-                    'Sistema de Scoring — Calcula un "Score de Encaje" (0-10) basado en la relevancia territorial, elegibilidad institucional y alineación estratégica.',
-                    'Trazabilidad y Modo Auditoría — Añade marcadores de confianza a cada dato extraído.',
-                    'Privacidad "Bring Your Own Key" (BYOK) y Modelos Locales — Configuración segura de la API Key de Gemini o uso de modelos alojados localmente.',
-                    'Traducción instantánea — Cambio fluido entre Gallego y Castellano de la interfaz y los análisis en tiempo real mediante streaming.',
-                    'Exportación Profesional — Generación de informes en formato Word (DOCX) con saltos de página inteligentes, y formato de impresión optimizado en PDF.',
-                    'Integración JSON — Genera automáticamente bloques JSON estructurados listos para alimentar bases de datos o dashboards.',
-                    'Historial local — Guardado automático de los análisis anteriores en el navegador.'
-                ],
-                github: 'https://github.com/ariaslombardero/Analizador-de-ayudas-y-subvenciones',
-                web: 'https://subvenciones-ia.vercel.app/'
-            }
-        };
+    <section class="closing">
+      <div class="wrap closing-grid"><div><p class="eyebrow">Contacto</p><h2>Innovación pública con estrategia, herramientas y aprendizaje</h2></div><div><p>Para formación, congresos, webinars, colaboración o desarrollo de aplicaciones aplicadas al sector público.</p><div class="hero-actions"><a class="button dark" href="mailto:jose@ariaslombardero.es?subject=Propuesta%20de%20colaboración%20o%20formación">Contactar por correo</a><a class="button secondary" href="/formacion/">Explorar formación</a></div></div></div>
+    </section>
+  </main>
 
-        function openAppModal(appId) {
-            const data = appData[appId];
-            if (!data) return;
-
-            document.getElementById('modal-title').textContent = data.title;
-            document.getElementById('modal-desc').textContent = data.desc;
-            document.getElementById('modal-icon').textContent = data.icon;
-            
-            const featuresList = document.getElementById('modal-features');
-            featuresList.innerHTML = data.features.map(f => `<li><span class="text-[var(--primary)] mr-2">•</span>${f}</li>`).join('');
-            
-            const githubBtn = document.getElementById('modal-github-btn');
-            if (data.github) {
-                githubBtn.href = data.github;
-                githubBtn.style.display = 'flex';
-            } else {
-                githubBtn.style.display = 'none';
-            }
-            
-            const webBtn = document.getElementById('modal-web-btn');
-            if (data.web) {
-                webBtn.href = data.web;
-                webBtn.style.display = 'flex';
-            } else {
-                webBtn.style.display = 'none';
-            }
-
-            const modal = document.getElementById('app-modal');
-            const modalContent = document.getElementById('app-modal-content');
-            
-            modal.classList.remove('hidden');
-            // Trigger reflow
-            void modal.offsetWidth;
-            modal.classList.remove('opacity-0');
-            modalContent.classList.remove('scale-95');
-            
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeAppModal() {
-            const modal = document.getElementById('app-modal');
-            const modalContent = document.getElementById('app-modal-content');
-            
-            modal.classList.add('opacity-0');
-            modalContent.classList.add('scale-95');
-            
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                document.body.style.overflow = '';
-            }, 300);
-        }
-
-        // Close modal on outside click
-        document.addEventListener('DOMContentLoaded', () => {
-            const modal = document.getElementById('app-modal');
-            if(modal) {
-                modal.addEventListener('click', (e) => {
-                    if (e.target === modal) {
-                        closeAppModal();
-                    }
-                });
-            }
-
-            const videoModal = document.getElementById('video-modal');
-            if(videoModal) {
-                videoModal.addEventListener('click', (e) => {
-                    if (e.target === videoModal) {
-                        closeVideoModal();
-                    }
-                });
-            }
-        });
-
-        function openVideoModal() {
-            const modal = document.getElementById('video-modal');
-            const modalContent = document.getElementById('video-modal-content');
-            const iframe = document.getElementById('promotional-video');
-            
-            // Set source dynamically when opening to autoplay 
-            iframe.src = "https://player.vimeo.com/video/1188057315?title=0&byline=0&portrait=0&autoplay=1&color=ffffff";
-            
-            modal.classList.remove('hidden');
-            // Trigger reflow
-            void modal.offsetWidth;
-            modal.classList.remove('opacity-0');
-            modalContent.classList.remove('scale-95');
-            
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeVideoModal() {
-            const modal = document.getElementById('video-modal');
-            const modalContent = document.getElementById('video-modal-content');
-            const iframe = document.getElementById('promotional-video');
-            
-            modal.classList.add('opacity-0');
-            modalContent.classList.add('scale-95');
-            
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                document.body.style.overflow = '';
-                // Stop video
-                iframe.src = "";
-            }, 300);
-        }
-    </script>
+  <footer class="wrap site-footer"><span>© 2026 Jose Antonio Arias Lombardero</span><nav><a href="/">Inicio</a><a href="/cv.html">Trayectoria profesional</a><a href="/#contacto">Contacto</a><a href="https://www.linkedin.com/in/ariaslombardero" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/ariaslombardero" target="_blank" rel="noopener">GitHub</a></nav></footer>
+  <script src="/editorial.js"></script>
+  <script src="/cv.js"></script>
 </body>
 </html>

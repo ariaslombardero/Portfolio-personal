@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="gl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de Escenarios: IA e Marco Legal (Módulo 4)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --surface-hover: #334155;
+      --border: #334155;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --cyan: #22d3ee;
+      --cyan-dim: rgba(34, 211, 238, 0.1);
+      --emerald: #34d399;
+      --emerald-dim: rgba(52, 211, 153, 0.1);
+      --rose: #fb7185;
+      --rose-dim: rgba(251, 113, 133, 0.1);
+      --amber: #fbbf24;
+      --amber-dim: rgba(251, 191, 36, 0.1);
+      --purple: #a855f7;
+      --glow: 0 0 15px rgba(34, 211, 238, 0.2);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      background-image: radial-gradient(circle at 50% 0%, #1e293b 0%, transparent 70%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 32px 24px;
+      width: 100%;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      margin-bottom: 24px;
+      text-align: center;
+      animation: fadeInDown 0.6s ease-out;
+    }
+
+    .header-icon {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 16px;
+      color: var(--cyan);
+      filter: drop-shadow(0 0 8px var(--cyan-dim));
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #fff, var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    .intro {
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 16px;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 24px 0;
+      justify-content: center;
+    }
+
+    .tab-btn {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 8px;
+      padding: 8px 14px;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 8px;
+    }
+
+    .tab-btn:hover {
+      background: var(--surface-hover);
+      border-color: var(--cyan);
+    }
+
+    .tab-btn.active {
+      background: var(--cyan-dim);
+      color: var(--cyan);
+      border-color: var(--cyan);
+      box-shadow: var(--glow);
+    }
+
+    .scenario-container {
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      animation: slideUp 0.4s ease-out forwards;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .context-panel {
+      padding: 24px;
+      background: rgba(15, 23, 42, 0.5);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .context-label {
+      font-family: 'Fira Code', monospace;
+      font-size: 12px;
+      color: var(--cyan);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .context-text {
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .decision-panel {
+      padding: 24px;
+      flex-grow: 1;
+    }
+
+    .progress-bar {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .progress-step {
+      flex: 1;
+      height: 6px;
+      background: var(--surface-hover);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .progress-step-inner {
+      height: 100%;
+      background: var(--cyan);
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+
+    .progress-step.completed .progress-step-inner { width: 100%; background: var(--emerald); }
+    .progress-step.active .progress-step-inner { width: 50%; }
+
+    .question-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0 0 20px 0;
+      color: var(--text);
+    }
+
+    .options-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .option-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .option-card:hover:not(.disabled) {
+      background: var(--surface-hover);
+      border-color: var(--cyan);
+      transform: translateX(4px);
+    }
+
+    .option-letter {
+      background: rgba(15, 23, 42, 0.5);
+      color: var(--cyan);
+      font-family: 'Fira Code', monospace;
+      font-weight: 700;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 1px solid var(--border);
+    }
+
+    .option-text {
+      font-size: 14px;
+      line-height: 1.5;
+      padding-top: 4px;
+    }
+
+    .option-card.selected-correct {
+      background: var(--emerald-dim);
+      border-color: var(--emerald);
+    }
+
+    .option-card.selected-correct .option-letter {
+      background: var(--emerald);
+      color: #fff;
+      border-color: var(--emerald);
+    }
+
+    .option-card.selected-incorrect {
+      background: var(--rose-dim);
+      border-color: var(--rose);
+      opacity: 0.7;
+    }
+
+    .option-card.selected-incorrect .option-letter {
+      background: var(--rose);
+      color: #fff;
+      border-color: var(--rose);
+    }
+
+    .option-card.disabled {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    .feedback-panel {
+      margin-top: 24px;
+      padding: 20px;
+      border-radius: 12px;
+      display: none;
+      animation: slideUp 0.3s ease-out;
+    }
+
+    .feedback-panel.correct {
+      display: block;
+      background: var(--emerald-dim);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+    }
+
+    .feedback-panel.incorrect {
+      display: block;
+      background: var(--rose-dim);
+      border: 1px solid rgba(251, 113, 133, 0.3);
+    }
+
+    .feedback-title {
+      font-weight: 700;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .correct .feedback-title { color: var(--emerald); }
+    .incorrect .feedback-title { color: var(--rose); }
+
+    .feedback-text {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .btn-next {
+      margin-top: 20px;
+      background: var(--cyan);
+      color: var(--bg);
+      border: none;
+      border-radius: 8px;
+      padding: 12px 24px;
+      font-weight: 600;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .btn-next:hover {
+      background: #fff;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+    }
+
+    .conclusion-panel {
+      padding: 32px 24px;
+      text-align: center;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .conclusion-icon {
+      width: 64px;
+      height: 64px;
+      color: var(--emerald);
+      margin-bottom: 16px;
+      animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .conclusion-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .conclusion-text {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 600px;
+      margin-bottom: 24px;
+    }
+
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes popIn { 0% { opacity: 0; transform: scale(0.5); } 100% { opacity: 1; transform: scale(1); } }
+
+    @media (max-width: 600px) {
+      .option-card { flex-direction: column; gap: 12px; }
+      .option-letter { width: 100%; height: auto; padding: 4px; }
+      .tabs { justify-content: flex-start; overflow-x: auto; padding-bottom: 10px; flex-wrap: nowrap; }
+      .tab-btn { white-space: nowrap; flex-shrink: 0; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <svg class="header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+        <line x1="12" y1="22.08" x2="12" y2="12"></line>
+      </svg>
+      <h1>Simulador: IA e Marco Legal</h1>
+      <p class="intro">Toma decisións xurídicas e organizativas baseadas no Regulamento de IA e no RGPD. Escolle un escenario para comezar.</p>
+    </header>
+
+    <div class="tabs" id="tabs-container">
+      <!-- Tabs xerados por JS -->
+    </div>
+
+    <div class="scenario-container" id="scenario-container">
+      <div class="context-panel" id="context-panel">
+        <div class="context-label">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          Contexto do Caso
+        </div>
+        <div class="context-text" id="context-text"></div>
+      </div>
+
+      <div class="decision-panel" id="decision-panel">
+        <div class="progress-bar" id="progress-bar">
+          <!-- Xerado dinamicamente -->
+        </div>
+
+        <h2 class="question-title" id="question-title"></h2>
+        
+        <div class="options-grid" id="options-grid">
+          <!-- Opcións xeradas por JS -->
+        </div>
+
+        <div class="feedback-panel" id="feedback-panel">
+          <div class="feedback-title" id="feedback-title"></div>
+          <div class="feedback-text" id="feedback-text"></div>
+        </div>
+
+        <button class="btn-next" id="btn-next">
+          Continuar
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </button>
+      </div>
+
+      <div class="conclusion-panel" id="conclusion-panel">
+        <svg class="conclusion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        <div class="conclusion-title">Simulación Completada</div>
+        <div class="conclusion-text" id="conclusion-text"></div>
+        <button class="btn-next" style="display: flex;" onclick="loadNextScenario()">
+          Seguinte Escenario
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Audio Context para efecto WoW
+    let audioCtx;
+    function playSound(type) {
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        
+        if (type === 'correct') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(600, audioCtx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.1);
+          gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+          osc.start(); osc.stop(audioCtx.currentTime + 0.3);
+        } else if (type === 'incorrect') {
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(200, audioCtx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(150, audioCtx.currentTime + 0.2);
+          gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+          osc.start(); osc.stop(audioCtx.currentTime + 0.3);
+        } else if (type === 'win') {
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(400, audioCtx.currentTime);
+          osc.frequency.linearRampToValueAtTime(800, audioCtx.currentTime + 0.2);
+          osc.frequency.linearRampToValueAtTime(600, audioCtx.currentTime + 0.4);
+          osc.frequency.linearRampToValueAtTime(1200, audioCtx.currentTime + 0.6);
+          gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+          gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 1);
+          osc.start(); osc.stop(audioCtx.currentTime + 1);
+        }
+      } catch(e) {}
+    }
+
+    const scenarios = [
+      {
+        id: "U4.1",
+        title: "U4.1 Clasificación",
+        context: "Un concello prepara un contrato que inclúe catro funcións: resumir normas publicadas, atender consultas mediante un chatbot, ordenar candidaturas dunha bolsa e estimar emocións do persoal con cámaras. O expediente trata o conxunto como unha única ferramenta de produtividade.",
+        decisions: [
+          {
+            question: "Decisión 1. Como comezar a avaliar isto?",
+            options: [
+              { text: "Clasificar o produto completo segundo a función menos arriscada.", isCorrect: false, feedback: "A oculta funcións con réximes diferentes." },
+              { text: "Analizar por separado cada sistema ou finalidade, o contexto e o efecto.", isCorrect: true, feedback: "B permite identificar prácticas, papeis e obrigas de cada compoñente do sistema." },
+              { text: "Deixar a clasificación ao provedor despois da compra.", isCorrect: false, feedback: "C non elimina a responsabilidade da entidade de cumprir coa normativa aplicable." }
+            ]
+          },
+          {
+            question: "Decisión 2. Que fas coa cámara que estima as emocións?",
+            options: [
+              { text: "Probar durante un mes porque haberá revisión humana.", isCorrect: false, feedback: "A revisión ou os pilotos non converten en lícita unha práctica prohibida polo regulamento." },
+              { text: "Deter esa función e comprobar se existe unha excepción legal estrita.", isCorrect: true, feedback: "B é a resposta adecuada para a finalidade laboral descrita, ao ser unha posible práctica prohibida." },
+              { text: "Manter a cámara e non gardar os vídeos.", isCorrect: false, feedback: "A menor conservación de datos non lexitima a estimación de emocións no lugar de traballo." }
+            ]
+          },
+          {
+            question: "Decisión 3. Como tratas o sistema para a bolsa de emprego?",
+            options: [
+              { text: "Activala con datos reais para medir a precisión do modelo.", isCorrect: false, feedback: "Ignora o posible alto risco no emprego e vulnera a seguridade dos datos persoais reais." },
+              { text: "Tratar a orde como unha recomendación sen máis análise.", isCorrect: false, feedback: "Chamar 'recomendación' a algo non exime de cumprir as obrigas se o sistema determina en realidade o acceso ao emprego." },
+              { text: "Suspender o uso real e realizar unha análise xurídica, técnica, de datos e de dereitos.", isCorrect: true, feedback: "C permite definir o papel da entidade, esixir a documentación pertinente e avaliar se o uso (de alto risco) pode continuar." }
+            ]
+          }
+        ],
+        conclusion: "A mellor ruta é B-B-C. A clasificación non se fai por marca nin por produto: faise sobre cada sistema, finalidade, contexto, papel e risco, segundo indica o RIA."
+      },
+      {
+        id: "U4.2",
+        title: "U4.2 Datos Persoais",
+        context: "O servizo de persoal debe resumir cincuenta alegacións dun proceso selectivo. Conteñen identificadores, datos de saúde e circunstancias familiares. Unha persoa propón usar a súa conta persoal nun asistente de IA e promete revisar todo antes de asinar.",
+        decisions: [
+          {
+            question: "Decisión 1. Cal é a túa primeira resposta á proposta?",
+            options: [
+              { text: "Autorizar porque a revisión final será humana.", isCorrect: false, feedback: "Confunde revisión con licitude. A revisión final non arranxa unha exposición indebida dos datos." },
+              { text: "Retirar nomes e DNI e considerar os textos anónimos.", isCorrect: false, feedback: "Pode deixar información reidentificable (datos familiares, condicións). A pseudonimización non equivale á anonimización." },
+              { text: "Deter o envío e mapear datos, finalidade, contorna, contrato e riscos.", isCorrect: true, feedback: "Deter a acción permite avaliar o tratamento completo e evitar infraccións graves do RGPD." }
+            ]
+          },
+          {
+            question: "Decisión 2. Como redeseñas o proceso para que sexa lícito?",
+            options: [
+              { text: "Usar unha contorna corporativa avaliada, minimizar o texto e limitar accesos.", isCorrect: true, feedback: "Correcto. Combina as medidas xurídicas, técnicas e organizativas adecuadas para protexer o proceso." },
+              { text: "Manter a conta persoal e borrar o historial ao final do resumo.", isCorrect: false, feedback: "Non resolve as condicións do tratamento nin os termos de servizo aos que se ceden os datos (da ferramenta externa)." },
+              { text: "Pedir consentimento a todas as persoas como única garantía.", isCorrect: false, feedback: "O consentimento non converte automaticamente o uso en necesario nin equilibrado no contexto dun procedemento administrativo." }
+            ]
+          },
+          {
+            question: "Decisión 3. Que fas coa saída da intelixencia artificial?",
+            options: [
+              { text: "Substituír as alegacións orixinais polo resumo xerado.", isCorrect: false, feedback: "Traslada ao sistema unha función xurídica que non lle corresponde e perde a evidencia da alegación orixinal." },
+              { text: "Contrastar cada afirmación, conservar o documento orixinal e rexistrar a revisión.", isCorrect: true, feedback: "Boa decisión. Mantén a fonte inalterada e asegura a responsabilidade administrativa da resolución." },
+              { text: "Asinar sen ler porque o modelo xa ofrece referencias e asumiu o contexto.", isCorrect: false, feedback: "Incumpre claramente o deber de revisión humana e asume á cegas os posibles erros ou alucinacións." }
+            ]
+          }
+        ],
+        conclusion: "A mellor ruta é C-A-B. O RGPD aplícase ao fluxo completo de datos, desde a súa entrada ata a conservación ou eliminación, e non unicamente sobre o documento final xerado."
+      },
+      {
+        id: "U4.3",
+        title: "U4.3 Supervisión Efectiva",
+        context: "Un sistema ordena establecementos para inspección. O provedor afirma que a puntuación é orientativa, pero non mostra os factores principais de clasificación. As primeiras saídas conteñen referencias inexistentes, reclamacións duplicadas e unha concentración anormal nun barrio vulnerable.",
+        decisions: [
+          {
+            question: "Decisión 1. Que fas co uso inmediato do sistema?",
+            options: [
+              { text: "Comezar de todos modos porque a decisión final tamén a toma unha persoa.", isCorrect: false, feedback: "A presenza formal dunha persoa revisora non abonda se o sistema é opaco e xa presenta erros evidentes." },
+              { text: "Probar a realizar só os dez primeiros resultados como piloto rápido.", isCorrect: false, feedback: "Isto só acelera a toma de decisións erróneas na cidadanía sen resolver o problema funcional de fondo." },
+              { text: "Deter actuacións e verificar fontes, datos, explanation e impacto.", isCorrect: true, feedback: "Correcto. C crea as condicións mínimas necesarias para unha revisión e análise informada ante incidencias." }
+            ]
+          },
+          {
+            question: "Decisión 2. Que debe poder facer a persoa revisora nestes casos?",
+            options: [
+              { text: "Confirmar ou rexeitar, pedir evidencias, corrixir e escalar o problema.", isCorrect: true, feedback: "Esta opción é a única que describe o que é a capacidade efectiva de supervisión humana." },
+              { text: "Confirmar sempre, pero engadir unha observación indicando os fallos.", isCorrect: false, feedback: "Validar automaticamente produce un nesgo de automatización e invalida o obxectivo da revisión." },
+              { text: "Revisar unicamente cando exista unha reclamación posterior do establecemento.", isCorrect: false, feedback: "Este enfoque chega tarde, non intervén a tempo e non serve para previr o dano na administración." }
+            ]
+          },
+          {
+            question: "Decisión 3. Que facer ante estas incidencias ou concentracións repetidas?",
+            options: [
+              { text: "Ocultalas ata rematar completamente o proxecto piloto.", isCorrect: false, feedback: "Iso impide aprender durante o proceso, intervir para corrixir fallos e protexer os dereitos vulnerados." },
+              { text: "Aplicar a regra de parada (limiar acordado), suspender e documentar a decisión.", isCorrect: true, feedback: "Correcto. Executa a gobernanza prevista orixinalmente e protexe á organización fronte aos riscos do sistema." },
+              { text: "Cambiar o prompt internamente e continuar sen rexistro do cambio.", isCorrect: false, feedback: "Isto impide reconstruír o funcionamento do sistema e dificulta enormemente auditar e xestionar os riscos." }
+            ]
+          }
+        ],
+        conclusion: "A mellor ruta é C-A-B. Supervisar significa comprender, contrastar, discrepar, deter o funcionamento e deixar evidencia documental, non limitar a intervención a engadir unha sinatura ao final dun proceso oculto."
+      }
+    ];
+
+    let currentScenarioIndex = 0;
+    let currentDecisionIndex = 0;
+
+    const tabsContainer = document.getElementById('tabs-container');
+    const contextText = document.getElementById('context-text');
+    const questionTitle = document.getElementById('question-title');
+    const optionsGrid = document.getElementById('options-grid');
+    const feedbackPanel = document.getElementById('feedback-panel');
+    const feedbackTitle = document.getElementById('feedback-title');
+    const feedbackText = document.getElementById('feedback-text');
+    const btnNext = document.getElementById('btn-next');
+    const progressBar = document.getElementById('progress-bar');
+    const decisionPanel = document.getElementById('decision-panel');
+    const conclusionPanel = document.getElementById('conclusion-panel');
+
+    function init() {
+      renderTabs();
+      loadScenario(0);
+    }
+
+    function renderTabs() {
+      tabsContainer.innerHTML = '';
+      scenarios.forEach((sc, idx) => {
+        const btn = document.createElement('button');
+        btn.className = `tab-btn ${idx === currentScenarioIndex ? 'active' : ''}`;
+        btn.textContent = sc.title;
+        btn.onclick = () => loadScenario(idx);
+        tabsContainer.appendChild(btn);
+      });
+    }
+
+    function loadScenario(index) {
+      if(index >= scenarios.length) index = 0;
+      currentScenarioIndex = index;
+      currentDecisionIndex = 0;
+      renderTabs();
+      
+      const sc = scenarios[currentScenarioIndex];
+      contextText.textContent = sc.context;
+      
+      decisionPanel.style.display = 'block';
+      conclusionPanel.style.display = 'none';
+      
+      updateProgress();
+      renderDecision();
+    }
+
+    function updateProgress() {
+      const decisionCount = scenarios[currentScenarioIndex].decisions.length;
+      progressBar.innerHTML = '';
+      for(let i=0; i<decisionCount; i++) {
+        const step = document.createElement('div');
+        step.className = 'progress-step' + (i < currentDecisionIndex ? ' completed' : '') + (i === currentDecisionIndex ? ' active' : '');
+        step.innerHTML = '<div class="progress-step-inner"></div>';
+        progressBar.appendChild(step);
+      }
+    }
+
+    function renderDecision() {
+      const decision = scenarios[currentScenarioIndex].decisions[currentDecisionIndex];
+      questionTitle.textContent = decision.question;
+      
+      optionsGrid.innerHTML = '';
+      feedbackPanel.className = 'feedback-panel';
+      btnNext.style.display = 'none';
+
+      const labels = ['A', 'B', 'C'];
+      
+      decision.options.forEach((opt, idx) => {
+        const card = document.createElement('div');
+        card.className = 'option-card';
+        card.innerHTML = `
+          <div class="option-letter">${labels[idx]}</div>
+          <div class="option-text">${opt.text}</div>
+        `;
+        card.onclick = () => handleSelection(card, opt);
+        optionsGrid.appendChild(card);
+      });
+    }
+
+    function handleSelection(selectedCard, optionData) {
+      const allCards = optionsGrid.querySelectorAll('.option-card');
+      allCards.forEach(c => c.classList.add('disabled'));
+      
+      feedbackPanel.className = 'feedback-panel';
+      
+      if (optionData.isCorrect) {
+        playSound('correct');
+        selectedCard.classList.add('selected-correct');
+        feedbackPanel.classList.add('correct');
+        feedbackTitle.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> Decisión Correcta`;
+        btnNext.style.display = 'flex';
+      } else {
+        playSound('incorrect');
+        selectedCard.classList.add('selected-incorrect');
+        feedbackPanel.classList.add('incorrect');
+        feedbackTitle.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg> Puntos de mellora`;
+        
+        setTimeout(() => {
+          allCards.forEach(c => {
+            if(!c.classList.contains('selected-incorrect')) c.classList.remove('disabled');
+          });
+        }, 1000);
+      }
+      
+      feedbackText.textContent = optionData.feedback;
+    }
+
+    btnNext.onclick = () => {
+      currentDecisionIndex++;
+      if (currentDecisionIndex < scenarios[currentScenarioIndex].decisions.length) {
+        updateProgress();
+        renderDecision();
+      } else {
+        showConclusion();
+      }
+    };
+
+    function showConclusion() {
+      playSound('win');
+      decisionPanel.style.display = 'none';
+      conclusionPanel.style.display = 'flex';
+      document.getElementById('conclusion-text').textContent = scenarios[currentScenarioIndex].conclusion;
+    }
+
+    function loadNextScenario() {
+      loadScenario(currentScenarioIndex + 1);
+    }
+
+    init();
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+﻿[
+    {
+        "pregunta":  "Que indica unha supervisión humana efectiva?",
+        "alternativas":  [
+                             "A persoa pode corrixir e deter",
+                             "Só asina ao final",
+                             "Non ve as fontes",
+                             "Debe aceptar a puntuación"
+                         ],
+        "correcta":  0,
+        "explicacion_correcta":  "A supervisión precisa comprensión, autoridade, tempo e capacidade de discrepancia.",
+        "explicacion_distractores":  {
+                                         "1":  "Esta opción non aplica correctamente o criterio estudado ao caso formulado.",
+                                         "2":  "Esta opción non aplica correctamente o criterio estudado ao caso formulado.",
+                                         "3":  "Esta opción non aplica correctamente o criterio estudado ao caso formulado."
+                                     }
+    },
+    {
+        "pregunta":  "Que é unha alucinación?",
+        "alternativas":  [
+                             "Unha actualización",
+                             "Unha saída plausible sen apoio nas fontes",
+                             "Un rexistro de acceso",
+                             "Unha copia cifrada"
+                         ],
+        "correcta":  1,
+        "explicacion_correcta":  "A aparencia convincente non garante que a afirmación estea sustentada.",
+        "explicacion_distractores":  {
+                                         "0":  "Esta opción non aplica correctamente o criterio estudado ao caso formulado.",
+                                         "2":  "Esta opción non aplica correctamente o criterio estudado ao caso formulado.",
+                                         "3":  "Esta opción non aplica correctamente o criterio estudado ao caso formulado."
+                                     }
+    },
+    {
+        "pregunta":  "Que risco aparece ao aceptar a saída por ser automática?",
+        "alternativas":  [
+                             "Nesgo de automatización",
+                             "Minimización",
+                             "Portabilidade",
+                             "Reversibilidade"
+                         ],
+        "correcta":  0,
+        "explicacion_correcta":  "O nesgo de automatización reduce a revisión crítica da persoa.",
+        "explicacion_distractores":  {
+                                         "1":  "Esta opción non aplica correctamente o criterio estudado ao caso formulado.",
+                                         "2":  "Esta opción non aplica correctamente o criterio estudado ao caso formulado.",
+                                         "3":  "Esta opción non aplica correctamente o criterio estudado ao caso formulado."
+                                     }
+    },
+    {
+        "pregunta":  "Que debe ocorrer cunha puntuación inexplicable de alto impacto?",
+        "alternativas":  [
+                             "Executala e explicala despois",
+                             "Detela ata contar con revisión informada",
+                             "Publicala",
+                             "Cambiar a cor"
+                         ],
+        "correcta":  1,
+        "explicacion_correcta":  "Sen información suficiente non existe unha supervisión humana real.",
+        "explicacion_distractores":  {
+                                         "0":  "Esta opción non aplica correctamente o criterio estudado ao caso formulado.",
+                                         "2":  "Esta opción non aplica correctamente o criterio estudado ao caso formulado.",
+                                         "3":  "Esta opción non aplica correctamente o criterio estudado ao caso formulado."
+                                     }
+    },
+    {
+        "pregunta":  "Que función ten unha regra de parada?",
+        "alternativas":  [
+                             "Alongar o piloto",
+                             "Suspender ante un limiar previamente definido",
+                             "Eliminar os rexistros",
+                             "Evitar medir erros"
+                         ],
+        "correcta":  1,
+        "explicacion_correcta":  "Converte un risco observable nunha actuación acordada e inmediata.",
+        "explicacion_distractores":  {
+                                         "0":  "Esta opción non aplica correctamente o criterio estudado ao caso formulado.",
+                                         "2":  "Esta opción non aplica correctamente o criterio estudado ao caso formulado.",
+                                         "3":  "Esta opción non aplica correctamente o criterio estudado ao caso formulado."
+                                     }
+    },
+    {
+        "pregunta":  "Que valor teñen as guías da AESIA?",
+        "alternativas":  [
+                             "Substitúen o RIA",
+                             "Ofrecen orientación práctica sen substituír a norma",
+                             "Eliminan o RGPD",
+                             "Autorizan produtos"
+                         ],
+        "correcta":  1,
+        "explicacion_correcta":  "As guías axudan á aplicación, pero a obriga xurídica procede da normativa correspondente.",
+        "explicacion_distractores":  {
+                                         "0":  "Esta opción non aplica correctamente o criterio estudado ao caso formulado.",
+                                         "2":  "Esta opción non aplica correctamente o criterio estudado ao caso formulado.",
+                                         "3":  "Esta opción non aplica correctamente o criterio estudado ao caso formulado."
+                                     }
+    }
+]

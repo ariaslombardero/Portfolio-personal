@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="gl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flashcards: Autoevaliación</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --surface-hover: #334155;
+      --border: #334155;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --cyan: #22d3ee;
+      --cyan-dim: rgba(34, 211, 238, 0.1);
+      --emerald: #34d399;
+      --purple: #a855f7;
+      --glow: 0 0 15px rgba(34, 211, 238, 0.2);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text);
+      line-height: 1.5; background-image: radial-gradient(circle at 50% 0%, #1e293b 0%, transparent 70%);
+      min-height: 100vh; display: flex; flex-direction: column;
+    }
+    main { max-width: 800px; margin: 0 auto; padding: 32px 24px; width: 100%; flex-grow: 1; display: flex; flex-direction: column; }
+    header { margin-bottom: 32px; text-align: center; animation: fadeInDown 0.6s ease-out; }
+    .header-icon { width: 64px; height: 64px; margin: 0 auto 16px; color: var(--cyan); filter: drop-shadow(0 0 8px var(--cyan-dim)); }
+    h1 { margin: 0 0 12px; font-size: 36px; font-weight: 700; background: linear-gradient(135deg, #fff, var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.5px; }
+    .intro { color: var(--text-muted); max-width: 600px; margin: 0 auto; font-size: 18px; }
+    .card-scene { perspective: 1000px; width: 100%; max-width: 640px; height: 440px; margin: 20px auto 40px; animation: slideUp 0.6s ease-out forwards; }
+    .card-object { width: 100%; height: 100%; transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1); transform-style: preserve-3d; position: relative; cursor: pointer; }
+    .card-object.is-flipped { transform: rotateY(180deg); }
+    .card-face { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; -webkit-backface-visibility: hidden; background: rgba(30, 41, 59, 0.7); border: 1px solid var(--border); border-radius: 16px; padding: 40px; backdrop-filter: blur(10px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; overflow: hidden; }
+    .card-face::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; }
+    .card-face--front::before { background: var(--cyan); }
+    .card-face--back { transform: rotateY(180deg); }
+    .card-face--back::before { background: var(--purple); }
+    .card-type-label { position: absolute; top: 20px; left: 24px; font-family: 'Fira Code', monospace; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+    .card-face--front .card-type-label { color: var(--cyan); }
+    .card-face--back .card-type-label { color: var(--purple); }
+    .card-icon { position: absolute; top: 20px; right: 24px; width: 24px; height: 24px; opacity: 0.5; }
+    .card-text { font-size: 22px; font-weight: 500; line-height: 1.4; transition: opacity 0.2s ease; width: 100%; }
+    .card-face--back .card-text { font-size: 20px; color: var(--emerald); }
+    .card-hint { position: absolute; bottom: 20px; font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
+    .controls { display: flex; align-items: center; justify-content: center; gap: 24px; animation: fadeIn 1s ease-out; }
+    button { border: 1px solid var(--border); background: var(--surface); color: var(--text); border-radius: 8px; padding: 12px 20px; font: inherit; font-weight: 500; cursor: pointer; transition: all 0.2s ease; display: inline-flex; align-items: center; gap: 8px; }
+    button:hover:not(:disabled) { background: var(--surface-hover); border-color: var(--cyan); box-shadow: var(--glow); }
+    button:disabled { opacity: 0.3; cursor: not-allowed; }
+    .counter { font-family: 'Fira Code', monospace; font-size: 16px; font-weight: 600; color: var(--cyan); min-width: 80px; text-align: center; background: rgba(15, 23, 42, 0.5); padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border); }
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @media (max-width: 600px) { .card-scene { height: 460px; } .card-text { font-size: 18px; } .card-face--back .card-text { font-size: 16px; } .controls { gap: 12px; } button span { display: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <svg class="header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line>
+      </svg>
+      <h1>Repaso: Autoevaliación</h1>
+      <p class="intro">Le a pregunta e as alternativas. Fai clic na tarxeta para xirar e comprobar a resposta correcta e a explicación.</p>
+    </header>
+    <div class="card-scene">
+      <div class="card-object" id="flashcard">
+        <div class="card-face card-face--front">
+          <div class="card-type-label">Pregunta</div>
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+          <div class="card-text" id="front-text">Cargando...</div>
+          <div class="card-hint"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.59-10.06l1.25 1.25"/></svg> Fai clic para xirar</div>
+        </div>
+        <div class="card-face card-face--back">
+          <div class="card-type-label">Solución</div>
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline>
+          </svg>
+          <div class="card-text" id="back-text">Cargando...</div>
+        </div>
+      </div>
+    </div>
+    <div class="controls">
+      <button id="btn-prev" aria-label="Tarxeta anterior">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        <span>Anterior</span>
+      </button>
+      <div class="counter" id="counter">0 / 0</div>
+      <button id="btn-next" aria-label="Seguinte tarxeta">
+        <span>Seguinte</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </button>
+    </div>
+  </main>
+  <script>
+    const flashcardsData = [
+        {
+            "pregunta":  "Que indica unha supervisión humana efectiva?",
+            "alternativas":  [
+                                 "A persoa pode corrixir e deter",
+                                 "Só asina ao final",
+                                 "Non ve as fontes",
+                                 "Debe aceptar a puntuación"
+                             ],
+            "correcta":  0,
+            "explicacion_correcta":  "A supervisión precisa comprensión, autoridade, tempo e capacidade de discrepancia."
+        },
+        {
+            "pregunta":  "Que é unha alucinación?",
+            "alternativas":  [
+                                 "Unha actualización",
+                                 "Unha saída plausible sen apoio nas fontes",
+                                 "Un rexistro de acceso",
+                                 "Unha copia cifrada"
+                             ],
+            "correcta":  1,
+            "explicacion_correcta":  "A aparencia convincente non garante que a afirmación estea sustentada."
+        },
+        {
+            "pregunta":  "Que risco aparece ao aceptar a saída por ser automática?",
+            "alternativas":  [
+                                 "Nesgo de automatización",
+                                 "Minimización",
+                                 "Portabilidade",
+                                 "Reversibilidade"
+                             ],
+            "correcta":  0,
+            "explicacion_correcta":  "O nesgo de automatización reduce a revisión crítica da persoa."
+        },
+        {
+            "pregunta":  "Que debe ocorrer cunha puntuación inexplicable de alto impacto?",
+            "alternativas":  [
+                                 "Executala e explicala despois",
+                                 "Detela ata contar con revisión informada",
+                                 "Publicala",
+                                 "Cambiar a cor"
+                             ],
+            "correcta":  1,
+            "explicacion_correcta":  "Sen información suficiente non existe unha supervisión humana real."
+        },
+        {
+            "pregunta":  "Que función ten unha regra de parada?",
+            "alternativas":  [
+                                 "Alongar o piloto",
+                                 "Suspender ante un limiar previamente definido",
+                                 "Eliminar os rexistros",
+                                 "Evitar medir erros"
+                             ],
+            "correcta":  1,
+            "explicacion_correcta":  "Converte un risco observable nunha actuación acordada e inmediata."
+        },
+        {
+            "pregunta":  "Que valor teñen as guías da AESIA?",
+            "alternativas":  [
+                                 "Substitúen o RIA",
+                                 "Ofrecen orientación práctica sen substituír a norma",
+                                 "Eliminan o RGPD",
+                                 "Autorizan produtos"
+                             ],
+            "correcta":  1,
+            "explicacion_correcta":  "As guías axudan á aplicación, pero a obriga xurídica procede da normativa correspondente."
+        }
+    ];
+
+    let currentIndex = 0;
+    const cardEl = document.getElementById('flashcard');
+    const frontTextEl = document.getElementById('front-text');
+    const backTextEl = document.getElementById('back-text');
+    const counterEl = document.getElementById('counter');
+    const btnPrev = document.getElementById('btn-prev');
+    const btnNext = document.getElementById('btn-next');
+
+    function renderCard(index) {
+      frontTextEl.style.opacity = 0; 
+      backTextEl.style.opacity = 0;
+      
+      setTimeout(() => { 
+        const item = flashcardsData[index];
+        const letras = ['A', 'B', 'C', 'D'];
+        
+        let alternativasHtml = "<div style='text-align:left; font-size:16px; margin-top:24px;'><ul style='list-style:none; padding:0; margin:0;'>";
+        item.alternativas.forEach((alt, i) => {
+            alternativasHtml += `<li style='margin-bottom:12px; padding: 10px; border: 1px solid var(--border); border-radius: 8px; background: rgba(15, 23, 42, 0.4);'><strong style='color:var(--cyan); margin-right:8px;'>${letras[i]})</strong> ${alt}</li>`;
+        });
+        alternativasHtml += "</ul></div>";
+
+        frontTextEl.innerHTML = `<div style="font-weight:700; color:var(--text);">${item.pregunta}</div>` + alternativasHtml;
+        
+        backTextEl.innerHTML = `<div style="margin-bottom:16px;"><span style="font-size:13px; text-transform:uppercase; letter-spacing:1px; color:var(--emerald); font-weight:600;">Resposta Correcta</span><br><strong style="font-size: 22px; display:inline-block; margin-top:8px;">${item.alternativas[item.correcta]}</strong></div><div style="font-size:16px; color:var(--text-muted); font-weight:400; padding-top:16px; border-top:1px solid var(--border);">${item.explicacion_correcta}</div>`;
+        
+        counterEl.textContent = `${index + 1} / ${flashcardsData.length}`; 
+        frontTextEl.style.opacity = 1; 
+        backTextEl.style.opacity = 1; 
+      }, 150);
+      
+      btnPrev.disabled = index === 0; 
+      btnNext.disabled = index === flashcardsData.length - 1;
+    }
+
+    function changeCard(newIndex) {
+      if (newIndex < 0 || newIndex >= flashcardsData.length) return;
+      if (cardEl.classList.contains('is-flipped')) { 
+        cardEl.classList.remove('is-flipped'); 
+        setTimeout(() => { currentIndex = newIndex; renderCard(currentIndex); }, 300); 
+      } else { 
+        currentIndex = newIndex; renderCard(currentIndex); 
+      }
+    }
+
+    cardEl.addEventListener('click', () => cardEl.classList.toggle('is-flipped'));
+    btnPrev.addEventListener('click', () => changeCard(currentIndex - 1));
+    btnNext.addEventListener('click', () => changeCard(currentIndex + 1));
+    
+    document.addEventListener('keydown', (e) => { 
+      if (e.key === 'ArrowLeft') changeCard(currentIndex - 1); 
+      else if (e.key === 'ArrowRight') changeCard(currentIndex + 1); 
+      else if (e.key === ' ' || e.key === 'Spacebar') { e.preventDefault(); cardEl.classList.toggle('is-flipped'); } 
+    });
+
+    renderCard(currentIndex);
+  </script>
+</body>
+</html>

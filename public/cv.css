@@ -1,0 +1,126 @@
+.cv-proposal .layout {
+  grid-template-columns: 235px minmax(0, 1fr);
+}
+
+.cv-proposal .toc > strong {
+  margin-bottom: 22px;
+}
+
+.cv-proposal .toc-group + .toc-group {
+  margin-top: 22px;
+}
+
+.cv-proposal .toc-group > span {
+  display: block;
+  margin-bottom: 5px;
+  color: #ff8f8b;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cv-proposal .toc a {
+  position: relative;
+  padding-left: 0;
+  transition: color 160ms ease, padding-left 160ms ease;
+}
+
+.cv-proposal .toc a[aria-current="location"] {
+  padding-left: 12px;
+  color: #fff;
+}
+
+.cv-proposal .toc a[aria-current="location"]::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--red);
+  content: "";
+  transform: translateY(-50%);
+}
+
+.mobile-toc-wrap {
+  display: none;
+}
+
+.mobile-toc {
+  border-block: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.mobile-toc summary {
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.mobile-toc summary::after {
+  color: var(--red);
+  content: "+";
+  font-size: 1.15rem;
+}
+
+.mobile-toc[open] summary::after {
+  content: "−";
+}
+
+.mobile-toc nav {
+  display: grid;
+  padding: 0 0 14px;
+}
+
+.mobile-toc a {
+  padding: 10px 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+  border-top: 1px solid var(--line);
+}
+
+.mobile-toc a[aria-current="location"] {
+  color: #fff;
+  font-weight: 800;
+}
+
+.cv-proposal .contextual-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}
+
+.cv-proposal .competency-block:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  min-height: 0;
+}
+
+@media (max-width: 920px) {
+  .mobile-toc-wrap {
+    display: block;
+    margin-top: 28px;
+  }
+
+  .cv-proposal .layout {
+    grid-template-columns: 1fr;
+    padding-top: 42px;
+  }
+}
+
+@media (max-width: 720px) {
+  .cv-proposal .competency-block:last-child:nth-child(odd) {
+    grid-column: auto;
+  }
+}
+
+@media print {
+  .mobile-toc-wrap {
+    display: none !important;
+  }
+}

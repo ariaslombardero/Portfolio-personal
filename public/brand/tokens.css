@@ -1,0 +1,57 @@
+:root {
+  --brand-black: #0a0a0a;
+  --brand-charcoal: #151515;
+  --brand-ink: #13243a;
+  --brand-paper: #f7f8f6;
+  --brand-soft: #e9eeeb;
+  --brand-white: #ffffff;
+  --brand-red: #ff3333;
+  --brand-red-deep: #9e2525;
+  --brand-teal: #087f73;
+  --brand-teal-soft: #89d8cf;
+  --brand-blue: #2457a6;
+  --brand-blue-soft: #6d9ee8;
+  --brand-green: #2f7a4a;
+  --brand-amber: #c98212;
+  --brand-violet: #6d54a3;
+  --brand-coral: #bd513d;
+  --brand-muted-dark: #9ca3af;
+  --brand-muted-light: #5d6875;
+  --brand-line-dark: rgba(255, 255, 255, 0.13);
+  --brand-line-light: #dce2df;
+  --territory-strategy: var(--brand-red);
+  --territory-formation: var(--brand-teal);
+  --territory-applications: var(--brand-blue);
+  --status-delivered: var(--brand-green);
+  --status-adaptable: var(--brand-blue);
+  --status-built: var(--brand-teal);
+  --surface-personal: var(--brand-black);
+  --surface-editorial: var(--brand-charcoal);
+  --surface-formation: var(--brand-paper);
+  --surface-information: var(--brand-soft);
+  --font-sans: Inter, Arial, Helvetica, sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --brand-max: 1180px;
+  --brand-radius: 7px;
+}
+
+.brand-logo {
+  display: block;
+  width: auto;
+  height: 31px;
+}
+
+.brand-logo-compact {
+  display: none;
+  width: auto;
+  height: 35px;
+}
+
+@media (max-width: 720px) {
+  .brand-logo { display: none; }
+  .brand-logo-compact { display: block; }
+}

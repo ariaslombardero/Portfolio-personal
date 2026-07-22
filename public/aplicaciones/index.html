@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aplicaciones de IA y tecnología pública | Arias Lombardero</title>
+  <meta name="description" content="Aplicaciones, prototipos y recursos educativos creados por Jose Antonio Arias Lombardero para la Administración pública, la formación y el cumplimiento normativo.">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Aplicaciones de IA y tecnología pública | Arias Lombardero">
+  <meta property="og:description" content="Herramientas utilizables para problemas de información, aprendizaje, cumplimiento y servicio público.">
+  <meta property="og:url" content="https://ariaslombardero.es/aplicaciones/">
+  <meta property="og:image" content="https://ariaslombardero.es/img/apps/oasis-madrid.png">
+  <link rel="canonical" href="https://ariaslombardero.es/aplicaciones/">
+  <link rel="icon" type="image/svg+xml" href="/brand/logo-mark-dark.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"CollectionPage","name":"Aplicaciones de IA y tecnología pública","url":"https://ariaslombardero.es/aplicaciones/","author":{"@type":"Person","name":"Jose Antonio Arias Lombardero","url":"https://ariaslombardero.es/"},"about":["Inteligencia artificial aplicada al sector público","Tecnología pública","Aplicaciones educativas"]}
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="/" aria-label="Arias Lombardero, ir al inicio">
+        <img class="brand-logo brand-logo-full" src="/brand/logo-aplicaciones-dark.svg" alt="ariaslombardero, Aplicaciones">
+        <img class="brand-logo brand-logo-compact" src="/brand/logo-mark-dark.svg" alt="" aria-hidden="true">
+      </a>
+      <button class="menu-button" type="button" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav class="nav" aria-label="Navegación principal">
+        <a href="/">Inicio</a>
+        <a href="/cv.html">Trayectoria</a>
+        <a href="/casos/mencia.html">Estrategia</a>
+        <a aria-current="page" href="/aplicaciones/">Aplicaciones</a>
+        <a href="/formacion/">Formación</a>
+        <a href="/congresos-webinars.html">Congresos y webinars</a>
+        <a href="/#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow">Aplicaciones y automatización</p>
+          <h1>Herramientas construidas para problemas concretos</h1>
+          <p class="hero-lead">Una selección de aplicaciones, prototipos y recursos educativos. Cada pieza explica a quién sirve, qué resuelve y cuál es su estado actual.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#catalogo">Consultar herramientas</a>
+            <a class="button secondary" href="https://github.com/ariaslombardero" target="_blank" rel="noopener">Consultar GitHub</a>
+          </div>
+        </div>
+        <figure class="app-diptych">
+          <div class="app-window app-window-oasis">
+            <img src="/img/apps/oasis-madrid.png" alt="Portada de la aplicación Oasis Madrid">
+            <span>Servicio público</span>
+          </div>
+          <div class="app-window app-window-aesia">
+            <img src="/img/apps/guias-aesia.jpg" alt="Portada de la aplicación educativa Guías AESIA 4.0">
+            <span>Aprendizaje normativo</span>
+          </div>
+          <figcaption>Dos aplicaciones desarrolladas para contextos distintos: servicio público y aprendizaje.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="catalog-section" id="catalogo">
+      <div class="wrap">
+        <div class="section-heading">
+          <div><p class="eyebrow blue">Trabajo seleccionado</p><h2>Aplicaciones y recursos</h2></div>
+          <p>Los filtros agrupan las piezas por el problema que abordan, no por el lenguaje con el que fueron programadas.</p>
+        </div>
+        <div class="catalog-tools">
+          <div class="filters" role="group" aria-label="Filtrar aplicaciones">
+            <button class="filter active" type="button" data-filter="all" aria-pressed="true">Todas</button>
+            <button class="filter" type="button" data-filter="ia-publica" aria-pressed="false">IA pública</button>
+            <button class="filter" type="button" data-filter="formacion" aria-pressed="false">Formación</button>
+            <button class="filter" type="button" data-filter="automatizacion" aria-pressed="false">Automatización</button>
+            <button class="filter" type="button" data-filter="datos" aria-pressed="false">Datos y territorio</button>
+          </div>
+          <label class="search"><span>Buscar</span><input id="search" type="search" placeholder="Nombre, objetivo o público" autocomplete="off"></label>
+        </div>
+        <p class="result-count" id="result-count" aria-live="polite"></p>
+        <div class="project-list" id="project-list"></div>
+        <p class="empty" id="empty" hidden>No hay piezas que coincidan con la búsqueda.</p>
+      </div>
+    </section>
+
+    <section class="method-band">
+      <div class="wrap method-grid">
+        <div><p class="eyebrow">Criterio de desarrollo</p><h2>Del problema público a una herramienta que puede probarse</h2></div>
+        <ol>
+          <li><span>01</span>Definir usuarios, tarea y límites.</li>
+          <li><span>02</span>Prototipar la interacción y el contenido.</li>
+          <li><span>03</span>Validar utilidad, accesibilidad y riesgos.</li>
+          <li><span>04</span>Documentar, desplegar y mejorar.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="closing">
+      <div class="wrap closing-grid">
+        <div><p class="eyebrow blue">Colaboración</p><h2>¿Hay una tarea pública que merece una herramienta mejor?</h2></div>
+        <div><p>Puedo estudiar el problema, preparar un prototipo y conectarlo con formación, gobernanza y transferencia interna.</p><a class="button dark" href="mailto:jose@ariaslombardero.es?subject=Propuesta%20de%20aplicación%20para%20el%20sector%20público">Plantear una necesidad</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap site-footer"><span>© 2026 Jose Antonio Arias Lombardero</span><nav><a href="/">Inicio</a><a href="/cv.html">Trayectoria profesional</a><a href="/#contacto">Contacto</a><a href="https://www.linkedin.com/in/ariaslombardero" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/ariaslombardero" target="_blank" rel="noopener">GitHub</a></nav></footer>
+  <script src="app.js"></script>
+</body>
+</html>

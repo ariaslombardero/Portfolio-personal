@@ -1,0 +1,82 @@
+[
+  {
+    "pregunta": "Que debe comprobarse antes de usar Gemini?",
+    "alternativas": [
+      "Que a conta é a Gmail de práctica.",
+      "Que está aberta a conta corporativa real.",
+      "Que hai documentos reais en Drive.",
+      "Que se activou un plan de pago."
+    ],
+    "correcta": 0,
+    "explicacion_correcta": "A unidade traballa coa conta Gmail de práctica e datos seguros.",
+    "explicacion_distractores": {
+      "1": "Non se usa sen autorización.",
+      "2": "Non deben usarse documentos reais.",
+      "3": "Non se pide contratar nada."
+    }
+  },
+  {
+    "pregunta": "Que función permite gardar instrucións repetidas en Gemini?",
+    "alternativas": [
+      "Gems.",
+      "Historial do navegador.",
+      "Modo incógnito.",
+      "Ligazóns públicas."
+    ],
+    "correcta": 0,
+    "explicacion_correcta": "Unha Gema é un asistente personalizado con instrucións gardadas.",
+    "explicacion_distractores": {
+      "1": "O historial non crea instrucións reutilizables.",
+      "2": "Non é unha función de personalización de Gemini.",
+      "3": "Compartir ligazóns non define unha tarefa."
+    }
+  },
+  {
+    "pregunta": "Que debe facerse antes de iniciar Deep Research?",
+    "alternativas": [
+      "Revisar e acoutar o plan de investigación.",
+      "Aceptar calquera plan sen lelo.",
+      "Introducir un expediente real.",
+      "Usalo só para xerar imaxes."
+    ],
+    "correcta": 0,
+    "explicacion_correcta": "A revisión do plan evita investigacións demasiado amplas ou mal enfocadas.",
+    "explicacion_distractores": {
+      "1": "É unha perda de control.",
+      "2": "Non se usan expedientes reais.",
+      "3": "Deep Research é para investigación, non para imaxe."
+    }
+  },
+  {
+    "pregunta": "Para que serve Google AI Studio nesta unidade?",
+    "alternativas": [
+      "Para observar modelos e axustes como laboratorio.",
+      "Para substituír Gemini web en todo o curso.",
+      "Para obrigar o alumnado a programar.",
+      "Para publicar aplicacións oficiais."
+    ],
+    "correcta": 0,
+    "explicacion_correcta": "AI Studio introdúcese como laboratorio de modelos, non como práctica técnica avanzada.",
+    "explicacion_distractores": {
+      "1": "Gemini web segue sendo a ferramenta xeral.",
+      "2": "Non se entra en programación.",
+      "3": "Non se publican aplicacións oficiais."
+    }
+  },
+  {
+    "pregunta": "Que risco teñen Apps conectadas e Drive en Gemini?",
+    "alternativas": [
+      "Poden dar acceso a información real se se conecta unha conta con documentos sensibles.",
+      "Non teñen ningún risco.",
+      "Só cambian a cor da interface.",
+      "Serven para evitar a revisión humana."
+    ],
+    "correcta": 0,
+    "explicacion_correcta": "Por iso só se usa Drive da conta de práctica con ficheiros ficticios.",
+    "explicacion_distractores": {
+      "1": "Si teñen risco de acceso a datos.",
+      "2": "Non é unha opción visual.",
+      "3": "A revisión segue sendo necesaria."
+    }
+  }
+]

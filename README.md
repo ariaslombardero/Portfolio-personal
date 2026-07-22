@@ -1,58 +1,145 @@
-# Portfolio interactivo personal - Jose Antonio Arias Lombardero 🚀
+# Portfolio profesional | Jose Antonio Arias Lombardero
 
 <div align="center">
-  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React">
-  <img src="https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E" alt="Vite">
-  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS">
+  <img src="https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React 19">
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript">
+  <img src="https://img.shields.io/badge/Vite_6-646CFF?style=for-the-badge&logo=vite&logoColor=FFD62E" alt="Vite 6">
   <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Desplegado en Vercel">
 </div>
 
-Este repositorio contiene la **página de lanzamiento y el portfolio interactivo personal** de Jose Antonio Arias Lombardero, enfocado en mostrar soluciones de desarrollo tecnológico y alfabetización en IA.
+Este repositorio contiene el portfolio profesional de [Jose Antonio Arias Lombardero](https://ariaslombardero.es/), centrado en inteligencia artificial aplicada al sector público, estrategia institucional, desarrollo de aplicaciones y formación.
 
-> **Nota del autor:** Este no es un currículum estático convencional. Es una aplicación web concebida, diseñada y programada desde cero aplicando IA generativa y las mejores prácticas frontend, demostrando de forma práctica la capacidad de ejecutar un proyecto SaaS desde el *prompt* inicial hasta el despliegue final en la nube.
+La web funciona como punto de entrada a la trayectoria, los casos de estudio, las aplicaciones públicas desarrolladas, la actividad como ponente y una oferta general de formación en inteligencia artificial para administraciones y organizaciones públicas.
 
-## 📌 Características principales
+> Nota del autor: este proyecto comenzó como un currículum interactivo y evolucionó hacia un ecosistema profesional. La portada resume el posicionamiento y conduce a páginas especializadas que permiten revisar experiencia, evidencias, herramientas y propuestas formativas sin convertir la página inicial en un currículum extenso.
 
-*   **Diseño premium UI/UX:** Interfaz elegante con estética *glassmorphism* (efecto cristal), integración fluida de modo oscuro adaptativo y cuidada tipografía (Inter/Roboto).
-*   **Totalmente responsive:** Arquitectura *mobile-first* impecable y fluida que se adapta automáticamente a cualquier resolución o dispositivo.
-*   **Experiencia dinámica:** Incorpora animaciones de scroll interactivas y microinteracciones de interfaz sin penalizar el rendimiento.
-*   **Optimizada para rendimiento:** Construida con Vite + React (TypeScript) para tiempos de compilación inmediatos y una entrega de red extremadamente veloz en Vercel.
+## Características principales
 
-## 🤖 Desarrollo asistido por IA (Vibe Coding)
+- Portada profesional con acceso a estrategia, aplicaciones, formación, congresos y trayectoria.
+- Trayectoria completa con experiencia, docencia acreditada, especialización en IA, publicaciones, premios, competencias y CV descargable.
+- Casos de estudio sobre estrategia institucional de IA y reutilización de datos abiertos.
+- Catálogo de aplicaciones con búsqueda, filtros y acceso a despliegues y repositorios públicos.
+- Espacio de formación con programas adaptables, experiencia impartida y evidencias docentes.
+- Recursos educativos integrados: vídeos, PDF, cuestionarios, flashcards, simuladores y actividades de gamificación.
+- Archivo de congresos, jornadas y webinars con presentaciones y grabaciones disponibles.
+- Sistema visual propio con territorios diferenciados para identidad profesional, aplicaciones y formación.
+- Diseño responsive, navegación mediante teclado, foco visible y compatibilidad con movimiento reducido.
+- Metadatos SEO, Open Graph, datos estructurados, `sitemap.xml`, `robots.txt` y manifiesto web.
+- Sin backend, analítica, cookies ni formularios que almacenen información personal.
 
-Al igual que mis otros proyectos, este portfolio es una muestra práctica de desarrollo asistido por Inteligencia Artificial, orquestado a través de modelos fundacionales avanzados:
+## Cómo funciona este repositorio
 
-1.  **Ideación estructural:** Uso de IA conversacional para idear la arquitectura de componentes React y el paso de variables entre secciones del currículum.
-2.  **Desarrollo rápido y refactorización:** Creación dinámica de toda la suite de estilos con Tailwind CSS guiada por agentes programadores (como Antigravity y modelos MCP).
-3.  **CI/CD nativo:** Gestión de repositorio orquestado y resolución de errores (*bugs*) de renderizado detectados en tiempo real por el agente antes de compilar en Vercel.
+El proyecto combina una portada construida con React y varias páginas editoriales estáticas. Vite compila la aplicación principal y copia el contenido de `public/` al directorio final de producción.
 
-## 🛠️ Stack tecnológico
+```text
+portfolio_personal_v3/
+├── src/
+│   ├── App.tsx                 # Portada y navegación principal
+│   ├── index.css               # Estilos de la portada
+│   └── main.tsx                # Entrada de React
+├── public/
+│   ├── cv.html                 # Trayectoria profesional completa
+│   ├── congresos-webinars.html # Actividad como ponente
+│   ├── casos/                  # Casos MencIA y Oasis Madrid
+│   ├── aplicaciones/           # Catálogo de aplicaciones públicas
+│   ├── formacion/              # Oferta, programas y experiencia impartida
+│   ├── brand/                  # Logotipos y variables del sistema visual
+│   ├── assets/                 # CV y documentos descargables
+│   └── img/                    # Imágenes de proyectos y congresos
+├── index.html                  # Metadatos y contenedor de la aplicación
+├── vercel.json                 # Rutas limpias para Formación y Aplicaciones
+├── vite.config.ts              # Configuración local de Vite
+└── package.json                # Dependencias y comandos del proyecto
+```
 
-*   **Core:** React 18, TypeScript, Vite
-*   **Estilado:** Tailwind CSS
-*   **Gestión de dependencias:** npm / Node.js
-*   **Despliegue y hosting serverless:** Vercel
+### Rutas principales
 
-## 💻 Instalación y uso local
+- `/`: portada profesional.
+- `/cv.html`: trayectoria y evidencias.
+- `/casos/mencia.html`: estrategia institucional de inteligencia artificial.
+- `/casos/oasis-madrid.html`: aplicación basada en datos abiertos.
+- `/aplicaciones/`: catálogo de herramientas y recursos.
+- `/formacion/`: capacidad docente y oferta formativa.
+- `/formacion/programas.html`: programas configurables.
+- `/formacion/caso-gestion-local.html`: experiencia formativa impartida.
+- `/congresos-webinars.html`: congresos, jornadas y webinars.
 
-Para ejecutar este proyecto en tu propio entorno local, sigue estos pasos:
+Las páginas estáticas comparten navegación, firma, tipografía y pies de página. Cada territorio conserva una identidad cromática subordinada a la marca principal:
 
-1. Clona este repositorio:
+- Negro y rojo para identidad profesional, trayectoria y estrategia.
+- Negro y azul para aplicaciones.
+- Fondos claros, verde y azul funcional para formación.
+
+## Desarrollo asistido por IA (Vibe Coding)
+
+Este portfolio es también una muestra de desarrollo asistido por inteligencia artificial. El trabajo se realizó mediante un proceso iterativo dirigido y revisado por el autor:
+
+1. Definición del posicionamiento, las audiencias y la arquitectura de contenidos.
+2. Análisis del portfolio anterior, el CV y las evidencias profesionales disponibles.
+3. Diseño del sistema visual, la marca personal y los territorios de estrategia, aplicaciones y formación.
+4. Generación y refactorización asistida de componentes React, HTML, CSS y JavaScript.
+5. Integración de documentos, aplicaciones, vídeos, recursos educativos y enlaces externos.
+6. Revisión editorial de textos, jerarquías, llamadas a la acción y diferenciación entre experiencia acreditada y propuestas adaptables.
+7. Pruebas locales de compilación, rutas, responsive, accesibilidad, enlaces y recursos multimedia.
+
+La IA se utilizó como herramienta de análisis, programación, diseño y control de calidad. Las decisiones sobre contenido, identidad, evidencias publicadas y resultado final corresponden al autor. El proyecto no presenta la generación automática como sustituto de la revisión profesional.
+
+## Stack tecnológico
+
+- React 19.
+- TypeScript 5.
+- Vite 6.
+- CSS propio y sistema de variables compartidas.
+- Lucide React para iconografía funcional.
+- HTML, CSS y JavaScript estáticos para páginas editoriales e interactivos.
+- npm y Node.js para desarrollo y compilación.
+- Vercel para despliegue continuo desde GitHub.
+
+## Instalación y uso local
+
+1. Clona el repositorio:
+
    ```bash
    git clone https://github.com/ariaslombardero/Portfolio-personal.git
    ```
-2. Navega al directorio raíz del proyecto:
+
+2. Accede al directorio:
+
    ```bash
-   cd ja-lombardero
+   cd Portfolio-personal
    ```
-3. Instala las dependencias necesarias:
+
+3. Instala las dependencias:
+
    ```bash
    npm install
    ```
-4. Inicia el servidor de desarrollo local:
+
+4. Inicia el servidor de desarrollo:
+
    ```bash
    npm run dev
    ```
+
+5. Comprueba los tipos y genera la versión de producción:
+
+   ```bash
+   npm run lint
+   npm run build
+   ```
+
+La compilación se genera en `dist/`. Esta carpeta no se versiona porque Vercel ejecuta el proceso de construcción a partir del código fuente.
+
+## Despliegue
+
+El repositorio está preparado para un proyecto de Vercel conectado a la rama de producción:
+
+- Framework preset: Vite.
+- Comando de compilación: `npm run build`.
+- Directorio de salida: `dist`.
+- Directorio raíz: la raíz del repositorio.
+
+Cada actualización de la rama de producción genera un nuevo despliegue. Las rutas `/formacion/` y `/aplicaciones/` se resuelven mediante `vercel.json`.
 
 ## 👨‍💻 Autor
 
