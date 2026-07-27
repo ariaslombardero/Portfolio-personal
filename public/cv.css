@@ -96,6 +96,15 @@
   gap: 12px 24px;
 }
 
+.cv-video-trigger::before {
+  width: 0;
+  height: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 9px solid currentColor;
+  content: "";
+}
+
 .cv-proposal .competency-block:last-child:nth-child(odd) {
   grid-column: 1 / -1;
   min-height: 0;

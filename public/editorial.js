@@ -46,6 +46,7 @@ function createVideoModal() {
 
   const closeButton = modal.querySelector('.media-modal-close');
   const iframe = modal.querySelector('iframe');
+  const label = modal.querySelector('.media-modal-header span');
   const title = modal.querySelector('#media-modal-title');
 
   const close = () => {
@@ -80,6 +81,8 @@ function createVideoModal() {
       lastVideoTrigger = trigger;
       const videoId = trigger.dataset.videoId;
       const videoTitle = trigger.dataset.videoTitle || 'Presentación';
+      const videoLabel = trigger.dataset.videoLabel || 'Vídeo';
+      label.textContent = videoLabel;
       title.textContent = videoTitle;
       iframe.title = videoTitle;
       iframe.src = `https://player.vimeo.com/video/${videoId}?dnt=1&title=0&byline=0&portrait=0&autoplay=1`;
