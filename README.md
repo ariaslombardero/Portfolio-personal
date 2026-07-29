@@ -7,18 +7,19 @@
   <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Desplegado en Vercel">
 </div>
 
-Este repositorio contiene el portfolio profesional de [Jose Antonio Arias Lombardero](https://ariaslombardero.es/), centrado en inteligencia artificial aplicada al sector público, estrategia institucional, desarrollo de aplicaciones y formación.
+Este repositorio contiene el portfolio profesional de [Jose Antonio Arias Lombardero](https://ariaslombardero.es/), centrado en inteligencia artificial aplicada al sector público, estrategia institucional, aplicaciones con IA integrada, automatización pública, datos públicos y formación.
 
-La web funciona como punto de entrada a la trayectoria, los casos de estudio, las aplicaciones públicas desarrolladas, la actividad como ponente y una oferta general de formación en inteligencia artificial para administraciones y organizaciones públicas.
+La web funciona como punto de entrada a la trayectoria, los casos de estudio, las aplicaciones y recursos desarrollados, la actividad como ponente y una oferta general de formación en inteligencia artificial para administraciones y organizaciones públicas.
 
 > Nota del autor: este proyecto comenzó como un currículum interactivo y evolucionó hacia un ecosistema profesional. La portada resume el posicionamiento y conduce a páginas especializadas que permiten revisar experiencia, evidencias, herramientas y propuestas formativas sin convertir la página inicial en un currículum extenso.
 
 ## Características principales
 
 - Portada profesional con acceso a estrategia, aplicaciones, formación, congresos y trayectoria.
-- Trayectoria completa con experiencia, docencia acreditada, especialización en IA, publicaciones, premios, competencias y CV descargable.
-- Casos de estudio sobre estrategia institucional de IA y reutilización de datos abiertos.
-- Catálogo de aplicaciones con búsqueda, filtros y acceso a despliegues y repositorios públicos.
+- Trayectoria completa con experiencia, docencia acreditada, especialización en IA, publicaciones, premios, competencias, CV descargable y vídeo de trayectoria en 60 segundos.
+- Casos de estudio sobre MencIA como estrategia provincial de inteligencia artificial y sobre reutilización de datos abiertos.
+- Catálogo de aplicaciones con búsqueda, filtros por tipo de pieza y acceso a despliegues y repositorios públicos.
+- Distinción explícita entre aplicaciones con IA integrada, recursos de formación sobre IA, estrategia de IA, automatización pública y datos públicos.
 - Espacio de formación con programas adaptables, experiencia impartida y evidencias docentes.
 - Recursos educativos integrados: vídeos, PDF, cuestionarios, flashcards, simuladores y actividades de gamificación.
 - Archivo de congresos, jornadas y webinars con presentaciones y grabaciones disponibles.
@@ -41,11 +42,13 @@ portfolio_personal_v3/
 │   ├── cv.html                 # Trayectoria profesional completa
 │   ├── congresos-webinars.html # Actividad como ponente
 │   ├── casos/                  # Casos MencIA y Oasis Madrid
-│   ├── aplicaciones/           # Catálogo de aplicaciones públicas
+│   ├── aplicaciones/           # Catálogo de aplicaciones, IA, automatización y datos
 │   ├── formacion/              # Oferta, programas y experiencia impartida
 │   ├── brand/                  # Logotipos y variables del sistema visual
+│   ├── social/                 # Imágenes Open Graph y Twitter Card
 │   ├── assets/                 # CV y documentos descargables
-│   └── img/                    # Imágenes de proyectos y congresos
+│   ├── img/                    # Imágenes de proyectos y congresos
+│   └── sw.js                   # Service worker y caché de recursos estáticos
 ├── index.html                  # Metadatos y contenedor de la aplicación
 ├── vercel.json                 # Rutas limpias para Formación y Aplicaciones
 ├── vite.config.ts              # Configuración local de Vite
@@ -55,10 +58,10 @@ portfolio_personal_v3/
 ### Rutas principales
 
 - `/`: portada profesional.
-- `/cv.html`: trayectoria y evidencias.
-- `/casos/mencia.html`: estrategia institucional de inteligencia artificial.
+- `/cv.html`: trayectoria, evidencias, CV descargable y vídeo de trayectoria en 60 segundos.
+- `/casos/mencia.html`: MencIA, estrategia provincial de inteligencia artificial.
 - `/casos/oasis-madrid.html`: aplicación basada en datos abiertos.
-- `/aplicaciones/`: catálogo de herramientas y recursos.
+- `/aplicaciones/`: catálogo de aplicaciones, recursos, automatizaciones y piezas con IA integrada.
 - `/formacion/`: capacidad docente y oferta formativa.
 - `/formacion/programas.html`: programas configurables.
 - `/formacion/caso-gestion-local.html`: experiencia formativa impartida.
@@ -70,6 +73,8 @@ Las páginas estáticas comparten navegación, firma, tipografía y pies de pág
 - Negro y azul para aplicaciones.
 - Fondos claros, verde y azul funcional para formación.
 
+El catálogo de aplicaciones separa la señal editorial de cada pieza. Solo algunas aplicaciones usan IA para funcionar; otras son recursos educativos sobre IA, automatizaciones, piezas de estrategia o servicios basados en datos públicos.
+
 ## Desarrollo asistido por IA (Vibe Coding)
 
 Este portfolio es también una muestra de desarrollo asistido por inteligencia artificial. El trabajo se realizó mediante un proceso iterativo dirigido y revisado por el autor:
@@ -78,7 +83,7 @@ Este portfolio es también una muestra de desarrollo asistido por inteligencia a
 2. Análisis del portfolio anterior, el CV y las evidencias profesionales disponibles.
 3. Diseño del sistema visual, la marca personal y los territorios de estrategia, aplicaciones y formación.
 4. Generación y refactorización asistida de componentes React, HTML, CSS y JavaScript.
-5. Integración de documentos, aplicaciones, vídeos, recursos educativos y enlaces externos.
+5. Integración de documentos, aplicaciones, vídeos de Vimeo, recursos educativos y enlaces externos.
 6. Revisión editorial de textos, jerarquías, llamadas a la acción y diferenciación entre experiencia acreditada y propuestas adaptables.
 7. Pruebas locales de compilación, rutas, responsive, accesibilidad, enlaces y recursos multimedia.
 
@@ -92,6 +97,7 @@ La IA se utilizó como herramienta de análisis, programación, diseño y contro
 - CSS propio y sistema de variables compartidas.
 - Lucide React para iconografía funcional.
 - HTML, CSS y JavaScript estáticos para páginas editoriales e interactivos.
+- Service worker propio para soporte PWA y caché controlada de recursos estáticos.
 - npm y Node.js para desarrollo y compilación.
 - Vercel para despliegue continuo desde GitHub.
 
@@ -140,6 +146,8 @@ El repositorio está preparado para un proyecto de Vercel conectado a la rama de
 - Directorio raíz: la raíz del repositorio.
 
 Cada actualización de la rama de producción genera un nuevo despliegue. Las rutas `/formacion/` y `/aplicaciones/` se resuelven mediante `vercel.json`.
+
+El service worker usa una versión de caché propia y solicita primero a red scripts, estilos y manifiesto. Esto evita que el catálogo de aplicaciones se quede con JavaScript antiguo después de cambios en filtros o taxonomías.
 
 ## 👨‍💻 Autor
 
