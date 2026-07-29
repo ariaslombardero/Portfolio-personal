@@ -35,7 +35,7 @@ function SlideShareMark() {
 const projects = [
   {
     title: 'Oasis Madrid',
-    type: 'Innovación pública y datos abiertos',
+    type: 'Datos públicos y servicio ciudadano',
     description: 'Navegador de confort térmico y rutas saludables diseñado con datos abiertos, criterios de accesibilidad y privacidad.',
     image: '/img/apps/oasis-madrid.png',
     actions: [
@@ -47,8 +47,8 @@ const projects = [
   },
   {
     title: 'Guías AESIA 4.0',
-    type: 'Aplicación educativa',
-    description: 'Plataforma para trabajar las guías prácticas de la AESIA mediante contenidos, cuestionarios, seguimiento y gamificación.',
+    type: 'Recurso educativo sobre IA',
+    description: 'Plataforma para trabajar las guías prácticas de la AESIA sobre inteligencia artificial mediante contenidos, cuestionarios, seguimiento y gamificación.',
     image: '/img/apps/guias-aesia.jpg',
     actions: [
       {label: 'Abrir', href: 'https://guiasaesia.vercel.app/'},
@@ -56,23 +56,23 @@ const projects = [
     ],
   },
   {
-    title: 'The AI Island Challenge',
-    type: 'Gamificación normativa',
-    description: 'Aventura gráfica que aproxima los niveles de riesgo del Reglamento de IA mediante exploración y resolución de problemas.',
-    image: '/img/apps/AI-challenge.jpg',
+    title: 'Analizador de ayudas y subvenciones',
+    type: 'Aplicación con IA integrada',
+    description: 'Analiza convocatorias nacionales y europeas y genera una ficha estructurada con requisitos, plazos, cuantías y criterios de participación.',
+    image: '/img/apps/analizador-ayudas.jpg',
     actions: [
-      {label: 'Abrir', href: 'https://islandchallengeai.vercel.app/'},
-      {label: 'Código', href: 'https://github.com/ariaslombardero/The-AI-island-challenge', code: true},
+      {label: 'Abrir', href: 'https://subvenciones-ia.vercel.app/'},
+      {label: 'Código', href: 'https://github.com/ariaslombardero/Analizador-de-ayudas-y-subvenciones', code: true},
     ],
   },
   {
-    title: 'Monitor BOE',
-    type: 'Agente de información',
-    description: 'Sistema automatizado para localizar y notificar edictos judiciales relevantes publicados en el BOE.',
-    image: '/img/apps/monitor-boe.jpg',
+    title: 'Asistente de notas de prensa',
+    type: 'Prototipo con IA integrada',
+    description: 'Prepara borradores de notas de prensa y contenidos para redes sociales a partir de información institucional estructurada.',
+    image: '/img/apps/asistente-notas.jpg',
     actions: [
-      {label: 'Abrir', href: 'https://monitorboe.streamlit.app/'},
-      {label: 'Código', href: 'https://github.com/ariaslombardero/Monitor-BOE', code: true},
+      {label: 'Abrir', href: 'https://notasprensa.vercel.app/'},
+      {label: 'Código', href: 'https://github.com/ariaslombardero/Asistente-notas-de-prensa', code: true},
     ],
   },
 ];
@@ -116,7 +116,7 @@ const areas = [
   {
     icon: Workflow,
     title: 'Aplicaciones y automatización',
-    text: 'Prototipos y herramientas web orientadas a problemas reales de gestión, información y servicio público.',
+    text: 'Prototipos, automatizaciones y aplicaciones con IA integrada cuando aporta valor real a la tarea pública.',
     href: '/aplicaciones/',
     territory: 'applications',
     action: 'Ver herramientas desarrolladas',
@@ -267,9 +267,9 @@ function App() {
           <div className="section-inner case-study-grid">
             <div className="case-copy">
               <span className="content-label institutional">Caso institucional</span>
-              <p className="kicker">Estrategia pública de IA · 2026-2030</p>
-              <h2>MencIA: gobernanza, soberanía tecnológica y servicio público</h2>
-              <p>Una estrategia provincial que conecta cumplimiento, infraestructura propia, aplicaciones, alfabetización y asistencia a los municipios. El proyecto fue presentado públicamente y aprobado por unanimidad por el Pleno de la Diputación de Lugo.</p>
+              <p className="kicker">Estrategia provincial de IA · 2026-2030</p>
+              <h2>MencIA: estrategia provincial de inteligencia artificial</h2>
+              <p>Una estrategia provincial de inteligencia artificial que conecta gobernanza, cumplimiento, infraestructura propia, aplicaciones, alfabetización y asistencia a los municipios. El proyecto fue presentado públicamente y aprobado por unanimidad por el Pleno de la Diputación de Lugo.</p>
               <div className="case-facts" aria-label="Datos principales del caso">
                 <div><strong>4</strong><span>Pilares estratégicos</span></div>
                 <div><strong>8 + 9</strong><span>Aplicaciones y asistentes en funcionamiento</span></div>
@@ -311,8 +311,8 @@ function App() {
         <section className="section dark-section" id="proyectos">
           <div className="section-inner">
             <div className="section-heading">
-              <div><p className="kicker">Trabajo seleccionado</p><h2>Proyectos y aplicaciones seleccionadas</h2></div>
-              <p>Una selección breve de diseño de servicios, aplicaciones educativas y herramientas orientadas a tareas concretas.</p>
+              <div><p className="kicker">Trabajo seleccionado</p><h2>Proyectos, aplicaciones y recursos seleccionados</h2></div>
+              <p>Una muestra breve de servicios basados en datos, recursos educativos sobre IA, automatización pública y prototipos que usan IA para tareas concretas.</p>
             </div>
             <div className="project-grid">
               {projects.map((project) => (
