@@ -85,6 +85,7 @@ p { line-height: 1.6; }
 .project-meta { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 18px; }
 .tag { padding: 4px 7px; border: 1px solid var(--line); border-radius: 4px; color: var(--muted); font-size: 0.65rem; font-weight: 700; }
 .status { border-color: #8bb8ae; color: var(--teal); }
+.signal { border-color: rgba(36, 87, 166, 0.3); background: rgba(36, 87, 166, 0.08); color: var(--blue); }
 .project-side { display: grid; gap: 8px; }
 .project-side a { min-height: 40px; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 9px 11px; border: 1px solid var(--line); border-radius: 5px; background: #fff; font-size: 0.76rem; font-weight: 800; }
 .project-side a:first-child { border-color: var(--blue); background: var(--blue); color: #fff; }
