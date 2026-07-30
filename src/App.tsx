@@ -4,13 +4,10 @@ import {
   BookOpen,
   ExternalLink,
   Github,
-  GraduationCap,
   Linkedin,
   Mail,
   Menu,
   Play,
-  ShieldCheck,
-  Workflow,
   Users,
   X,
 } from 'lucide-react';
@@ -106,25 +103,22 @@ const talks = [
 
 const areas = [
   {
-    icon: ShieldCheck,
     title: 'Estrategia pública de IA',
-    text: 'Gobernanza, riesgo, cumplimiento, soberanía tecnológica y despliegue responsable en administraciones públicas.',
-    href: '#mencia',
+    text: 'MencIA: gobernanza, cumplimiento y soberanía tecnológica para la Administración local.',
+    href: '/casos/mencia.html',
     territory: 'strategy',
-    action: 'Examinar el caso principal',
+    action: 'Examinar el caso MencIA',
   },
   {
-    icon: Workflow,
     title: 'Aplicaciones y automatización',
-    text: 'Prototipos, automatizaciones y aplicaciones con IA integrada cuando aporta valor real a la tarea pública.',
+    text: 'IA integrada, automatización pública, datos abiertos y prototipos utilizables.',
     href: '/aplicaciones/',
     territory: 'applications',
-    action: 'Ver herramientas desarrolladas',
+    action: 'Ver aplicaciones',
   },
   {
-    icon: GraduationCap,
     title: 'Formación aplicada',
-    text: 'Programas para perfiles administrativos, técnicos, jurídicos y directivos con práctica y evaluación.',
+    text: 'Programas de IA para perfiles administrativos, técnicos, jurídicos y directivos.',
     href: '/formacion/',
     territory: 'formation',
     action: 'Consultar formación',
@@ -237,14 +231,13 @@ function App() {
         <section className="section light" id="ambitos">
           <div className="section-inner">
             <div className="section-heading">
-              <div><p className="kicker dark-kicker">Tres líneas de trabajo</p><h2>De la estrategia a la aplicación y el aprendizaje</h2></div>
-              <p>Cada línea tiene identidad y recorrido propios, pero comparte una misma especialización en Administración pública e inteligencia artificial.</p>
+              <div><p className="kicker dark-kicker">Tres rutas profesionales</p><h2>Estrategia, herramientas y formación</h2></div>
+              <p>Tres formas de convertir la inteligencia artificial en capacidad pública: estrategia institucional, herramientas utilizables y formación aplicada.</p>
             </div>
             <div className="area-grid">
-              {areas.map(({icon: Icon, title, text, href, territory, action}, index) => (
-                <a className={`area territory-${territory}`} href={href} key={title}>
+              {areas.map(({title, text, href, territory, action}, index) => (
+                <a className={`area territory-${territory}`} href={href} key={title} aria-label={`${action}: ${title}`}>
                   <span className="area-index">0{index + 1}</span>
-                  <Icon size={23} aria-hidden="true" />
                   <h3>{title}</h3>
                   <p>{text}</p>
                   <span className="area-cta">{action} <ArrowRight size={16} /></span>

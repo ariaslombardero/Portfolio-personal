@@ -71,17 +71,18 @@ h1, h2, h3 { letter-spacing: 0; }
 .section-heading h2, .contact h2, .training-feature h2 { margin-bottom: 0; font-size: clamp(2rem, 4.2vw, 3.8rem); line-height: 1.02; }
 .section-heading > p { margin-bottom: 0; color: var(--muted-light); }
 .dark-section .section-heading > p { color: var(--muted-dark); }
-.area-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-block: 1px solid var(--line-light); }
-.area { min-height: 300px; display: flex; flex-direction: column; padding: 30px; border-right: 1px solid var(--line-light); color: var(--ink); transition: background-color 160ms ease; }
-.area:last-child { border-right: 0; }
-.area:hover { background: #edf1ef; }
-.area-index { display: block; margin-bottom: 38px; font-size: 0.72rem; font-weight: 800; }
-.area h3 { margin: 18px 0 10px; font-size: 1.2rem; }
-.area p { color: var(--muted-light); }
-.area-cta { display: inline-flex; align-items: center; gap: 7px; margin-top: auto; padding-top: 22px; font-size: 0.78rem; font-weight: 800; }
-.territory-strategy .area-index, .territory-strategy > svg, .territory-strategy .area-cta { color: var(--red); }
-.territory-applications .area-index, .territory-applications > svg, .territory-applications .area-cta { color: var(--blue); }
-.territory-formation .area-index, .territory-formation > svg, .territory-formation .area-cta { color: var(--teal); }
+.area-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding-block: 18px; border-block: 1px solid var(--line-light); }
+.area { position: relative; min-height: 300px; display: flex; flex-direction: column; padding: 26px; overflow: hidden; border: 1px solid var(--line-light); border-radius: 8px; background: rgba(255,255,255,0.42); color: var(--ink); transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease; }
+.area::before { content: ""; position: absolute; inset: 0 0 auto; height: 5px; background: var(--area-color); }
+.area:hover { border-color: color-mix(in srgb, var(--area-color) 46%, var(--line-light)); background: #fff; transform: translateY(-2px); }
+.area-index { display: block; margin-bottom: 44px; color: var(--area-color); font-size: clamp(3.1rem, 5vw, 4.6rem); font-weight: 800; line-height: 0.82; }
+.area h3 { margin: 0 0 12px; font-size: clamp(1.35rem, 2vw, 1.75rem); line-height: 1.05; }
+.area p { max-width: 320px; color: var(--muted-light); font-size: 0.98rem; line-height: 1.42; }
+.area-cta { width: fit-content; min-height: 42px; display: inline-flex; align-items: center; gap: 8px; margin-top: auto; padding: 10px 13px; border: 1px solid color-mix(in srgb, var(--area-color) 72%, transparent); border-radius: 7px; color: var(--area-color); font-size: 0.8rem; font-weight: 800; background: color-mix(in srgb, var(--area-color) 7%, transparent); }
+.area:hover .area-cta { background: var(--area-color); color: #fff; }
+.territory-strategy { --area-color: var(--red); }
+.territory-applications { --area-color: var(--blue); }
+.territory-formation { --area-color: var(--teal); }
 
 .credentials { padding: 0; background: #e9eeeb; color: var(--ink); border-block: 1px solid var(--line-light); }
 .credential-row { display: grid; grid-template-columns: repeat(4, 1fr); }
@@ -179,7 +180,8 @@ h1, h2, h3 { letter-spacing: 0; }
   .case-study-grid { grid-template-columns: 1fr; gap: 36px; }
   .case-visual { min-height: 0; }
   .area-grid { grid-template-columns: 1fr; }
-  .area { min-height: 0; border-right: 0; border-bottom: 1px solid var(--line-light); }
+  .area { min-height: 0; }
+  .area-index { margin-bottom: 30px; }
   .credential-row { grid-template-columns: repeat(2, 1fr); }
   .talk-preview-grid { grid-template-columns: 1fr; }
   .talk-preview, .talk-preview:first-child, .talk-preview:last-child { display: grid; grid-template-columns: minmax(230px, 0.7fr) 1fr; gap: 24px; padding: 24px 0; border-right: 0; border-bottom: 1px solid #cfd8d3; }
