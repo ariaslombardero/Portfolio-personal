@@ -7,6 +7,13 @@
   <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Desplegado en Vercel">
 </div>
 
+<div align="center">
+  <a href="https://vimeo.com/1213181131" aria-label="Ver trayectoria en 60 segundos en Vimeo">
+    <img src="public/social/video-cv60-thumbnail-1200x630.png" alt="Trayectoria en 60 segundos de Jose Antonio Arias Lombardero" width="900">
+  </a>
+  <p><strong><a href="https://vimeo.com/1213181131">Ver trayectoria en 60 segundos</a></strong> · <a href="https://ariaslombardero.es/cv.html">Abrir trayectoria completa</a></p>
+</div>
+
 Este repositorio contiene el portfolio profesional de [Jose Antonio Arias Lombardero](https://ariaslombardero.es/), centrado en inteligencia artificial aplicada al sector público, estrategia institucional, aplicaciones con IA integrada, automatización pública, datos públicos y formación.
 
 La web funciona como punto de entrada a la trayectoria, los casos de estudio, las aplicaciones y recursos desarrollados, la actividad como ponente y una oferta general de formación en inteligencia artificial para administraciones y organizaciones públicas.
