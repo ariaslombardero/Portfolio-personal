@@ -146,6 +146,13 @@
   padding-top: 48px;
 }
 
+.cv-proposal .publication-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+  margin-top: 22px;
+}
+
 .cv-proposal .evidence .publication-card-context {
   margin-top: 14px;
   color: #c7cbd0;
