@@ -125,6 +125,9 @@ const areas = [
   },
 ];
 
+const NOVAGOB_VOTING_URL = 'https://premios.novagob.org/votar';
+const showNovaGobCallout = Date.now() < new Date('2026-09-23T00:00:00+02:00').getTime();
+
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [videoOpen, setVideoOpen] = useState(false);
@@ -227,6 +230,27 @@ function App() {
             <div><strong>AEPD</strong><span>Evaluador de su revista especializada</span></div>
           </div>
         </section>
+
+        {showNovaGobCallout && (
+          <section className="novagob-callout" aria-label="Votación temporal Premios NovaGob 2026">
+            <div className="section-inner novagob-callout-inner">
+              <div className="novagob-callout-copy">
+                <img className="novagob-callout-image" src="/img/reconocimientos/novagob-finalista-2026.jpg?v=20260911" alt="Tarjeta de finalista en los Premios NovaGob 2026, categoría Persona Innovadora del Año" loading="lazy" />
+                <div>
+                  <p className="kicker dark-kicker">Finalista Premios NovaGob 2026</p>
+                  <h2>Persona Innovadora del Año</h2>
+                  <p>Candidatura por el trabajo en inteligencia artificial pública local, estrategia MencIA, aplicaciones abiertas y formación aplicada.</p>
+                </div>
+              </div>
+              <div className="novagob-callout-action">
+                <span>Votación abierta hasta el 22 de septiembre a las 12:00 h.</span>
+                <a className="button novagob-button" href={NOVAGOB_VOTING_URL} target="_blank" rel="noreferrer" aria-label="Apoyar candidatura en los Premios NovaGob 2026">
+                  Apoyar candidatura <ExternalLink size={17} />
+                </a>
+              </div>
+            </div>
+          </section>
+        )}
 
         <section className="section light" id="ambitos">
           <div className="section-inner">

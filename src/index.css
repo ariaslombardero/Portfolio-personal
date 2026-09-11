@@ -64,6 +64,17 @@ h1, h2, h3 { letter-spacing: 0; }
 .hero-proof strong { font-size: 1.55rem; }
 .hero-proof span { margin-top: 4px; color: var(--muted-dark); font-size: 0.75rem; line-height: 1.35; }
 
+.novagob-callout { padding: 34px 0; border-block: 1px solid #d8dfdc; background: #eef2ef; color: var(--ink); }
+.novagob-callout-inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, 0.34fr); gap: 40px; align-items: center; }
+.novagob-callout-copy { display: flex; align-items: center; gap: 30px; }
+.novagob-callout-image { width: 230px; height: 230px; flex: 0 0 auto; border: 1px solid rgba(201, 130, 18, 0.36); border-radius: 10px; object-fit: contain; box-shadow: 0 16px 34px rgba(19, 36, 58, 0.18); }
+.novagob-callout .kicker { margin-bottom: 10px; color: #9e2525; }
+.novagob-callout h2 { max-width: 620px; margin-bottom: 10px; font-size: clamp(1.75rem, 2.8vw, 2.75rem); line-height: 1.02; }
+.novagob-callout p { max-width: 760px; margin-bottom: 0; color: var(--muted-light); font-size: 0.98rem; line-height: 1.5; }
+.novagob-callout-action { display: grid; gap: 12px; justify-items: start; color: var(--muted-light); font-size: 0.82rem; line-height: 1.45; }
+.novagob-button { border-color: #c98212; background: #c98212; color: #111827; box-shadow: none; }
+.novagob-button:hover { background: #b77610; }
+
 .section { padding: 84px 0; }
 .section-inner { width: min(var(--max), calc(100% - 44px)); margin: 0 auto; }
 .light { background: var(--paper); color: var(--ink); }
@@ -176,7 +187,7 @@ h1, h2, h3 { letter-spacing: 0; }
 .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 
 @media (max-width: 900px) {
-  .section-heading, .contact-grid { grid-template-columns: 1fr; gap: 18px; }
+  .section-heading, .contact-grid, .novagob-callout-inner { grid-template-columns: 1fr; gap: 18px; }
   .case-study-grid { grid-template-columns: 1fr; gap: 36px; }
   .case-visual { min-height: 0; }
   .area-grid { grid-template-columns: 1fr; }
@@ -210,6 +221,8 @@ h1, h2, h3 { letter-spacing: 0; }
   .hero h1 { font-size: clamp(2.55rem, 11vw, 4rem); overflow-wrap: normal; }
   .hero-proof { grid-template-columns: repeat(2, 1fr); }
   .hero-proof div { min-height: 88px; padding: 15px 18px; }
+  .novagob-callout-copy { display: grid; align-items: start; gap: 18px; }
+  .novagob-callout-image { width: min(260px, 100%); height: auto; aspect-ratio: 1; border-radius: 8px; }
   .section { padding: 64px 0; }
   .credential-row { grid-template-columns: 1fr; }
   .credential-row a { min-height: 76px; border-right: 0; border-bottom: 1px solid var(--line-light); }
