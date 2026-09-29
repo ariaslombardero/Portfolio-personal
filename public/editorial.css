@@ -199,7 +199,9 @@ details.archive .archive-content { padding: 0 0 24px; }
 .talks-main { color: var(--ink); background: var(--paper); }
 .featured-talk { padding: 76px 0; border-bottom: 1px solid var(--line-light); }
 .featured-talk-grid { display: grid; grid-template-columns: minmax(340px, 0.9fr) 1fr; gap: 64px; align-items: center; }
-.featured-talk img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: center; border: 1px solid var(--line-light); }
+.featured-talk-media { margin: 0; }
+.featured-talk-media img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: center; border: 1px solid var(--line-light); }
+.featured-talk-media figcaption { margin-top: 9px; color: var(--muted-dark); font-size: 0.72rem; }
 .featured-talk h2 { margin: 18px 0 12px; font-size: clamp(2rem, 4vw, 3.7rem); line-height: 1; }
 .featured-talk p { color: var(--muted-dark); }
 .featured-talk .hero-actions .button.secondary { border-color: #465665; color: var(--ink); }
