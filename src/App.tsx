@@ -76,12 +76,13 @@ const projects = [
 
 const talks = [
   {
-    title: 'VI Jornada del sector local',
-    intervention: 'MencIA: soberanía tecnológica y control algorítmico',
-    meta: 'Fundación FIASEP · mayo de 2026',
-    image: '/img/congresos/fiasep-juan-raya.jpg',
-    badge: 'Premio Juan Raya Gómez 2026',
-    href: 'https://es.slideshare.net/slideshow/mencia-soberania-tecnologica-y-control-algoritmico-un-nuevo-paradigma-auditable-para-la-gestion-publica-local/287435323',
+    title: 'II Congreso Nacional SAM',
+    intervention: 'MencIA: asistencia algorítmica a los municipios desde un catálogo provincial de IA soberana',
+    meta: 'Granada · septiembre de 2026',
+    image: '/img/congresos/sam-2026-premio.webp',
+    badge: 'Premio SAM 2026 · Mejor Idea a Futuro',
+    href: 'https://congreso-sam.es/ca/estos-son-los-proyectos-premiados-en-los-premios-sam-2026/',
+    actionLabel: 'Consultar premio',
   },
   {
     title: 'Cátedra Cajasiete Big Data, Open Data y Blockchain',
@@ -125,8 +126,8 @@ const areas = [
   },
 ];
 
-const NOVAGOB_VOTING_URL = 'https://premios.novagob.org/votar';
-const showNovaGobCallout = Date.now() < new Date('2026-09-23T00:00:00+02:00').getTime();
+const NOVAGOB_FINALISTS_URL = 'https://premios.novagob.org/finalistas-2026';
+const showNovaGobCallout = Date.now() < new Date('2026-12-11T00:00:00+01:00').getTime();
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -226,26 +227,26 @@ function App() {
           <div className="hero-proof" aria-label="Credenciales principales">
             <div><strong>15+</strong><span>Años en Administración local</span></div>
             <div><strong>88 h</strong><span>Formación reciente impartida</span></div>
-            <div><strong>2</strong><span>Premios profesionales en 2026</span></div>
+            <div><strong>3</strong><span>Premios profesionales en 2026</span></div>
             <div><strong>AEPD</strong><span>Evaluador de su revista especializada</span></div>
           </div>
         </section>
 
         {showNovaGobCallout && (
-          <section className="novagob-callout" aria-label="Votación temporal Premios NovaGob 2026">
+          <section className="novagob-callout" aria-label="Finalistas de los Premios NovaGob 2026">
             <div className="section-inner novagob-callout-inner">
               <div className="novagob-callout-copy">
-                <img className="novagob-callout-image" src="/img/reconocimientos/novagob-finalista-2026.jpg?v=20260911" alt="Tarjeta de finalista en los Premios NovaGob 2026, categoría Persona Innovadora del Año" loading="lazy" />
+                <img className="novagob-callout-image" src="/img/reconocimientos/novagob-finalista-2026.jpg?v=20260929" alt="Tarjeta oficial de la candidatura situada entre los dos últimos finalistas de los Premios NovaGob 2026, categoría Persona Innovadora del Año" loading="lazy" />
                 <div>
-                  <p className="kicker dark-kicker">Finalista Premios NovaGob 2026</p>
-                  <h2>Persona Innovadora del Año</h2>
-                  <p>Candidatura por el trabajo en inteligencia artificial pública local, estrategia MencIA, aplicaciones abiertas y formación aplicada.</p>
+                  <p className="kicker dark-kicker">Premios NovaGob 2026 · votación cerrada</p>
+                  <h2>Entre los dos finalistas a Persona Innovadora del Año</h2>
+                  <p>La candidatura ha quedado entre las dos últimas finalistas por una trayectoria vinculada a la inteligencia artificial pública local, la estrategia MencIA, las aplicaciones abiertas y la formación aplicada.</p>
                 </div>
               </div>
               <div className="novagob-callout-action">
-                <span>Votación abierta hasta el 22 de septiembre a las 12:00 h.</span>
-                <a className="button novagob-button" href={NOVAGOB_VOTING_URL} target="_blank" rel="noreferrer" aria-label="Apoyar candidatura en los Premios NovaGob 2026">
-                  Apoyar candidatura <ExternalLink size={17} />
+                <span>El ganador se conocerá en la gala del 10 de diciembre.</span>
+                <a className="button novagob-button" href={NOVAGOB_FINALISTS_URL} target="_blank" rel="noreferrer" aria-label="Ver finalistas de los Premios NovaGob 2026">
+                  Ver finalistas <ExternalLink size={17} />
                 </a>
               </div>
             </div>
@@ -273,8 +274,8 @@ function App() {
 
         <section className="section credentials" aria-label="Credenciales seleccionadas">
           <div className="section-inner credential-row">
+            <a href="/cv.html#premio-sam"><Award size={21} /><span>Premio SAM 2026 · Mejor Idea a Futuro</span><ArrowRight size={16} /></a>
             <a href="/cv.html#premio-juan-raya"><Award size={21} /><span>Premio Juan Raya Gómez 2026</span><ArrowRight size={16} /></a>
-            <a href="/cv.html#premio-foro-grc"><Award size={21} /><span>Mejor comunicación · II Foro GRC</span><ArrowRight size={16} /></a>
             <a href="/cv.html#publicacion-reciente"><BookOpen size={21} /><span>Última publicación · IA pública y eficiencia energética</span><ArrowRight size={16} /></a>
             <a href="https://revista.aepd.es/revistaprivacidad/about/editorialTeam" target="_blank" rel="noreferrer"><BookOpen size={21} /><span>Evaluador · Revista de la AEPD</span><ExternalLink size={16} /></a>
           </div>
@@ -316,7 +317,7 @@ function App() {
                     <p>{talk.meta}</p>
                     <h3>{talk.title}</h3>
                     <p className="talk-title">{talk.intervention}</p>
-                    <a href={talk.href} target="_blank" rel="noreferrer">{talk.badge === 'Webinar' ? 'Ver webinar' : 'Ver presentación'} <ExternalLink size={15} /></a>
+                    <a href={talk.href} target="_blank" rel="noreferrer">{talk.actionLabel ?? (talk.badge === 'Webinar' ? 'Ver webinar' : 'Ver presentación')} <ExternalLink size={15} /></a>
                   </div>
                 </article>
               ))}
