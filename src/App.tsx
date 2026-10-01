@@ -276,8 +276,8 @@ function App() {
           <div className="section-inner credential-row">
             <a href="/cv.html#premio-sam"><Award size={21} /><span>Premio SAM 2026 · Mejor Idea a Futuro</span><ArrowRight size={16} /></a>
             <a href="/cv.html#premio-juan-raya"><Award size={21} /><span>Premio Juan Raya Gómez 2026</span><ArrowRight size={16} /></a>
+            <a href="/cv.html#premio-foro-grc"><Award size={21} /><span>Mejor comunicación · II Foro GRC</span><ArrowRight size={16} /></a>
             <a href="/cv.html#publicacion-reciente"><BookOpen size={21} /><span>Última publicación · IA pública y eficiencia energética</span><ArrowRight size={16} /></a>
-            <a href="https://revista.aepd.es/revistaprivacidad/about/editorialTeam" target="_blank" rel="noreferrer"><BookOpen size={21} /><span>Evaluador · Revista de la AEPD</span><ExternalLink size={16} /></a>
           </div>
         </section>
 
