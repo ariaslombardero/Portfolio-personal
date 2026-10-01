@@ -117,6 +117,10 @@
   border-left: 4px solid var(--red);
 }
 
+.cv-proposal .evidence-featured-publication.publication-secondary {
+  border-left: 1px solid var(--line);
+}
+
 .cv-proposal .featured-publication-copy {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(360px, 0.88fr);
