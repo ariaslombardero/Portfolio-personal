@@ -81,8 +81,8 @@ const talks = [
     meta: 'Granada · septiembre de 2026',
     image: '/img/congresos/sam-2026-premio.webp',
     badge: 'Premio SAM 2026 · Mejor Idea a Futuro',
-    href: 'https://congreso-sam.es/ca/estos-son-los-proyectos-premiados-en-los-premios-sam-2026/',
-    actionLabel: 'Consultar premio',
+    href: 'https://www.youtube.com/watch?v=gk-tJe0W1l0',
+    actionLabel: 'Ver intervención',
   },
   {
     title: 'Cátedra Cajasiete Big Data, Open Data y Blockchain',
