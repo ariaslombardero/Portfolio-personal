@@ -240,7 +240,7 @@ function App() {
                 <div>
                   <p className="kicker dark-kicker">Premios NovaGob 2026 · votación cerrada</p>
                   <h2>Entre los dos finalistas a Persona Innovadora del Año</h2>
-                  <p>La candidatura ha quedado entre las dos últimas finalistas por una trayectoria vinculada a la inteligencia artificial pública local, la estrategia MencIA, las aplicaciones abiertas y la formación aplicada.</p>
+                  <p>Mi candidatura ha quedado entre las dos últimas finalistas por llevar la innovación a la práctica en la Administración pública y compartir lo aprendido: inteligencia artificial aplicada a la gestión local, herramientas en abierto, formación de empleados públicos y divulgación a través de publicaciones y congresos.</p>
                 </div>
               </div>
               <div className="novagob-callout-action">
@@ -293,6 +293,15 @@ function App() {
                 <div><strong>8 + 9</strong><span>Aplicaciones y asistentes en funcionamiento</span></div>
                 <div><strong>66</strong><span>Municipios de menos de 20.000 habitantes</span></div>
               </div>
+              <section className="case-international" aria-labelledby="mencia-oecd-title">
+                <h3 id="mencia-oecd-title">MencIA, seleccionada para su publicación en el Observatorio de Políticas de IA de la OCDE</h3>
+                <p>La estrategia de inteligencia artificial de la Diputación Provincial de Lugo ha sido seleccionada tras su presentación a la convocatoria internacional <a href="https://oecd.ai/en/wonk/call-ai-in-gov" target="_blank" rel="noopener noreferrer">«Governing with Artificial Intelligence»</a> de la OCDE.</p>
+                <p>OECD.AI es su Observatorio de Políticas de Inteligencia Artificial: una plataforma de conocimiento sobre IA que incluye el Policy Navigator, donde pueden consultarse políticas e iniciativas de distintos países y organizaciones. MencIA forma parte de este repositorio internacional.</p>
+                <div className="case-international-links">
+                  <a href="https://oecd.ai/en/dashboards/policy-initiatives/mencia-sovereign-ai-strategy-for-territorial-cohesion-subnational-lugo" target="_blank" rel="noopener noreferrer">Ver ficha de MencIA en OECD.AI <ExternalLink size={16} /></a>
+                  <a href="https://oecd.ai/en/dashboards/overview" target="_blank" rel="noopener noreferrer">Explorar el observatorio <ExternalLink size={16} /></a>
+                </div>
+              </section>
               <a className="button primary" href="/casos/mencia.html">Examinar el caso <ArrowRight size={18} /></a>
             </div>
             <a className="case-visual" href="/casos/mencia.html" aria-label="Abrir el caso MencIA">
