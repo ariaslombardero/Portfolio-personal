@@ -1,565 +1,441 @@
-import React, { useState } from 'react';
 import {
-  FileText,
-  UserCheck,
-  ShieldCheck,
-  Code,
-  FileDown,
-  Sparkles,
+  ArrowRight,
+  Award,
+  BookOpen,
+  ExternalLink,
+  Github,
+  Linkedin,
+  Mail,
+  Menu,
+  Play,
+  Users,
+  X,
 } from 'lucide-react';
-import { Navbar } from './components/Navbar';
-import { ApiConfigModal } from './components/ApiConfigModal';
-import { UserGuideModal } from './components/UserGuideModal';
-import { LiveLegislationModal } from './components/LiveLegislationModal';
-import { ExecutivePurposeModal } from './components/ExecutivePurposeModal';
-import { IngestionView } from './components/IngestionView';
-import { LegalInterviewView } from './components/LegalInterviewView';
-import { DiagnosticDashboard } from './components/DiagnosticDashboard';
-import { CodeKitView } from './components/CodeKitView';
-import { OfficialDossierView } from './components/OfficialDossierView';
-import { PreProductionHardeningView } from './components/PreProductionHardeningView';
-import { AuditHistoryModal } from './components/AuditHistoryModal';
-import { useApiConfig } from './context/ApiConfigContext';
-import { evaluateRulesDeterministically, analyzeWithLLM, LLM_DISSENT_NOTICE } from './lib/auditEngine';
-import { normalizeDiagnostic } from './lib/assessmentModel';
-import { normalizeAnswers } from './lib/answersModel';
-import { effectiveDiagnostic, inputsKey } from './lib/validations';
-import { generateCodeKit } from './lib/codeKitGenerator';
-import { registroAsistencia, restriccionEnvio } from './lib/proveedorEfectivo';
-import { formatApiError } from './lib/apiService';
-import { getStoredAudits, saveAuditRecord, type SaveOutcome } from './lib/auditHistoryService';
-import { currentAiComment, recomputeAudit } from './lib/auditState';
-import { isPending, pendingQuestions, setAnswerValue, type InterviewQuestion } from './lib/interviewCatalog';
-import {
-  acceptSuggestion,
-  bulkAcceptable,
-  hintSuggestions,
-  ingestKey,
-  sourcesAfterManualChange,
-  suggestWithAI,
-  type AnswerSuggestion,
-} from './lib/interviewSuggestions';
-import { ETIQUETA_UBICACION, ubicacionProveedor } from './lib/proveedorEfectivo';
-import { describirProveedor } from './lib/apiService';
-import { AssistToolbar, SuggestButton, SuggestionBox } from './components/SuggestionAssist';
-import type {
-  AppIdioma,
-  FullAuditState,
-  StoredAuditRecord,
-} from './types';
-import { t } from './lib/i18n';
-import { DEFAULT_INGEST, DEFAULT_ANSWERS, DEFAULT_METADATA } from './lib/auditDefaults';
+import {useEffect, useRef, useState} from 'react';
 
-type Step = 'ingesta' | 'entrevista' | 'diagnostico' | 'codigo' | 'expediente' | 'blindaje';
+function VimeoMark() {
+  return (
+    <svg className="profile-brand-icon" viewBox="-1 -3 28 27" aria-hidden="true">
+      <path d="M22.396 7.164c-.093 2.026-1.507 4.8-4.245 8.32C15.32 19.161 12.93 21 11.002 21c-1.332 0-2.44-1.324-3.321-3.968-.617-2.924-1.233-5.845-1.85-8.769-.64-2.884-1.285-4.321-1.93-4.321-.194 0-.756.28-1.688.841L1.134 3.32C2.392 2.213 3.568 1.157 4.664.152c1.472-1.295 2.502-1.986 3.09-2.073 1.83-.264 2.894.673 3.197 2.81 0 .046.043 1.542.127 4.492.203 2.585.342 4.095.42 4.526.473 3.064 1.189 4.596 2.146 4.596.883 0 2.05-1.365 3.504-4.094.976-1.853 1.488-3.149 1.534-3.892.1-1.366-.46-2.05-1.68-2.05-.623 0-1.25.178-1.879.537 1.255-4.103 3.829-6.31 7.72-6.621 2.3-.18 3.522 1.05 3.666 3.69v.001z" />
+    </svg>
+  );
+}
 
-export const App: React.FC = () => {
-  const [idioma, setIdioma] = useState<AppIdioma>('castellano');
-  const [showApiModal, setShowApiModal] = useState(false);
-  const [showGuide, setShowGuide] = useState(false);
-  const [showPurposeModal, setShowPurposeModal] = useState(false);
-  const [showLiveLegislation, setShowLiveLegislation] = useState(false);
-  const [liveNormTarget, setLiveNormTarget] = useState<{ normId: string; article: string }>({ normId: 'AI-ACT', article: '14' });
-  const [currentStep, setCurrentStep] = useState<Step>('ingesta');
-  // Pregunta a la que debe desplazarse la entrevista al abrirla desde el diagnóstico.
-  const [focusQuestionId, setFocusQuestionId] = useState<string | undefined>(undefined);
-  const [isAnalyzing, setIsAnalyzing] = useState(false);
-  const [llmCritique, setLlmCritique] = useState<string | undefined>(undefined);
-  const [showHistoryModal, setShowHistoryModal] = useState(false);
-  const [historyCount, setHistoryCount] = useState(0);
-  // Expediente en curso: sus nuevas versiones se guardan como revisiones, sin sobrescribir.
-  const [currentAuditId, setCurrentAuditId] = useState<string | undefined>(undefined);
-  const [custodyNotice, setCustodyNotice] = useState<{ tipo: 'error' | 'aviso'; texto: string } | null>(null);
-  // Sugerencias de respuesta: nunca se aplican solas (se aceptan una a una o, las de cita comprobada, en bloque).
-  const [suggestions, setSuggestions] = useState<Record<string, AnswerSuggestion>>({});
-  const [suggestStatus, setSuggestStatus] = useState<{ cargando: boolean; texto?: string; error?: string }>({ cargando: false });
-  const [externalConsent, setExternalConsent] = useState(false);
-  // Huella de las entradas de la última revisión guardada en el historial.
-  const [savedInputsKey, setSavedInputsKey] = useState<string | undefined>(undefined);
+function SlideShareMark() {
+  return (
+    <svg className="profile-brand-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M3.222.21C1.762.21 1.06 1.337 1.06 2.497v7.883c-.53-.502-1.096-.15-1.058.295.038.439.59 1.546 1.436 2.517.843.968 1.924 1.776 2.94 2.268a11.19 11.19 0 00-.491 3.598c.09 1.096.378 1.95.903 2.75.918 1.407 2.32 1.985 3.674 1.985 1.209 0 2.494-.563 2.698-2.373v-4.694c1.308.552 3.47.363 4.47-.39.19-.14.326-.207.416-.113.095.09.106.166-.113.439a5.6 5.6 0 01-3.103 1.965l.008 2.72a2.532 2.532 0 002.543 2.446c1.64.015 2.48-.556 3.148-1.164.632-.567 1.399-1.754 1.558-3.243a10.128 10.128 0 00-.454-3.926 10.358 10.358 0 002.948-2.268C23.213 12.5 24 11.185 24 10.675c0-.51-.556-.782-1.036-.302V2.497c0-.824-.48-2.29-2.135-2.29zm.423 1.35H20.41c.756 0 1.17.28 1.17 1.224v8.904a8.73 8.73 0 01-3.555 1.534c-1.606.352-2.94.087-3.666.148-.718.06-1.428.529-1.296 1.79-.491-.154-1.236-.683-1.682-1.117-.438-.428-.87-.711-1.534-.692-1.013.03-1.663.102-2.57.01a9.656 9.656 0 01-4.838-1.786V2.78c0-.87.378-1.22 1.206-1.22zm4.497 4.988a2.994 2.994 0 100 5.987 2.993 2.993 0 000-5.983zm7.71 0a2.994 2.994 0 100 5.987 2.993 2.993 0 000-5.983z" />
+    </svg>
+  );
+}
 
-  const { config, isConfigured } = useApiConfig();
+const projects = [
+  {
+    title: 'Oasis Madrid',
+    type: 'Datos públicos y servicio ciudadano',
+    description: 'Navegador de confort térmico y rutas saludables diseñado con datos abiertos, criterios de accesibilidad y privacidad.',
+    image: '/img/apps/oasis-madrid.png',
+    actions: [
+      {label: 'Ver caso', href: '/casos/oasis-madrid.html'},
+      {label: 'Abrir', href: 'https://oasismadrid.vercel.app/'},
+      {label: 'Vídeo', href: '/casos/oasis-madrid.html#video'},
+      {label: 'Código', href: 'https://github.com/ariaslombardero/Oasis-Madrid', code: true},
+    ],
+  },
+  {
+    title: 'Guías AESIA 4.0',
+    type: 'Recurso educativo sobre IA',
+    description: 'Plataforma para trabajar las guías prácticas de la AESIA sobre inteligencia artificial mediante contenidos, cuestionarios, seguimiento y gamificación.',
+    image: '/img/apps/guias-aesia.jpg',
+    actions: [
+      {label: 'Abrir', href: 'https://guiasaesia.vercel.app/'},
+      {label: 'Código', href: 'https://github.com/ariaslombardero/Guias-AESIA-4.0', code: true},
+    ],
+  },
+  {
+    title: 'Analizador de ayudas y subvenciones',
+    type: 'Aplicación con IA integrada',
+    description: 'Analiza convocatorias nacionales y europeas y genera una ficha estructurada con requisitos, plazos, cuantías y criterios de participación.',
+    image: '/img/apps/analizador-ayudas.jpg',
+    actions: [
+      {label: 'Abrir', href: 'https://subvenciones-ia.vercel.app/'},
+      {label: 'Código', href: 'https://github.com/ariaslombardero/Analizador-de-ayudas-y-subvenciones', code: true},
+    ],
+  },
+  {
+    title: 'Asistente de notas de prensa',
+    type: 'Prototipo con IA integrada',
+    description: 'Prepara borradores de notas de prensa y contenidos para redes sociales a partir de información institucional estructurada.',
+    image: '/img/apps/asistente-notas.jpg',
+    actions: [
+      {label: 'Abrir', href: 'https://notasprensa.vercel.app/'},
+      {label: 'Código', href: 'https://github.com/ariaslombardero/Asistente-notas-de-prensa', code: true},
+    ],
+  },
+];
 
-  React.useEffect(() => {
-    setHistoryCount(getStoredAudits().length);
-  }, []);
+const talks = [
+  {
+    title: 'II Congreso Nacional SAM',
+    intervention: 'MencIA: asistencia algorítmica a los municipios desde un catálogo provincial de IA soberana',
+    meta: 'Granada · septiembre de 2026',
+    image: '/img/congresos/sam-2026-premio.webp',
+    badge: 'Premio SAM 2026 · Mejor Idea a Futuro',
+    href: 'https://www.youtube.com/watch?v=gk-tJe0W1l0',
+    actionLabel: 'Ver intervención',
+  },
+  {
+    title: 'Cátedra Cajasiete Big Data, Open Data y Blockchain',
+    intervention: 'IA en tres clics: soluciones de código abierto para entidades locales',
+    meta: 'Universidad de La Laguna · abril de 2026',
+    image: '/img/congresos/cajasiete-webinar.jpg',
+    badge: 'Webinar',
+    href: 'https://www.youtube.com/watch?v=y8wg32D9lY8&t=3608s',
+  },
+  {
+    title: 'II Congreso Foro GRC',
+    intervention: 'Un modelo integral de gobierno, riesgo y cumplimiento para la IA pública',
+    meta: 'Asociación Española para la Calidad · febrero de 2026',
+    image: '/img/congresos/foro-grc.jpg',
+    badge: 'Mejor comunicación',
+    href: 'https://es.slideshare.net/slideshow/mencia-soberania-tecnologica-realista-un-modelo-integral-de-gobierno-riesgo-y-cumplimiento-para-la-ia-en-el-sector-publico/286504633',
+  },
+];
 
-  const [state, setState] = useState<FullAuditState>({
-    ingest: DEFAULT_INGEST,
-    answers: DEFAULT_ANSWERS,
-    diagnostic: null,
-    codeKit: null,
-    metadata: DEFAULT_METADATA,
-    analyzing: false,
-  });
+const areas = [
+  {
+    title: 'Estrategia pública de IA',
+    text: 'MencIA: gobernanza, cumplimiento y soberanía tecnológica para la Administración local.',
+    href: '/casos/mencia.html',
+    territory: 'strategy',
+    action: 'Examinar el caso MencIA',
+  },
+  {
+    title: 'Aplicaciones y automatización',
+    text: 'IA integrada, automatización pública, datos abiertos y prototipos utilizables.',
+    href: '/aplicaciones/',
+    territory: 'applications',
+    action: 'Ver aplicaciones',
+  },
+  {
+    title: 'Formación aplicada',
+    text: 'Programas de IA para perfiles administrativos, técnicos, jurídicos y directivos.',
+    href: '/formacion/',
+    territory: 'formation',
+    action: 'Consultar formación',
+  },
+];
 
-  const handleReset = () => {
-    if (window.confirm('¿Deseas reiniciar la auditoría y comenzar una nueva?')) {
-      setState({
-        ingest: DEFAULT_INGEST,
-        answers: DEFAULT_ANSWERS,
-        diagnostic: null,
-        codeKit: null,
-        metadata: DEFAULT_METADATA,
-        analyzing: false,
-      });
-      setLlmCritique(undefined);
-      setCurrentAuditId(undefined);
-      setCustodyNotice(null);
-      setSavedInputsKey(undefined);
-      setSuggestions({});
-      setSuggestStatus({ cargando: false });
-      setCurrentStep('ingesta');
-    }
+const NOVAGOB_FINALISTS_URL = 'https://premios.novagob.org/finalistas-2026';
+const showNovaGobCallout = Date.now() < new Date('2026-12-11T00:00:00+01:00').getTime();
+
+function App() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [videoOpen, setVideoOpen] = useState(false);
+  const videoTriggerRef = useRef<HTMLButtonElement>(null);
+  const videoCloseRef = useRef<HTMLButtonElement>(null);
+
+  const closeVideo = () => {
+    setVideoOpen(false);
+    window.setTimeout(() => videoTriggerRef.current?.focus(), 0);
   };
 
-  /** Guarda una revisión del expediente en curso y comunica cualquier fallo o retirada de registros. */
-  const saveRevision = (next: FullAuditState, critique: string | undefined) => {
-    let outcome: SaveOutcome;
-    try {
-      outcome = saveAuditRecord(next, critique, { auditId: currentAuditId });
-    } catch (err) {
-      setCustodyNotice({ tipo: 'error', texto: `El diagnóstico NO se ha guardado en el historial. ${(err as Error).message}` });
-      return;
-    }
-    setCurrentAuditId(outcome.record.auditId);
-    setSavedInputsKey(inputsKey(next));
-    setHistoryCount(getStoredAudits().length);
-    setCustodyNotice(
-      outcome.retirados.length > 0
-        ? { tipo: 'aviso', texto: `Guardada la revisión ${outcome.record.revision}. Para respetar el límite del historial se han retirado ${outcome.retirados.length} registro(s) antiguo(s) del navegador. Exporte una copia JSON si los necesita.` }
-        : null
-    );
-  };
+  useEffect(() => {
+    if (!videoOpen) return;
 
-  const handleStartAnalysis = async () => {
-    setIsAnalyzing(true);
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    videoCloseRef.current?.focus();
 
-    // 1. Instant deterministic evaluation
-    const baselineDiagnostic = evaluateRulesDeterministically(state.ingest, state.answers);
-    const codeKit = generateCodeKit(state.ingest, state.answers, baselineDiagnostic);
-
-    let critiqueText: string | undefined = undefined;
-    let dissentDetected = false;
-
-    // 2. Comentario complementario de IA si hay proveedor (no altera la clasificación; solo puede
-    //    señalar una discrepancia). Se registra qué proveedor se usó o por qué no se usó.
-    let aiAssistance = registroAsistencia(null, 'no_configurada');
-    if (isConfigured && config) {
-      const restriccion = restriccionEnvio(config, state.answers);
-      if (!restriccion.permitido) {
-        aiAssistance = registroAsistencia(config, 'bloqueada', restriccion.motivo);
-      } else {
-        try {
-          const llmResult = await analyzeWithLLM(config, state.ingest, state.answers, baselineDiagnostic);
-          critiqueText = llmResult.enrichedSummary;
-          dissentDetected = llmResult.dissentDetected;
-          aiAssistance = registroAsistencia(config, 'usada');
-        } catch (err: unknown) {
-          aiAssistance = registroAsistencia(config, 'fallida', formatApiError(err, idioma));
-        }
-      }
-    }
-
-    // El diagnóstico y el comentario de IA quedan ligados a las entradas con que se calcularon.
-    const key = inputsKey(state);
-    const dissentAlert = dissentDetected ? LLM_DISSENT_NOTICE : undefined;
-    const updatedFullState: FullAuditState = {
-      ...state,
-      diagnostic: {
-        ...baselineDiagnostic,
-        inputsKey: key,
-        aiAssistance: { ...aiAssistance, inputsKey: key, ...(dissentAlert ? { dissentAlert } : {}) },
-        ...(dissentAlert ? { pericialDissentAlert: dissentAlert } : {}),
-      },
-      codeKit,
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') closeVideo();
     };
 
-    setLlmCritique(critiqueText);
-    setState(updatedFullState);
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [videoOpen]);
 
-    // 3. Guardar como revisión del expediente en curso (o abrir uno nuevo)
-    saveRevision(updatedFullState, critiqueText);
+  useEffect(() => {
+    if (!menuOpen) return;
+    const closeMenu = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setMenuOpen(false);
+    };
+    document.addEventListener('keydown', closeMenu);
+    return () => document.removeEventListener('keydown', closeMenu);
+  }, [menuOpen]);
 
-    setIsAnalyzing(false);
-    setCurrentStep('diagnostico');
-  };
+  useEffect(() => {
+    const scrollToHash = () => {
+      const targetId = decodeURIComponent(window.location.hash.slice(1));
+      if (!targetId) return;
+      document.getElementById(targetId)?.scrollIntoView({block: 'start'});
+    };
 
-  // Validación humana documentada de un requisito (queda ligada a las entradas actuales)
-  const persistState = (next: FullAuditState) => {
-    setState(next);
-    saveRevision(next, currentAiComment(next, llmCritique));
-  };
-
-  /** Cambios en la ingesta o la entrevista: el diagnóstico ya emitido se recalcula al momento. */
-  const updateInputs = (patch: Partial<Pick<FullAuditState, 'ingest' | 'answers'>>) => {
-    setState((p) => {
-      // Si la persona cambia una respuesta que venía de una sugerencia, el origen vuelve a ser suyo.
-      const answerSources = patch.answers ? sourcesAfterManualChange(p.answers, patch.answers, p.answerSources) : p.answerSources;
-      return recomputeAudit({ ...p, ...patch, answerSources });
-    });
-  };
-
-  // ---- Sugerencias de respuesta ----
-  const currentIngestKey = ingestKey(state.ingest);
-  const conIA = Boolean(isConfigured && config);
-  const proveedorLabel = isConfigured && config ? `${describirProveedor(config)} · ${config.model}` : null;
-  const quitarSugerencias = (ids: string[]) =>
-    setSuggestions((p) => Object.fromEntries(Object.entries(p).filter(([id]) => !ids.includes(id))));
-
-  const requestSuggestions = async (ids: string[]) => {
-    if (!ids.length || suggestStatus.cargando) return;
-    if (!isConfigured || !config) {
-      const indicios = hintSuggestions(state.ingest, state.answers).filter((s) => ids.includes(s.questionId));
-      setSuggestions((p) => ({ ...p, ...Object.fromEntries(indicios.map((s) => [s.questionId, s])) }));
-      setSuggestStatus({
-        cargando: false,
-        texto: indicios.length
-          ? `${indicios.length} indicio(s) encontrados en la documentación.`
-          : 'La documentación no contiene indicios para estas preguntas. Configura un proveedor de IA para obtener sugerencias razonadas.',
-      });
-      return;
-    }
-    if (ubicacionProveedor(config) === 'externo' && !externalConsent) {
-      const ok = window.confirm(
-        `Para sugerir respuestas se enviará la documentación del paso 1 (descripción, README, AGENTS.md y prompt del sistema) a ${describirProveedor(config)}, un servicio externo. ¿Continuar?`
-      );
-      if (!ok) return;
-      setExternalConsent(true);
-    }
-    setSuggestStatus({ cargando: true, texto: 'Pidiendo sugerencias…' });
-    const r = await suggestWithAI(config, state.ingest, state.answers, ids, (hechos, total) =>
-      setSuggestStatus({ cargando: true, texto: `Pidiendo sugerencias… bloque ${hechos} de ${total}` })
-    );
-    setSuggestions((p) => ({ ...p, ...Object.fromEntries(r.sugerencias.map((s) => [s.questionId, s])) }));
-    const partes = [`${r.sugerencias.length} sugerencia(s) recibida(s)`];
-    if (r.descartadas) partes.push(`${r.descartadas} descartada(s) por no ser válidas`);
-    if (r.recortada) partes.push('la documentación era muy larga y se envió recortada');
-    setSuggestStatus({ cargando: false, texto: `${partes.join(' · ')}.`, error: r.error });
-  };
-
-  const handleAcceptSuggestion = (s: AnswerSuggestion) => {
-    setState((p) => recomputeAudit(acceptSuggestion(p, s)));
-    quitarSugerencias([s.questionId]);
-  };
-
-  const sugerenciasVigentes = Object.values(suggestions).filter((s) => s.ingestKey === currentIngestKey && isPending(state.answers, s.questionId));
-  const enBloque = bulkAcceptable(sugerenciasVigentes);
-  const handleAcceptBulk = () => {
-    setState((p) => recomputeAudit(enBloque.reduce((acc, s) => acceptSuggestion(acc, s), p)));
-    quitarSugerencias(enBloque.map((s) => s.questionId));
-  };
-
-  /** Ayuda bajo cada pregunta pendiente: la sugerencia recibida o el botón para pedirla. */
-  const renderAssist = (q: InterviewQuestion): React.ReactNode => {
-    if (!isPending(state.answers, q.id)) return null;
-    const s = suggestions[q.id];
-    if (s) {
-      return (
-        <SuggestionBox
-          question={q}
-          suggestion={s}
-          stale={s.ingestKey !== currentIngestKey}
-          onAccept={() => handleAcceptSuggestion(s)}
-          onDiscard={() => quitarSugerencias([q.id])}
-        />
-      );
-    }
-    return <SuggestButton question={q} conIA={conIA} cargando={suggestStatus.cargando} onClick={() => requestSuggestions([q.id])} />;
-  };
-
-  const assistToolbar = (
-    <AssistToolbar
-      proveedor={proveedorLabel}
-      ubicacion={config ? ETIQUETA_UBICACION[ubicacionProveedor(config)] : ''}
-      pendientes={pendingQuestions(state.answers).length}
-      cargando={suggestStatus.cargando}
-      estado={suggestStatus.texto}
-      error={suggestStatus.error}
-      aceptablesEnBloque={enBloque.length}
-      hayDeIA={sugerenciasVigentes.some((s) => s.fuente === 'ia')}
-      onSuggestAll={() => requestSuggestions(pendingQuestions(state.answers).map((q) => q.id))}
-      onAcceptBulk={handleAcceptBulk}
-    />
-  );
-
-  // Comentario de IA solo si corresponde a las respuestas actuales.
-  const aiComment = currentAiComment(state, llmCritique);
-  const unsavedChanges = Boolean(state.diagnostic && savedInputsKey && savedInputsKey !== inputsKey(state));
-
-  const handleValidateRequirement = (requirementId: string, revisadoPor: string, evidencia: string) => {
-    persistState({
-      ...state,
-      validations: {
-        ...(state.validations || {}),
-        [requirementId]: { revisadoPor, evidencia, fecha: new Date().toISOString(), inputsKey: inputsKey(state) },
-      },
-    });
-  };
-
-  const handleRevokeValidation = (requirementId: string) => {
-    const { [requirementId]: _removed, ...rest } = state.validations || {};
-    persistState({ ...state, validations: rest });
-  };
-
-  const handleLoadAuditFromHistory = (record: StoredAuditRecord) => {
-    setState({
-      ...record.state,
-      answers: normalizeAnswers(record.state.answers),
-      diagnostic: normalizeDiagnostic(record.state.diagnostic),
-    });
-    setLlmCritique(record.llmCritique);
-    setCurrentAuditId(record.auditId);
-    setSavedInputsKey(inputsKey(record.state));
-    setSuggestions({});
-    setSuggestStatus({ cargando: false });
-    setCustodyNotice(null);
-    setCurrentStep('diagnostico');
-    setShowHistoryModal(false);
-  };
-
-  const stepsList: { key: Step; label: string; icon: React.ReactNode }[] = [
-    { key: 'ingesta', label: t('step_1', idioma), icon: <FileText style={{ width: 15, height: 15 }} /> },
-    { key: 'entrevista', label: t('step_2', idioma), icon: <UserCheck style={{ width: 15, height: 15 }} /> },
-    { key: 'diagnostico', label: t('step_3', idioma), icon: <ShieldCheck style={{ width: 15, height: 15 }} /> },
-    { key: 'codigo', label: t('step_4', idioma), icon: <Code style={{ width: 15, height: 15 }} /> },
-    { key: 'expediente', label: t('step_5', idioma), icon: <FileDown style={{ width: 15, height: 15 }} /> },
-    { key: 'blindaje', label: t('step_6', idioma), icon: <Sparkles style={{ width: 15, height: 15, color: '#8b5cf6' }} /> },
-  ];
+    const frame = window.requestAnimationFrame(scrollToHash);
+    window.addEventListener('hashchange', scrollToHash);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener('hashchange', scrollToHash);
+    };
+  }, []);
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      <Navbar
-        idioma={idioma}
-        setIdioma={setIdioma}
-        onOpenApiModal={() => setShowApiModal(true)}
-        onOpenGuide={() => setShowGuide(true)}
-        onOpenPurpose={() => setShowPurposeModal(true)}
-        onOpenLiveLegislation={() => setShowLiveLegislation(true)}
-        onOpenHistory={() => setShowHistoryModal(true)}
-        historyCount={historyCount}
-        onReset={handleReset}
-      />
+    <div className="site-shell">
+      <a className="skip-link" href="#contenido">Saltar al contenido</a>
 
-      <main className="container" style={{ flex: 1 }}>
-        {custodyNotice && (
-          <div
-            role={custodyNotice.tipo === 'error' ? 'alert' : 'status'}
-            style={{
-              margin: '1rem 0 0',
-              padding: '0.75rem 1rem',
-              borderRadius: 8,
-              fontSize: '0.8125rem',
-              display: 'flex',
-              alignItems: 'flex-start',
-              justifyContent: 'space-between',
-              gap: '0.75rem',
-              background: custodyNotice.tipo === 'error' ? '#fef2f2' : '#fffbeb',
-              border: `1px solid ${custodyNotice.tipo === 'error' ? '#f87171' : '#fcd34d'}`,
-              color: custodyNotice.tipo === 'error' ? '#991b1b' : '#92400e',
-            }}
-          >
-            <span>{custodyNotice.texto}</span>
-            <button type="button" onClick={() => setCustodyNotice(null)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'inherit', fontWeight: 700 }} aria-label="Cerrar aviso">×</button>
-          </div>
-        )}
-        {unsavedChanges && (
-          <div
-            role="status"
-            style={{
-              margin: '1rem 0 0',
-              padding: '0.6rem 1rem',
-              borderRadius: 8,
-              fontSize: '0.8125rem',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              gap: '0.75rem',
-              flexWrap: 'wrap',
-              background: '#eff6ff',
-              border: '1px solid #93c5fd',
-              color: '#1e3a8a',
-            }}
-          >
-            <span>Has cambiado respuestas desde la última revisión guardada. El diagnóstico ya está actualizado; guárdalo en el historial cuando termines.</span>
-            <button type="button" className="btn-secondary" style={{ fontSize: '0.75rem', padding: '0.3rem 0.75rem' }} onClick={() => saveRevision(state, aiComment)}>
-              Guardar revisión
-            </button>
-          </div>
-        )}
-        {/* Stepper Navigation */}
-        <nav className="stepper-nav" aria-label="Progreso de auditoría">
-          {stepsList.map((s, index) => {
-            const isCompleted =
-              (s.key === 'ingesta' && Boolean(state.ingest.appName && state.ingest.readmeContent)) ||
-              (s.key === 'entrevista' && Boolean(state.diagnostic)) ||
-              (s.key === 'diagnostico' && Boolean(state.diagnostic)) ||
-              (s.key === 'codigo' && Boolean(state.codeKit)) ||
-              (s.key === 'expediente' && Boolean(state.diagnostic)) ||
-              (s.key === 'blindaje' && Boolean(state.diagnostic));
-            const isActive = currentStep === s.key;
-            const canNavigate =
-              isCompleted ||
-              s.key === 'ingesta' ||
-              s.key === 'entrevista' ||
-              (Boolean(state.diagnostic) && (s.key === 'expediente' || s.key === 'blindaje'));
-
-            return (
-              <button
-                key={s.key}
-                type="button"
-                onClick={() => canNavigate && setCurrentStep(s.key)}
-                disabled={!canNavigate}
-                className={`stepper-tab ${isActive ? 'active' : isCompleted ? 'completed' : ''}`}
-              >
-                {s.icon}
-                <span>{s.label}</span>
-              </button>
-            );
-          })}
+      <header className="site-header">
+        <a className="brand" href="#inicio" aria-label="Ir al inicio">
+          <img className="brand-logo brand-logo-full" src="/brand/logo-primary-dark.svg" alt="ariaslombardero" />
+          <img className="brand-logo brand-logo-compact" src="/brand/logo-mark-dark.svg" alt="" aria-hidden="true" />
+        </a>
+        <button
+          className="menu-button"
+          type="button"
+          aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          {menuOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
+        <nav className={menuOpen ? 'main-nav open' : 'main-nav'} aria-label="Navegación principal">
+          <a href="/" onClick={() => setMenuOpen(false)}>Inicio</a>
+          <a href="/cv.html" onClick={() => setMenuOpen(false)}>Trayectoria</a>
+          <a href="/casos/mencia.html" onClick={() => setMenuOpen(false)}>Estrategia</a>
+          <a href="/aplicaciones/" onClick={() => setMenuOpen(false)}>Aplicaciones</a>
+          <a href="/formacion/" onClick={() => setMenuOpen(false)}>Formación</a>
+          <a href="/congresos-webinars.html" onClick={() => setMenuOpen(false)}>Congresos y webinars</a>
+          <a href="/#contacto" onClick={() => setMenuOpen(false)}>Contacto</a>
         </nav>
+      </header>
 
-        {/* Step Views */}
-        {currentStep === 'ingesta' && (
-          <IngestionView
-            data={state.ingest}
-            onChange={(newIngest) => updateInputs({ ingest: newIngest })}
-            onProceed={() => setCurrentStep('entrevista')}
-            onOpenPurpose={() => setShowPurposeModal(true)}
-            idioma={idioma}
-          />
+      <main id="contenido">
+        <section className="hero" id="inicio">
+          <div className="hero-overlay" aria-hidden="true" />
+          <div className="hero-content">
+            <p className="kicker">Jose Antonio Arias Lombardero</p>
+            <h1>Inteligencia artificial aplicada al sector público</h1>
+            <p className="hero-lead">Diseño estrategias institucionales, construyo aplicaciones y desarrollo programas de formación adaptados al trabajo de cada organización.</p>
+            <div className="hero-actions">
+              <a className="button primary" href="mailto:jose@ariaslombardero.es?subject=Solicitud%20de%20propuesta%20formativa%20sobre%20IA">Solicitar una propuesta formativa <ArrowRight size={18} /></a>
+              <button className="button secondary video-trigger" type="button" ref={videoTriggerRef} onClick={() => setVideoOpen(true)}><Play size={18} /> Ver vídeo de presentación</button>
+              <a className="hero-text-link" href="/cv.html">Trayectoria profesional <ArrowRight size={16} /></a>
+            </div>
+          </div>
+          <div className="hero-proof" aria-label="Credenciales principales">
+            <div><strong>15+</strong><span>Años en Administración local</span></div>
+            <div><strong>88 h</strong><span>Formación reciente impartida</span></div>
+            <div><strong>3</strong><span>Premios profesionales en 2026</span></div>
+            <div><strong>AEPD</strong><span>Evaluador de su revista especializada</span></div>
+          </div>
+        </section>
+
+        {showNovaGobCallout && (
+          <section className="novagob-callout" aria-label="Finalistas de los Premios NovaGob 2026">
+            <div className="section-inner novagob-callout-inner">
+              <div className="novagob-callout-copy">
+                <img className="novagob-callout-image" src="/img/reconocimientos/novagob-finalista-2026.jpg?v=20260929" alt="Tarjeta oficial de la candidatura situada entre los dos últimos finalistas de los Premios NovaGob 2026, categoría Persona Innovadora del Año" loading="lazy" />
+                <div>
+                  <p className="kicker dark-kicker">Premios NovaGob 2026 · votación cerrada</p>
+                  <h2>Entre los dos finalistas a Persona Innovadora del Año</h2>
+                  <p>Mi candidatura ha quedado entre las dos últimas finalistas por llevar la innovación a la práctica en la Administración pública y compartir lo aprendido: inteligencia artificial aplicada a la gestión local, herramientas en abierto, formación de empleados públicos y divulgación a través de publicaciones y congresos.</p>
+                </div>
+              </div>
+              <div className="novagob-callout-action">
+                <span>El ganador se conocerá en la gala del 10 de diciembre.</span>
+                <a className="button novagob-button" href={NOVAGOB_FINALISTS_URL} target="_blank" rel="noreferrer" aria-label="Ver finalistas de los Premios NovaGob 2026">
+                  Ver finalistas <ExternalLink size={17} />
+                </a>
+              </div>
+            </div>
+          </section>
         )}
 
-        {currentStep === 'entrevista' && (
-          <LegalInterviewView
-            answers={state.answers}
-            ingest={state.ingest}
-            onChange={(newAnswers) => updateInputs({ answers: newAnswers })}
-            hasDiagnostic={Boolean(state.diagnostic)}
-            focusQuestionId={focusQuestionId}
-            renderAssist={renderAssist}
-            assistToolbar={assistToolbar}
-            onBack={() => setCurrentStep('ingesta')}
-            onAnalyze={handleStartAnalysis}
-            isAnalyzing={isAnalyzing}
-            idioma={idioma}
-          />
-        )}
+        <section className="section light" id="ambitos">
+          <div className="section-inner">
+            <div className="section-heading">
+              <div><p className="kicker dark-kicker">Tres rutas profesionales</p><h2>Estrategia, herramientas y formación</h2></div>
+              <p>Tres formas de convertir la inteligencia artificial en capacidad pública: estrategia institucional, herramientas utilizables y formación aplicada.</p>
+            </div>
+            <div className="area-grid">
+              {areas.map(({title, text, href, territory, action}, index) => (
+                <a className={`area territory-${territory}`} href={href} key={title} aria-label={`${action}: ${title}`}>
+                  <span className="area-index">0{index + 1}</span>
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                  <span className="area-cta">{action} <ArrowRight size={16} /></span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
 
-        {currentStep === 'diagnostico' && state.diagnostic && (
-          <DiagnosticDashboard
-            diagnostic={effectiveDiagnostic(state)!}
-            validations={state.validations || {}}
-            onValidateRequirement={handleValidateRequirement}
-            onRevokeValidation={handleRevokeValidation}
-            appName={state.ingest.appName}
-            llmCritique={aiComment}
-            onRegenerateAi={handleStartAnalysis}
-            answers={state.answers}
-            onSetAnswer={(id, value) => updateInputs({ answers: setAnswerValue(state.answers, id, value) })}
-            renderAssist={renderAssist}
-            onGoToQuestion={(id) => {
-              setFocusQuestionId(undefined);
-              window.setTimeout(() => setFocusQuestionId(id), 0);
-              setCurrentStep('entrevista');
-            }}
-            onGoToCodeKit={() => setCurrentStep('codigo')}
-            onOpenDossier={() => setCurrentStep('expediente')}
-            onBackToInterview={() => setCurrentStep('entrevista')}
-            onInspectNorm={(normId, article) => {
-              setLiveNormTarget({ normId, article });
-              setShowLiveLegislation(true);
-            }}
-            idioma={idioma}
-          />
-        )}
+        <section className="section credentials" aria-label="Credenciales seleccionadas">
+          <div className="section-inner credential-row">
+            <a href="/cv.html#premio-sam"><Award size={21} /><span>Premio SAM 2026 · Mejor Idea a Futuro</span><ArrowRight size={16} /></a>
+            <a href="/cv.html#premio-juan-raya"><Award size={21} /><span>Premio Juan Raya Gómez 2026</span><ArrowRight size={16} /></a>
+            <a href="/cv.html#premio-foro-grc"><Award size={21} /><span>Mejor comunicación · II Foro GRC</span><ArrowRight size={16} /></a>
+            <a href="/cv.html#publicacion-reciente"><BookOpen size={21} /><span>Última publicación · Soberanía arquitectónica e IA · AEPD</span><ArrowRight size={16} /></a>
+          </div>
+        </section>
 
-        {currentStep === 'codigo' && state.codeKit && (
-          <CodeKitView
-            codeKit={state.codeKit}
-            onBackToDiagnostic={() => setCurrentStep('diagnostico')}
-            onOpenDossier={() => setCurrentStep('expediente')}
-            idioma={idioma}
-          />
-        )}
+        <section className="section case-study" id="mencia">
+          <div className="section-inner case-study-grid">
+            <div className="case-copy">
+              <span className="content-label institutional">Caso institucional</span>
+              <p className="kicker">Estrategia provincial de IA · 2026-2030</p>
+              <h2>MencIA: estrategia provincial de inteligencia artificial</h2>
+              <p>Una estrategia provincial de inteligencia artificial que conecta gobernanza, cumplimiento, infraestructura propia, aplicaciones, alfabetización y asistencia a los municipios. El proyecto fue presentado públicamente y aprobado por unanimidad por el Pleno de la Diputación de Lugo.</p>
+              <div className="case-facts" aria-label="Datos principales del caso">
+                <div><strong>4</strong><span>Pilares estratégicos</span></div>
+                <div><strong>8 + 9</strong><span>Aplicaciones y asistentes en funcionamiento</span></div>
+                <div><strong>66</strong><span>Municipios de menos de 20.000 habitantes</span></div>
+              </div>
+              <section className="case-international" aria-labelledby="mencia-oecd-title">
+                <h3 id="mencia-oecd-title">MencIA, seleccionada para su publicación en el Observatorio de Políticas de IA de la OCDE</h3>
+                <p>La estrategia de inteligencia artificial de la Diputación Provincial de Lugo ha sido seleccionada tras su presentación a la convocatoria internacional <a href="https://oecd.ai/en/wonk/call-ai-in-gov" target="_blank" rel="noopener noreferrer">«Governing with Artificial Intelligence»</a> de la OCDE.</p>
+                <p>OECD.AI es su Observatorio de Políticas de Inteligencia Artificial: una plataforma de conocimiento sobre IA que incluye el Policy Navigator, donde pueden consultarse políticas e iniciativas de distintos países y organizaciones. MencIA forma parte de este repositorio internacional.</p>
+                <div className="case-international-links">
+                  <a href="https://oecd.ai/en/dashboards/policy-initiatives/mencia-sovereign-ai-strategy-for-territorial-cohesion-subnational-lugo" target="_blank" rel="noopener noreferrer">Ver ficha de MencIA en OECD.AI <ExternalLink size={16} /></a>
+                  <a href="https://oecd.ai/en/dashboards/overview" target="_blank" rel="noopener noreferrer">Explorar el observatorio <ExternalLink size={16} /></a>
+                </div>
+              </section>
+              <a className="button primary" href="/casos/mencia.html">Examinar el caso <ArrowRight size={18} /></a>
+            </div>
+            <a className="case-visual" href="/casos/mencia.html" aria-label="Abrir el caso MencIA">
+              <img src="/img/apps/landing-mencia.jpg" alt="Vista del portal institucional MencIA" loading="lazy" />
+              <span>Del marco estratégico a las herramientas y la formación</span>
+            </a>
+          </div>
+        </section>
 
-        {currentStep === 'expediente' && (
-          <OfficialDossierView
-            state={state}
-            onUpdateMetadata={(newMeta) => setState((p) => ({ ...p, metadata: newMeta }))}
-            onBackToCodeKit={() => setCurrentStep('codigo')}
-            onGoToHardening={() => setCurrentStep('blindaje')}
-            llmCritique={aiComment}
-            idioma={idioma}
-          />
-        )}
+        <section className="section speaker-preview" id="congresos">
+          <div className="section-inner">
+            <div className="section-heading">
+              <div><p className="kicker dark-kicker">Actividad como ponente</p><h2>Congresos y webinars</h2></div>
+              <p>Intervenciones sobre inteligencia artificial, innovación y Administración pública, con acceso a las presentaciones y grabaciones disponibles.</p>
+            </div>
+            <div className="talk-preview-grid">
+              {talks.map((talk) => (
+                <article className="talk-preview" key={talk.title}>
+                  <img src={talk.image} alt={`Participación en ${talk.title}`} loading="lazy" />
+                  <div className="talk-preview-copy">
+                    <span className="talk-badge">{talk.badge}</span>
+                    <p>{talk.meta}</p>
+                    <h3>{talk.title}</h3>
+                    <p className="talk-title">{talk.intervention}</p>
+                    <a href={talk.href} target="_blank" rel="noreferrer">{talk.actionLabel ?? (talk.badge === 'Webinar' ? 'Ver webinar' : 'Ver presentación')} <ExternalLink size={15} /></a>
+                  </div>
+                </article>
+              ))}
+            </div>
+            <a className="talks-link" href="/congresos-webinars.html">Ver todos los congresos, jornadas y webinars <ArrowRight size={17} /></a>
+          </div>
+        </section>
 
-        {currentStep === 'blindaje' && (
-          <PreProductionHardeningView
-            state={state}
-            onBackToDossier={() => setCurrentStep('expediente')}
-            idioma={idioma}
-          />
-        )}
+        <section className="section dark-section" id="proyectos">
+          <div className="section-inner">
+            <div className="section-heading">
+              <div><p className="kicker">Trabajo seleccionado</p><h2>Proyectos, aplicaciones y recursos seleccionados</h2></div>
+              <p>Una muestra breve de servicios basados en datos, recursos educativos sobre IA, automatización pública y prototipos que usan IA para tareas concretas.</p>
+            </div>
+            <div className="project-grid">
+              {projects.map((project) => (
+                <article className="project-card" key={project.title}>
+                  <div className="project-media"><img src={project.image} alt={`Vista de ${project.title}`} loading="lazy" /></div>
+                  <div className="project-content">
+                    <span className="content-label built">Recurso desarrollado</span>
+                    <p className="project-type">{project.type}</p>
+                    <h3>{project.title}</h3>
+                    <p>{project.description}</p>
+                    <div className="project-links">
+                      {project.actions.map((action) => {
+                        const external = action.href.startsWith('http');
+                        return <a key={action.label} href={action.href} target={external ? '_blank' : undefined} rel={external ? 'noreferrer' : undefined}>{action.label} {action.code ? <Github size={16} /> : external ? <ExternalLink size={16} /> : <ArrowRight size={16} />}</a>;
+                      })}
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+            <a className="text-link" href="/aplicaciones/">Consultar el catálogo de aplicaciones <ArrowRight size={17} /></a>
+          </div>
+        </section>
+
+        <section className="training-feature" id="formacion">
+          <div className="training-overlay" aria-hidden="true" />
+          <div className="training-content">
+            <span className="content-label delivered">Formación acreditada</span>
+            <p className="kicker">Formación en IA para el sector público</p>
+            <h2>Programas adaptados al trabajo de cada organización</h2>
+            <p>Diseño e imparto talleres, cursos e itinerarios para perfiles administrativos, técnicos, jurídicos y directivos. Los programas combinan contenidos, práctica, evaluación y recursos propios.</p>
+            <div className="training-actions"><a className="button training-button" href="/formacion/programas.html">Ver programas <ArrowRight size={18} /></a><a className="training-link" href="/formacion/caso-gestion-local.html"><Users size={18} /> Experiencia impartida</a></div>
+          </div>
+        </section>
+
+        <section className="section contact" id="contacto">
+          <div className="section-inner contact-grid">
+            <div><p className="kicker">Contacto</p><h2>Formación y colaboración para organizaciones públicas</h2></div>
+            <div>
+              <p>Trabajo con administraciones, organismos y entidades formativas. Para preparar una propuesta basta con indicar destinatarios, objetivos, duración y modalidad.</p>
+              <div className="contact-actions">
+                <a className="button primary" href="mailto:jose@ariaslombardero.es?subject=Solicitud%20de%20propuesta%20formativa%20sobre%20IA"><Mail size={18} /> Solicitar propuesta</a>
+              </div>
+              <div className="profile-links" aria-label="Perfiles profesionales">
+                <a href="https://www.linkedin.com/in/ariaslombardero" target="_blank" rel="noreferrer"><Linkedin size={17} /> LinkedIn</a>
+                <a href="https://github.com/ariaslombardero" target="_blank" rel="noreferrer"><Github size={17} /> GitHub</a>
+                <a href="https://vimeo.com/ariaslombardero" target="_blank" rel="noreferrer"><VimeoMark /> Vimeo</a>
+                <a href="https://es.slideshare.net/joseantarias" target="_blank" rel="noreferrer"><SlideShareMark /> SlideShare</a>
+                <a href="https://orcid.org/0009-0007-7772-1008" target="_blank" rel="noreferrer"><span className="orcid-mark" aria-hidden="true">iD</span> ORCID</a>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
 
-      <footer style={{
-        textAlign: 'center',
-        padding: '1.25rem',
-        fontSize: '0.75rem',
-        color: 'var(--brand-muted-light)',
-        borderTop: '1px solid var(--color-border)',
-        background: 'white',
-      }}>
-        <div style={{ marginBottom: '0.25rem', fontWeight: 600 }}>
-          <a href="https://ariaslombardero.es/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--brand-blue)', textDecoration: 'none' }}>
-            Arias Lombardero · Aplicaciones
-          </a>
-          {' · '}
-          <span>Auditor IA · Sector Público España</span>
-        </div>
-        <div style={{ color: '#94a3b8', fontSize: '0.6875rem' }}>
-          Marco Normativo: RIA (Reglamento UE 2024/1689, modificado por el Reglamento UE 2026/1744) · ENS (RD 311/2022) · RGPD · Ley 40/2015
-        </div>
+      <footer className="site-footer">
+        <span>© 2026 Jose Antonio Arias Lombardero</span>
+        <nav aria-label="Navegación del pie de página">
+          <a href="/">Inicio</a>
+          <a href="/cv.html">Trayectoria profesional</a>
+          <a href="/#contacto">Contacto</a>
+          <a href="https://www.linkedin.com/in/ariaslombardero" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a href="https://github.com/ariaslombardero" target="_blank" rel="noreferrer">GitHub</a>
+        </nav>
       </footer>
 
-      <ApiConfigModal open={showApiModal} onOpenChange={setShowApiModal} idioma={idioma} />
-
-      {showGuide && (
-        <UserGuideModal
-          isOpen={showGuide}
-          onClose={() => setShowGuide(false)}
-          idioma={idioma}
-        />
+      {videoOpen && (
+        <div
+          className="video-modal"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="presentation-video-title"
+          onMouseDown={(event) => { if (event.target === event.currentTarget) closeVideo(); }}
+          onKeyDown={(event) => {
+            if (event.key !== 'Tab') return;
+            const focusable = Array.from(event.currentTarget.querySelectorAll('button, iframe')) as HTMLElement[];
+            if (!focusable.length) return;
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (event.shiftKey && document.activeElement === first) {
+              event.preventDefault();
+              last.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+              event.preventDefault();
+              first.focus();
+            }
+          }}
+        >
+          <div className="video-modal-panel">
+            <div className="video-modal-header"><div><span>Vídeo de presentación</span><h2 id="presentation-video-title">Jose Antonio Arias Lombardero</h2></div><button type="button" ref={videoCloseRef} onClick={closeVideo} aria-label="Cerrar vídeo"><X size={22} /></button></div>
+            <div className="video-frame"><iframe src="https://player.vimeo.com/video/1188057315?dnt=1&title=0&byline=0&portrait=0&autoplay=1" title="Vídeo de presentación de Jose Antonio Arias Lombardero" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen /></div>
+          </div>
+        </div>
       )}
-
-      {showPurposeModal && (
-        <ExecutivePurposeModal
-          isOpen={showPurposeModal}
-          onClose={() => setShowPurposeModal(false)}
-          idioma={idioma}
-        />
-      )}
-
-      {showLiveLegislation && (
-        <LiveLegislationModal
-          isOpen={showLiveLegislation}
-          onClose={() => setShowLiveLegislation(false)}
-          initialNormId={liveNormTarget.normId}
-          initialArticle={liveNormTarget.article}
-          idioma={idioma}
-        />
-      )}
-
-      <AuditHistoryModal
-        isOpen={showHistoryModal}
-        onClose={() => {
-          setShowHistoryModal(false);
-          setHistoryCount(getStoredAudits().length);
-        }}
-        onLoadAudit={handleLoadAuditFromHistory}
-        idioma={idioma}
-      />
     </div>
   );
-};
+}
 
 export default App;
