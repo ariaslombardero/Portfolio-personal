@@ -247,7 +247,7 @@ body.modal-open { overflow: hidden; }
   .talk-entry { grid-template-columns: 110px 220px minmax(0, 1fr); gap: 20px; }
 }
 
-@media (min-width: 721px) and (max-width: 1080px) {
+@media (min-width: 721px) and (max-width: 1100px) {
   .menu-button { display: grid; }
   .nav { position: absolute; top: 68px; right: 22px; width: min(330px, calc(100vw - 44px)); display: none; align-items: stretch; flex-direction: column; padding: 10px; border: 1px solid var(--line); border-radius: 6px; background: #111; box-shadow: 0 20px 45px rgba(0,0,0,0.45); }
   .nav.open { display: flex; }
